@@ -1,0 +1,17 @@
+.App {
+  height: 100vh;
+  max-width: 100%;
+  position: relative;
+
+  //! Test
+  background-color: orangered;
+  
+  &__container {
+    height: 90%;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -7,3 +7,10 @@
 @import 'base/typography';
 @import 'base/animations';
 @import 'base/utilities';
+
+@import '../../containers/app/styles';
+
+
+//* Pages
+@import '../../containers/pages/home/styles';
+
