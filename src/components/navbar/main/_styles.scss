@@ -1,0 +1,17 @@
+.main-navbar {
+  height: 10rem;
+  width: 100%;
+  
+  border-top-right-radius: 4rem;
+  border-top-left-radius: 4rem;
+  //! Test
+  background-color: blue;
+
+  &__container {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

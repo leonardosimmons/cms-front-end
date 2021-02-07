@@ -4,7 +4,6 @@
   border-radius: 4rem;
   
   &__container {
-    
     height: 100%;
     width: 100%;
     
@@ -14,16 +13,6 @@
     border-radius: 4rem;
     //! Test
     background-color: darkorange;
-  }
-
-  &__navigation {
-    height: 10rem;
-    width: 100%;
-    
-    border-top-right-radius: 4rem;
-    border-top-left-radius: 4rem;
-    //! Test
-    background-color: blue;
   }
 
   &__content {
