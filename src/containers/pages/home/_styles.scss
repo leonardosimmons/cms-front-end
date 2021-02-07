@@ -1,14 +1,17 @@
 .home {
   height: 100%;
   max-width: 100%;
-
+  border-radius: 4rem;
+  
   &__container {
+    
     height: 100%;
     width: 100%;
-
+    
     display: flex;
     flex-direction: column;
-
+    
+    border-radius: 4rem;
     //! Test
     background-color: darkorange;
   }
@@ -17,6 +20,8 @@
     height: 10rem;
     width: 100%;
     
+    border-top-right-radius: 4rem;
+    border-top-left-radius: 4rem;
     //! Test
     background-color: blue;
   }
@@ -24,16 +29,19 @@
   &__content {
     flex: 1 1;
     display: flex;
+    
 
     &--sidebar {
       flex: 0 1 30%;
 
+      border-bottom-right-radius: 4rem;
       //! Test
       background-color: green;
     }
 
     &--body {
       flex: 1 1;
+      border-bottom-left-radius: 4rem;
     }
   }
 }
