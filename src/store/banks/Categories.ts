@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../store';
-import  Action from '../keys/actions/actions';
+
 
 /*  --------------------  INTERFACES  --------------------  */
 
@@ -13,14 +13,14 @@ interface CategoryToken {
 
 interface CategoryTokenBank {
   bank: CategoryToken[];
-  loading: boolean;
+  isLoading: boolean;
 };
 
 
 /*  ----------------------  REDUCER  ----------------------  */
 const initialState: CategoryTokenBank = {
   bank: [],
-  loading: false
+  isLoading: false
 };
 
 export const categorySlice = createSlice({
@@ -31,31 +31,35 @@ export const categorySlice = createSlice({
     {
       const tokens: CategoryToken[] = action.payload;
       state.bank = tokens;
-      state.loading = false;
-      console.log('Done loading')
     },
 
-    loading: (state) => 
+    isLoading: (state) => 
     {
-      console.log('loading');
-      state.loading = true;
+      state.isLoading = !state.isLoading;
     }
   }
 });
-export const { set, loading } = categorySlice.actions;
+export const { set, isLoading } = categorySlice.actions;
 
 
 /*  ------------------------  ASYNC  ------------------------  */
 export const load = (): AppThunk => (dispatch, getState) =>
 {
-  dispatch(loading());
+  dispatch(isLoading());
   const url = getState().api.categories;
   axios.get<CategoryToken[]>(url, {
     headers: { "Content-Type": "application/json" }})
-    .then(res => res.data)
-    .then(data => dispatch(set(data)))
+    .then(res => {
+      if (res.status === 200) { 
+        return res.data 
+      }
+      throw new Error('Error: Something went wrong!');
+    })
+    .then(data => dispatch(set(data!)))
+    .then(() => dispatch(isLoading()))
     .catch(e => console.log(e))
 }
+
 
 /*  ------------------------  STATE  ------------------------  */
 export const Categories = (state: RootState) => state.categories;
