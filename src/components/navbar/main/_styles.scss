@@ -1,15 +1,97 @@
+/* 
+* ------------------------  FONT SIZE  ---------------------------
+*/
+.main-navbar {
+
+
+  &__container {
+
+  }
+
+  &__logo-box {
+
+
+    &--img {
+
+    }
+  }
+
+  &__list-01 {
+
+
+    &--item {
+
+    }
+    
+    &--text {
+
+    }
+  }
+}
+
+/* 
+* --------------------------  COLORS  ----------------------------
+*/
+
+.main-navbar {
+  //! Test
+  background-color: purple;
+
+  &__logo-box {
+
+    &--img {
+
+    }
+  }
+
+  &__list {
+    &--item {
+
+    }
+
+    &--text {
+      color: white;
+    }
+  }
+}
+
+/* 
+* ------------------------  STRUCTURE  ---------------------------
+*/
 .main-navbar {
   height: 10rem;
   width: 100%;
-  
-  //! Test
-  background-color: blue;
+
+  border-top-right-radius: 4rem;
+  border-top-left-radius: 4rem;
 
   &__container {
     height: 100%;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+  }
+
+  &__logo-box {
+    margin-left: 2rem;
+
+    &--img {
+      transform: scale(.65);
+    }
+  }
+
+  &__list {
+    display: flex;
+    margin-left: 2rem;
+
+    &--item {
+      padding: 2rem;
+      list-style: none;
+    }
+    
+    &--text {
+      text-decoration: none;
+    }
   }
 }

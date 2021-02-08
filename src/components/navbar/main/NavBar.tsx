@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-type NavBarProps = {
-  name: string;
-}
+import Element from '../../../store/keys/elements'
+import logo from '../../../assets/images/logo.png';
+import LogoBox from '../../boxes/logo';
+import MenuTabs from '../../lists/base';
 
-const NavBar: React.FunctionComponent<NavBarProps> = ({ name, children }) => {
+const NavBar: React.FunctionComponent = () => {
+  const [ name ] = useState<string>(Element.MAIN_NAVBAR);
   
+  const temp: any = [{ text: 'apples'}, {text: 'oranges'}, {text: 'tomatoes'}, {text: 'cucumbers'}];
+
   return (
-    <nav className={`main-navbar  ${ name }__main-navbar`}>
-      <div className={`main-navbar__container ${ name }__main-navbar--container`}>
-        { children }
+    <nav className={`${ name }`}>
+      <div className={`${ name }__container`}>
+        <LogoBox 
+          name={ name }
+          logo={ logo }
+        />
+        <MenuTabs 
+          name={ name }
+          list={temp} 
+        />
       </div>
     </nav>
   );

@@ -7,8 +7,8 @@ type LogoBoxProps = {
 
 const LogoBox: React.FunctionComponent<LogoBoxProps> = ({ name, logo }) => {
   return (
-    <div className={`logo-box ${ name }__logo-box`}>
-      <img className={`logo-box__img ${ name }__logo-box--img`}
+    <div className={`${ name }__logo-box`}>
+      <img className={`${ name }__logo-box--img`}
         src={ logo } 
         alt="" />
     </div>
