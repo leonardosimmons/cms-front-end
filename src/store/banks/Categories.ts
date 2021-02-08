@@ -27,12 +27,13 @@ export const categorySlice = createSlice({
   name: 'categoryBank',
   initialState,
   reducers: {
+    /*  ------------------------  BANK  ------------------------  */
     set: (state, action: PayloadAction<CategoryToken[]>) => 
     {
       const tokens: CategoryToken[] = action.payload;
       state.bank = tokens;
     },
-
+    /*  ----------------------  isLOADING  ----------------------  */
     isLoading: (state) => 
     {
       state.isLoading = !state.isLoading;

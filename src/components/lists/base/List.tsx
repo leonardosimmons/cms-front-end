@@ -3,7 +3,8 @@ import React from 'react';
 type ListProps = {
   name: string;
   list: {
-    text: string;
+    title?: string;
+    text?: string;
     link?: string;
   }[];
 };
@@ -22,7 +23,7 @@ const List: React.FunctionComponent<ListProps> = ({ name, list }) => {
             ${ name }__list--text-${ index + 1 }`}
             href={ item.link || '#' }
           >
-            { item.text }
+            { item.title || item.text }
           </a>
         </li>
       ))}

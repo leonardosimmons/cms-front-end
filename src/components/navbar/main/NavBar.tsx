@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getConfiguration } from '../../navbar/main/config';
 
 import Element from '../../../store/keys/elements'
 import logo from '../../../assets/images/logo.png';
@@ -7,8 +9,7 @@ import MenuTabs from '../../lists/base';
 
 const NavBar: React.FunctionComponent = () => {
   const [ name ] = useState<string>(Element.MAIN_NAVBAR);
-  
-  const temp: any = [{ text: 'apples'}, {text: 'oranges'}, {text: 'tomatoes'}, {text: 'cucumbers'}];
+  const config = useSelector(getConfiguration);
 
   return (
     <nav className={`${ name }`}>
@@ -19,7 +20,7 @@ const NavBar: React.FunctionComponent = () => {
         />
         <MenuTabs 
           name={ name }
-          list={temp} 
+          list={ config.categories } 
         />
       </div>
     </nav>
