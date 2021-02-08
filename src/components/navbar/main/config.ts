@@ -11,4 +11,4 @@ export const getConfiguration = createSelector(
       isLoading: state.isLoading
     }
   }
-)
+);
