@@ -7,11 +7,11 @@ type NavBarProps = {
 const NavBar: React.FunctionComponent<NavBarProps> = ({ name, children }) => {
   
   return (
-    <div className={`main-navbar  ${ name }__main-navbar`}>
+    <nav className={`main-navbar  ${ name }__main-navbar`}>
       <div className={`main-navbar__container ${ name }__main-navbar--container`}>
         { children }
       </div>
-    </div>
+    </nav>
   );
 };
 

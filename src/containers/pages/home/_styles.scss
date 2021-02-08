@@ -1,3 +1,87 @@
+/* 
+* ------------------------  FONT SIZE  ---------------------------
+*/
+.home {
+  &__container {
+
+  }
+
+  &__main-navbar {
+  }
+
+  &__logo-box {
+
+    &--img {
+
+    }
+  }
+
+  &__list-01 {
+    &--item {
+
+    }
+
+    &--text {
+
+    }
+  }
+
+  &__content {
+    &--sidebar {
+
+    }
+
+    &--body {
+    }
+  }
+}
+
+/* 
+* --------------------------  COLORS  ----------------------------
+*/
+
+.home {
+  &__container {
+    //! Test
+    background-color: darkorange;
+  }
+
+  &__main-navbar {
+  }
+
+  &__logo-box {
+
+    &--img {
+
+    }
+  }
+
+  &__list-01 {
+    &--item {
+
+    }
+
+    &--text {
+      color: white;
+    }
+  }
+
+  &__content {
+    &--sidebar {
+      //! Test
+      background-color: green;
+    }
+
+    &--body {
+    }
+  }
+}
+
+/* 
+* ------------------------  STRUCTURE  ---------------------------
+*/
+
+
 .home {
   height: 100%;
   max-width: 100%;
@@ -11,8 +95,6 @@
     flex-direction: column;
     
     border-radius: 4rem;
-    //! Test
-    background-color: darkorange;
   }
 
   &__main-navbar {
@@ -24,7 +106,21 @@
     margin-left: 2rem;
 
     &--img {
-      transform: scale(.75);
+      transform: scale(.65);
+    }
+  }
+
+  &__list-01 {
+    display: flex;
+    margin-right: 2rem;
+
+    &--item {
+      padding: 2rem;
+      list-style: none;
+    }
+    
+    &--text {
+      text-decoration: none;
     }
   }
 
@@ -37,8 +133,6 @@
       flex: 0 1 30%;
 
       border-bottom-right-radius: 4rem;
-      //! Test
-      background-color: green;
     }
 
     &--body {
