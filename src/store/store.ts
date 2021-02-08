@@ -1,8 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
+import apiReducer from './banks/Api';
+import categoryReducer from './banks/Categories';
+
 export const store = configureStore({
   reducer: {
-    
+    api: apiReducer,
+    categories: categoryReducer,
   },
 });
 

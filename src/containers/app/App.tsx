@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { load as loadAPI } from  '../../store/banks/Api';
+import { load as loadCategories } from '../../store/banks/Categories';
 
-import Element from '../../store/keys/elements';
+////import Element from '../../store/keys/elements';
 import HomePage from '../pages/home';
 
-function App() {
-  const [ name ] = useState<string>(Element.APP);
+const App: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+
+  const initApp = useCallback(() => {
+    dispatch(loadAPI());
+    dispatch(loadCategories());
+  }, [ dispatch ]);
+
+  useEffect(() => {
+    initApp();
+  }, [ initApp ]);
 
   return (
-    <div className={`${ name }`}>
-      <div className={`${ name }__container`}>
+    <div className="App">
+      <div className="App__container">
         <HomePage />
       </div>
     </div>
