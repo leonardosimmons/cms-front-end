@@ -15,6 +15,19 @@
     background-color: darkorange;
   }
 
+  &__main-navbar {
+    border-top-right-radius: 4rem;
+    border-top-left-radius: 4rem;
+  }
+
+  &__logo-box {
+    margin-left: 2rem;
+
+    &--img {
+      transform: scale(.75);
+    }
+  }
+
   &__content {
     flex: 1 1;
     display: flex;
