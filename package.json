@@ -24,8 +24,10 @@
     "typescript": "~3.8.2"
   },
   "scripts": {
-    "start": "npm run build:css && craco start",
-    "build": "npm run build:css && craco build",
+    "prestart": "npm run build:css",
+    "prebuild": "npm run build:css",
+    "start": "craco start",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "build:css": "tailwind build src/styles/tailwind.scss -o src/styles/index.scss "
