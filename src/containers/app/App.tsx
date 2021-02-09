@@ -2,8 +2,8 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { load as loadAPI } from  '../../store/banks/Api';
 import { load as loadCategories } from '../../store/banks/Categories';
+import { load as loadPosts } from '../../store/banks/Posts';
 
-////import Element from '../../store/keys/elements';
 import HomePage from '../pages/home';
 
 const App: React.FunctionComponent = () => {
@@ -12,6 +12,7 @@ const App: React.FunctionComponent = () => {
   const initApp = useCallback(() => {
     dispatch(loadAPI());
     dispatch(loadCategories());
+    dispatch(loadPosts());
   }, [ dispatch ]);
 
   useEffect(() => {

@@ -7,6 +7,7 @@ enum ElementKeys {
   APP = 'App',
   HOME = 'home',
   MAIN_NAVBAR = 'main-navbar',
+  POST = 'post',
 };
 
 export default ElementKeys;

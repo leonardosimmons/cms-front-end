@@ -7,11 +7,13 @@ interface ApiBank
 {
   key: boolean;
   categories: string;
+  posts: string;
 };
 
 const initialState: ApiBank = {
   key: false,
-  categories: ''
+  categories: '',
+  posts: '',
 };
 
 
@@ -24,6 +26,7 @@ export const apiSlice = createSlice({
     {
       state.key = true;
       state.categories = (process.env.REACT_APP_CATEGORIES_API as string);
+      state.posts = (process.env.REACT_APP_POSTS_API as string);
     }
   }
 });
