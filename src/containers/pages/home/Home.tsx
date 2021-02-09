@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
+import BlogPost from '../../../components/posts/blog';
 
 const Home: React.FunctionComponent = () => {
   const [ name ] = useState<string>(Element.HOME);

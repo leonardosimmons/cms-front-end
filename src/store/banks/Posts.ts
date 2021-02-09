@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../store';
-import { Post, PostBank } from '../types/post';
+import { Post, PostBank } from '../types/post/post-types';
 
 //*  ----------------------  REDUCER  ----------------------  */
 const initialState: PostBank = {
