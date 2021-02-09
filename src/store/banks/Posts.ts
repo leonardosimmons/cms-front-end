@@ -1,35 +1,13 @@
 import axios from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../store';
+import { Post, PostBank } from '../types/post';
 
-import Element from '../keys/elements';
-
-/*  --------------------  INTERFACES  --------------------  */
-type Post = {
-  id: number;
-  categoryId: number;
-  title: string;
-  author: string;
-  date: string;
-  tags: string;
-  commentCount: number;
-  status: string;
-  content: string;
-  image: string;
-};
-
-type PostBank = {
-  posts: Post[];
-  isLoading: boolean
-};
-
-
-/*  ----------------------  REDUCER  ----------------------  */
+//*  ----------------------  REDUCER  ----------------------  */
 const initialState: PostBank = {
-  posts: [],
+  bank: [],
   isLoading: false
 };
-
 
 export const postSlice = createSlice({
   name: 'posts',
@@ -39,7 +17,7 @@ export const postSlice = createSlice({
     set: (state, action: PayloadAction<Post[]>) => 
     {
       const posts: Post[] = action.payload;
-      state.posts = posts;
+      state.bank = posts;
     },
 
     /*  ----------------------  isLOADING  ----------------------  */
@@ -52,7 +30,7 @@ export const postSlice = createSlice({
 });
 export const { set, isLoading } = postSlice.actions;
 
-/*  ------------------------  ASYNC  ------------------------  */
+//*  ------------------------  ASYNC  ------------------------  */
 export const load = (): AppThunk => (dispatch, getState) => {
   dispatch(isLoading());
   const url = getState().api.posts;
@@ -60,10 +38,8 @@ export const load = (): AppThunk => (dispatch, getState) => {
     headers: { "Content-Type": "application/json" }})
     .then(res => {
       if (res.status === 200) {
-        console.log('apples')
         return res.data
       }
-
       return null;
     })
     .then(data => dispatch(set(data!)))
@@ -71,8 +47,6 @@ export const load = (): AppThunk => (dispatch, getState) => {
     .catch(e => console.log(e))
 };
 
-/*  -----------------------  STATE  -----------------------  */
+//*  -----------------------  STATE  -----------------------  */
 export const Posts = (state: RootState) => state.posts;
 export default postSlice.reducer;
-
-
