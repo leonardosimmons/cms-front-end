@@ -12,7 +12,7 @@ type Post = {
   author: string;
   date: string;
   tags: string;
-  comments: number;
+  commentCount: number;
   status: string;
   content: string;
   image: string;
@@ -60,6 +60,7 @@ export const load = (): AppThunk => (dispatch, getState) => {
     headers: { "Content-Type": "application/json" }})
     .then(res => {
       if (res.status === 200) {
+        console.log('apples')
         return res.data
       }
 
