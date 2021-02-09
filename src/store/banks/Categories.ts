@@ -42,7 +42,7 @@ export const load = (): AppThunk => (dispatch, getState) =>
       }
       throw new Error('Error: Something went wrong!');
     })
-    .then(data => dispatch(set(data!)))
+    .then(data => data && dispatch(set(data!)))
     .then(() => dispatch(isLoading()))
     .catch(e => console.log(e))
 }
