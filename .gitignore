@@ -28,3 +28,4 @@ yarn-error.log*
 logo192.png
 logo512.png
 favicon.ico
+src/styles/index.scss
