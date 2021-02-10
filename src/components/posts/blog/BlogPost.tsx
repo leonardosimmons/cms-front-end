@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Element from '../../../store/keys/elements/elements';
-import { BlogPostConfig, BlogPostData } from '../../../store/types/post/post-types';
+import Element from '../../../store/keys/elements';
+import { BlogPostConfig, BlogPostData } from '../../../store/types/post';
 
 
 type BlogPostProps = BlogPostConfig & BlogPostData;
