@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .main-navbar__list--text {
-    @apply text-base;
-  }
-}
 
 @layer utilities {
   .set-center {
