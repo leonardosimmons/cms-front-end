@@ -13,7 +13,7 @@ const NavBar: React.FunctionComponent = () => {
 
   return (
     <nav className={`${ name } h-24 w-full rounded-t-3xl bg-purple-600`}>
-      <div className={`${ name }__container h-full relative flex justify-start items-center`}>
+      <div className={`${ name }__container h-full w-95 m-auto relative flex justify-start items-center`}>
         <LogoBox
           name={ name }
           logo={ logo }

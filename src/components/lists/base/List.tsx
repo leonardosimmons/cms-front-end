@@ -13,11 +13,13 @@ const List: React.FunctionComponent<ListProps> = ({ name, list}) => {
   return (
     <ul className={`${ name }__list flex  ml-5`}>
       { list.map((item, index) => (
-        <li className={`${ name }__list--item  p-5`}
+        <li 
+          className={`${ name }__list--item  p-5`}
           key={ index }
         >
-          <a className={`${ name }__list--text  text-white no-underline`}
-            href={ item.link || '#' }
+          <a 
+            className={`${ name }__list--text  text-2xl text-white no-underline`}
+            href={ item.link || '#' } 
           >
             { item.title || item.text }
           </a>
