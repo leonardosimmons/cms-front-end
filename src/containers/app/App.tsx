@@ -20,8 +20,8 @@ const App: React.FunctionComponent = () => {
   }, [ initApp ]);
 
   return (
-    <div className="App">
-      <div className="App__container">
+    <div className="App h-screen max-w-full relative bg-blue-100">
+      <div className="App__container h-9/10 w-9/10 set-center">
         <HomePage />
       </div>
     </div>

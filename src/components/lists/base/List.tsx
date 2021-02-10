@@ -9,18 +9,14 @@ type ListProps = {
   }[];
 };
 
-const List: React.FunctionComponent<ListProps> = ({ name, list }) => {
+const List: React.FunctionComponent<ListProps> = ({ name, list}) => {
   return (
-    <ul className={`${ name }__list`}>
+    <ul className={`${ name }__list flex  ml-5`}>
       { list.map((item, index) => (
-        <li className={`
-          ${ name }__list--item 
-          ${ name }__list--item-${ index + 1 }`} 
+        <li className={`${ name }__list--item  p-5`}
           key={ index }
         >
-          <a className={`
-            ${ name }__list--text 
-            ${ name }__list--text-${ index + 1 }`}
+          <a className={`${ name }__list--text  text-white no-underline`}
             href={ item.link || '#' }
           >
             { item.title || item.text }

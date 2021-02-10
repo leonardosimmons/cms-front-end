@@ -11,8 +11,8 @@ const Post: React.FunctionComponent<BlogPostProps> = (props) => {
   const [ name ] = useState(Element.BLOG_POST);
 
   return (
-    <div className={`blog-post ${ name }__blog-post`}>
-      <div className={`blog-post__container ${ name }__blog-post--container`}>
+    <div className={`${ name }__blog-post  h-96 w-24 border-2 border-solid border-white`}>
+      <div className={`${ name }__blog-post--container`}>
       { children 
         || 
         <h1>Test Text from child</h1>}

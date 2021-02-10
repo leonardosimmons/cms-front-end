@@ -12,14 +12,14 @@ const NavBar: React.FunctionComponent = () => {
   const config = useSelector(getConfiguration);
 
   return (
-    <nav className={`${ name }`}>
-      <div className={`${ name }__container`}>
-        <LogoBox 
+    <nav className={`${ name } h-24 w-full rounded-t-3xl bg-purple-600`}>
+      <div className={`${ name }__container h-full relative flex justify-start items-center`}>
+        <LogoBox
           name={ name }
           logo={ logo }
         />
-        <MenuTabs 
-          name={ name }
+        <MenuTabs
+          name={ name } 
           list={ config.categories } 
         />
       </div>
