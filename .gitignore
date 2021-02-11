@@ -25,7 +25,13 @@ yarn-error.log*
 
 # User
 /src/buffer
+/src/styles/index.css
+
 logo192.png
 logo512.png
+<<<<<<< HEAD
 favicon.ico
 /src/styles/index.css
+=======
+favicon.ico
+>>>>>>> active

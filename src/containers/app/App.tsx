@@ -1,23 +1,19 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { load as loadAPI } from  '../../store/banks/Api';
-import { load as loadCategories } from '../../store/banks/Categories';
-import { load as loadPosts } from '../../store/banks/Posts';
+import { start } from  '../../store/banks';
 
 import HomePage from '../pages/home';
 
 const App: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  const initApp = useCallback(() => {
-    dispatch(loadAPI());
-    dispatch(loadCategories());
-    dispatch(loadPosts());
-  }, [ dispatch ]);
-
   useEffect(() => {
+    function initApp() {
+      dispatch(start());
+    }
     initApp();
-  }, [ initApp ]);
+
+  }, [ dispatch ]);
 
   return (
     <div className="App h-screen max-w-full relative bg-blue-100">
