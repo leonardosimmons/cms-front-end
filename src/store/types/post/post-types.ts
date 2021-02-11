@@ -34,23 +34,22 @@ export type PostDataBank = {
  * * Information pertaining to the selected post
  */
 export type PostInfo = {
-  id?: number;
-  categoryId?: number;
-  tags?: string;
+  id: number;
+  tags: string[];
+  status: string;
+  categoryId: number;
   commentCount?: number;
-  status?: string;
 };
 
 /**
  * * Content types that make up a post 
  */
 export type PostContent = {
-  id?: number;
-  title?: string;
-  author?: string;
-  date?: string;
-  image?: string;
-  content?: string;
+  title: string;
+  author: string;
+  date: string;
+  content?: JSX.Element;
+  image?: JSX.Element;
 };
 
 /**

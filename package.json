@@ -25,11 +25,12 @@
     "typescript": "~3.8.2"
   },
   "scripts": {
-    "start": "npm run build:css && craco start",
+    "build:css": "tailwind build src/styles/tailwind/styles.css -o src/styles/index.css",
+    "watch:css": "postcss -w src/styles/tailwind/styles.css -o src/styles/index.css",
     "build": "npm run build:css && craco build",
+    "start": "craco start && npm run watch:css",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "build:css": "tailwind build src/styles/tailwind/styles.css -o src/styles/index.css"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,29 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { PostInfo } from '../../store/types/post';
 
-import Element from '../../store/keys/elements/elements';
-import { BlogPostConfig, BlogPostData } from '../../store/types/post';
-
-
-type PostProps = BlogPostConfig & BlogPostData;
+type PostProps ={ 
+  parent: string;
+  preview?: boolean;
+} & PostInfo
 
 const Post: React.FunctionComponent<PostProps> = ({
   id, 
   categoryId, 
-  parent, 
-  index,  
   tags, 
   status, 
-  preview, 
-  commentCount, 
+  commentCount,
+  parent,
   children
 }) => {
-  const [ name ] = useState(Element.BLOG_POST);
-
   return (
-    <div className={`${ name }__blog-post  h-96 w-24 border-2 border-solid border-white`}>
-      <div className={`${ name }__blog-post--container`}>
-      { children }
-      </div>
+    <div className={`${ parent }__post  h-96 w-24 border-2 border-solid border-white`}>
+      { children } 
+      { commentCount && <div>{ commentCount }</div> }
     </div>
   );
 };
