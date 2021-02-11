@@ -1,9 +1,9 @@
 import { RootState } from '../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Post, PostBank } from '../types/post/post-types';
+import { PostDataToken, PostDataBank } from '../types/post/post-types';
 
 //*  ----------------------  REDUCER  ----------------------  *//
-const initialState: PostBank = {
+const initialState: PostDataBank = {
   bank: [],
   isLoading: false
 };
@@ -13,9 +13,9 @@ export const postSlice = createSlice({
   initialState,
   reducers: {
     /*  ------------------------  POSTS  -----------------------  */
-    set: (state, action: PayloadAction<Post[]>) => 
+    set: (state, action: PayloadAction<PostDataToken[]>) => 
     {
-      const posts: Post[] = action.payload;
+      const posts: PostDataToken[] = action.payload;
       state.bank = posts;
     },
 

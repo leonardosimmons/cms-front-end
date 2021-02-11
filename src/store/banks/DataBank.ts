@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppThunk } from '../store';
-import { Category } from '../types/category';
-import { Post } from '../types/post/post-types';
+import { CategoryDataToken } from '../types/category/category-types';
+import { PostDataToken } from '../types/post/post-types';
 
 import { set as initCategories } from './Categories';
 import { set as initPosts } from './Posts';
@@ -10,8 +10,8 @@ import { set as initPosts } from './Posts';
 
 //*  --------------------  INTERFACES  --------------------  *// 
 type DataBank = {
-  categories: Category[];
-  posts: Post[];
+  categories: CategoryDataToken[];
+  posts: PostDataToken[];
 }
 
 const initialState: DataBank = {

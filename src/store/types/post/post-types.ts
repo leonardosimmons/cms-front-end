@@ -3,9 +3,9 @@
  */
 
 /**
- * * Post token
+ * * Post Data token
  */
-export type Post = {
+export type PostDataToken = {
   id: number;
   categoryId: number;
   title: string;
@@ -19,23 +19,21 @@ export type Post = {
 };
 
 /**
- * * Type for storage of Post tokens
+ * * Type for storage of Post Data tokens
  */
-export type PostBank = {
-  bank: Post[];
+export type PostDataBank = {
+  bank: PostDataToken[];
   isLoading: boolean
 };
 
 
 /**
- * * -----------------------  BLOG  ------------------------
+ * * -----------------------  BASE   ------------------------
  */
-
-
 /**
- * * Information pertaining to the selected blog post
+ * * Information pertaining to the selected post
  */
-export type BlogPostData = {
+export type PostInfo = {
   id?: number;
   categoryId?: number;
   tags?: string;
@@ -44,9 +42,9 @@ export type BlogPostData = {
 };
 
 /**
- * * Content types that make up a blog post 
+ * * Content types that make up a post 
  */
-export type BlogPostContent = {
+export type PostContent = {
   id?: number;
   title?: string;
   author?: string;
@@ -56,7 +54,17 @@ export type BlogPostContent = {
 };
 
 /**
- * * Extra configurations
+ * * A complete Post
+ */
+export type Post = PostInfo & PostContent;
+
+
+/**
+ * * ---------------------  CONFIGS   ----------------------
+ */
+
+/**
+ * * Blog Post
  */
 export type BlogPostConfig = {
   preview: boolean;
@@ -67,4 +75,4 @@ export type BlogPostConfig = {
 /**
  * * A complete blog post
  */
-export type BlogPost = BlogPostConfig & BlogPostData & BlogPostContent;
+export type BlogPost = BlogPostConfig & Post;

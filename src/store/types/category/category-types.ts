@@ -1,7 +1,7 @@
 /**
  * * [Base] Category token
  */
-export type Category = {
+export type CategoryDataToken = {
   id: number;
   title: string;
   link?: string;
@@ -11,7 +11,7 @@ export type Category = {
 /**
  * * Type for storage of Category tokens
  */
-export type CategoryBank = {
-  bank: Category[];
+export type CategoryDataBank = {
+  bank: CategoryDataToken[];
   isLoading: boolean;
 };
