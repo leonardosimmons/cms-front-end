@@ -67,7 +67,7 @@ export type Post = PostInfo & PostContent;
  */
 export type BlogPostConfig = {
   preview: boolean;
-  parent: string;
+  parent?: string;
   index?: number;
 };
 

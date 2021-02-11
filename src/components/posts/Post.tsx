@@ -1,8 +1,9 @@
 import React from 'react';
 import { PostInfo } from '../../store/types/post';
 
-type PostProps ={ 
+type PostProps = { 
   parent: string;
+  index?: number;
   preview?: boolean;
 } & PostInfo
 
@@ -11,12 +12,16 @@ const Post: React.FunctionComponent<PostProps> = ({
   categoryId, 
   tags, 
   status, 
+  index,
   commentCount,
   parent,
   children
 }) => {
   return (
-    <div className={`${ parent }__post  h-96 w-24 border-2 border-solid border-white`}>
+    <div className={`
+      ${ parent }__post${ index || ''}  
+      h-96 w-24 border-2 border-solid border-white`}
+    >
       { children } 
       { commentCount && <div>{ commentCount }</div> }
     </div>

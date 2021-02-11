@@ -3,7 +3,6 @@ import { PostContent } from '../../../store/types/post/post-types';
 
 type BlogContentProps = PostContent;
 
-
 const BlogContent: React.FunctionComponent<BlogContentProps> = ({
   title,
   author,
@@ -14,19 +13,15 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({
 }) => {
   return (
     <div className="">
-      <div className="">
+      <div id="header" className="">
         <h2 className="">
           { title }
         </h2>
         <p className="">by { author }</p>
         <p className="">Posted on { date }</p>
       </div>
-      <div className="">
-        { image }
-      </div>
-      <div className="">
-        { children || content  }
-      </div>
+      { image }
+      { content || children }
     </div>
   )
 };
