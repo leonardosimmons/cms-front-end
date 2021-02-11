@@ -25,7 +25,7 @@ yarn-error.log*
 
 # User
 /src/buffer
-src/styles/index.css
+/src/styles/index.css
 
 logo192.png
 logo512.png
