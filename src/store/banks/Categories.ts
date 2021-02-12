@@ -1,9 +1,9 @@
 import { RootState } from '../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Category, CategoryBank } from '../types/category';
+import { CategoryDataToken, CategoryDataBank } from '../types/category/category-types';
 
 //*  ----------------------  REDUCER  ----------------------  *//
-const initialState: CategoryBank = {
+const initialState: CategoryDataBank = {
   bank: [],
   isLoading: false
 };
@@ -13,9 +13,9 @@ export const categorySlice = createSlice({
   initialState,
   reducers: {
     /*  ------------------------  BANK  ------------------------  */
-    set: (state, action: PayloadAction<Category[]>) => 
+    set: (state, action: PayloadAction<CategoryDataToken[]>) => 
     {
-      const tokens: Category[] = action.payload;
+      const tokens: CategoryDataToken[] = action.payload;
       state.bank = tokens;
     },
     /*  ----------------------  isLOADING  ----------------------  */

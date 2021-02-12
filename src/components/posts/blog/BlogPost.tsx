@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BlogPostConfig, Post } from '../../../store/types/post';
 
-import Element from '../../../store/keys/elements';
-import { BlogPostConfig, BlogPostData } from '../../../store/types/post';
+import PostConfig from '../../../components/posts';
+import BlogContent from './BlogContent';
 
+type BlogPostProps = Post & BlogPostConfig;
 
-type BlogPostProps = BlogPostConfig & BlogPostData;
-
-const Post: React.FunctionComponent<BlogPostProps> = (props) => {
-  const { parent, preview, index, id, categoryId, tags, commentCount, status, children } = props;
-  const [ name ] = useState(Element.BLOG_POST);
-
+const BlogPost: React.FunctionComponent<BlogPostProps> = ({
+  type,
+  id, 
+  categoryId, 
+  tags, 
+  status, 
+  commentCount,
+  title,
+  author,
+  date,
+  image,
+  content,
+  children
+}) => {
   return (
-    <div className={`${ name }__blog-post  h-96 w-24 border-2 border-solid border-white`}>
-      <div className={`${ name }__blog-post--container`}>
-      { children 
-        || 
-        <h1>Test Text from child</h1>}
-      </div>
-    </div>
+    <PostConfig
+      type={ type }
+      id={ id }
+      categoryId={ categoryId }
+      tags={ tags }
+      status={ status }
+      commentCount={ commentCount }
+      >
+        <BlogContent
+          title={ title }
+          author={ author }
+          date={ date }
+          image={ image }
+        >
+          { children || content }
+        </BlogContent>
+    </PostConfig>
   );
 };
 
-export default Post;
+export default BlogPost;

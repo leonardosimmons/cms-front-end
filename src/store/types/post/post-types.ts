@@ -3,9 +3,9 @@
  */
 
 /**
- * * Post token
+ * * Post Data token
  */
-export type Post = {
+export type PostDataToken = {
   id: number;
   categoryId: number;
   title: string;
@@ -19,52 +19,61 @@ export type Post = {
 };
 
 /**
- * * Type for storage of Post tokens
+ * * Type for storage of Post Data tokens
  */
-export type PostBank = {
-  bank: Post[];
+export type PostDataBank = {
+  bank: PostDataToken[];
   isLoading: boolean
 };
 
 
 /**
- * * -----------------------  BLOG  ------------------------
+ * * -----------------------  BASE   ------------------------
  */
-
-
 /**
- * * Information pertaining to the selected blog post
+ * * Information pertaining to the selected post
  */
-export type BlogPostData = {
-  id?: number;
-  categoryId?: number;
-  tags?: string;
+export type PostInfo = {
+  id: number;
+  type: string;
+  tags: string[];
+  status: string;
+  categoryId: number;
   commentCount?: number;
-  status?: string;
 };
 
 /**
- * * Content types that make up a blog post 
+ * * Content types that make up a post 
  */
-export type BlogPostContent = {
-  id?: number;
-  title?: string;
-  author?: string;
-  date?: string;
-  image?: string;
-  content?: string;
+export type PostContent = {
+  title: string;
+  author: string;
+  date: string;
+  content?: JSX.Element;
+  image?: JSX.Element;
 };
 
 /**
- * * Extra configurations
+ * * A complete Post
+ */
+export type Post = PostInfo & PostContent;
+
+
+/**
+ * * ---------------------  CONFIGS   ----------------------
+ */
+
+/**
+ * * Blog Post
  */
 export type BlogPostConfig = {
   preview: boolean;
-  parent: string;
+  type: string;
+  parent?: string;
   index?: number;
 };
 
 /**
  * * A complete blog post
  */
-export type BlogPost = BlogPostConfig & BlogPostData & BlogPostContent;
+export type BlogPost = BlogPostConfig & Post;
