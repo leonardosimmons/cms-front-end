@@ -26,7 +26,12 @@ yarn-error.log*
 # User
 /src/buffer
 /src/styles/index.css
+/src/styles/index.scss
+/src/assets/svg
+/src/assets/images
 
+
+logo.png
 logo192.png
 logo512.png
 <<<<<<< HEAD

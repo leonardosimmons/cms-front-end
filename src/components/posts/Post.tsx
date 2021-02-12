@@ -1,30 +1,29 @@
 import React from 'react';
-import { PostInfo } from '../../store/types/post';
+import { PostInfo, PostConfig } from '../../store/types/post';
 
-type PostProps = { 
-  index?: number;
-  preview?: boolean;
-} & PostInfo
+type PostProps = PostConfig & PostInfo
 
-const Post: React.FunctionComponent<PostProps> = ({
-  id, 
-  type,
-  categoryId, 
-  tags, 
-  status, 
-  index,
-  commentCount,
-  children
-}) => {
+const Post: React.FunctionComponent<PostProps> = ({ id,  type, tags,  status,  index, parent, children }): JSX.Element => {
   return (
     <div className={`
-      ${ type }__post${ index || ''}  
-      h-96 w-24 border-2 border-solid border-white`}
+      ${ type }__post 
+      ${ parent || '' }__post${ index || ''}  
+      
+      `}
     >
       { children } 
-      { commentCount && <div>{ commentCount }</div> }
     </div>
   );
 };
 
 export default Post;
+
+
+/*
+  <div className={`
+    ${ type }__post${ index || ''}  
+      h-72 w-full border-2 border-solid border-white`}
+  >
+    { children } 
+  </div>
+*/

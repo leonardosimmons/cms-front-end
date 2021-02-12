@@ -5,7 +5,7 @@ enum ElementKeys {
 
   //* Pages
   APP = 'App',
-  HOME = 'home',
+  HOME_PAGE = 'home-page',
   MAIN_NAVBAR = 'main-navbar',
   POST = 'post',
   BLOG_POST = 'blog-post',
