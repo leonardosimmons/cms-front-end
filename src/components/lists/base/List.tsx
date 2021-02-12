@@ -9,7 +9,7 @@ type ListProps = {
   }[];
 };
 
-const List: React.FunctionComponent<ListProps> = ({ name, list}) => {
+const List: React.FunctionComponent<ListProps> = ({ name, list}): JSX.Element => {
   return (
     <ul className={`${ name }__list flex  ml-5`}>
       { list.map((item, index) => (
@@ -18,7 +18,7 @@ const List: React.FunctionComponent<ListProps> = ({ name, list}) => {
           key={ index }
         >
           <a 
-            className={`${ name }__list--text  text-2xl text-white no-underline`}
+            className={`${ name }__list--text   no-underline`}
             href={ item.link || '#' } 
           >
             { item.title || item.text }

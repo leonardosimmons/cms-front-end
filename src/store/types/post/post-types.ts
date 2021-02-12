@@ -7,6 +7,7 @@
  */
 export type PostDataToken = {
   id: number;
+  type: string;
   categoryId: number;
   title: string;
   author: string;
@@ -38,7 +39,7 @@ export type PostInfo = {
   type: string;
   tags: string[];
   status: string;
-  categoryId: number;
+  categoryId?: number;
   commentCount?: number;
 };
 
@@ -54,26 +55,14 @@ export type PostContent = {
 };
 
 /**
- * * A complete Post
- */
-export type Post = PostInfo & PostContent;
-
-
-/**
- * * ---------------------  CONFIGS   ----------------------
+ * * Optional Post configurations
  */
 
-/**
- * * Blog Post
- */
-export type BlogPostConfig = {
-  preview: boolean;
-  type: string;
-  parent?: string;
+export type PostConfig = {
+  type?: string;
   index?: number;
+  parent?: string;
+  preview?: boolean;
 };
 
-/**
- * * A complete blog post
- */
-export type BlogPost = BlogPostConfig & Post;
+export type Post = PostConfig & PostInfo & PostContent;

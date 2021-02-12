@@ -1,27 +1,16 @@
-import React from 'react';
-import { BlogPostConfig, Post } from '../../../store/types/post';
-
+import React, { useState } from 'react';
+import Element from '../../../store/keys/elements';
+import { Post } from '../../../store/types/post';
 import PostConfig from '../../../components/posts';
 import BlogContent from './BlogContent';
 
-type BlogPostProps = Post & BlogPostConfig;
 
-const BlogPost: React.FunctionComponent<BlogPostProps> = ({
-  type,
-  id, 
-  categoryId, 
-  tags, 
-  status, 
-  commentCount,
-  title,
-  author,
-  date,
-  image,
-  content,
-  children
-}) => {
+const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commentCount, title, author, date, image, content, categoryId, children }): JSX.Element => {
+  const [ name ] = useState<string>(Element.BLOG_POST);
+
   return (
     <PostConfig
+      parent={ name }
       type={ type }
       id={ id }
       categoryId={ categoryId }
@@ -30,6 +19,8 @@ const BlogPost: React.FunctionComponent<BlogPostProps> = ({
       commentCount={ commentCount }
       >
         <BlogContent
+          parent={ name }
+          type={ type }
           title={ title }
           author={ author }
           date={ date }
@@ -41,4 +32,4 @@ const BlogPost: React.FunctionComponent<BlogPostProps> = ({
   );
 };
 
-export default BlogPost;
+export default Blog;

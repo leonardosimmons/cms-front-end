@@ -7,13 +7,13 @@ import logo from '../../../assets/images/logo.png';
 import LogoBox from '../../boxes/logo';
 import MenuTabs from '../../lists/base';
 
-const NavBar: React.FunctionComponent = () => {
+const NavBar: React.FunctionComponent = (): JSX.Element => {
   const [ name ] = useState<string>(Element.MAIN_NAVBAR);
   const config = useSelector(getConfiguration);
 
   return (
-    <nav id="main-navbar"  className={`h-24 w-full rounded-t-3xl bg-purple-600`}>
-      <div id="container" className={`h-full w-95 m-auto relative flex justify-start items-center`}>
+    <nav className={`${ name }   h-24 w-full rounded-t-3xl shadow-sm bg-purple-600`}>
+      <div className={`${ name }__container   h-full w-95 m-auto relative flex justify-start items-center text-white text-2xl`}>
         <LogoBox
           name={ name }
           logo={ logo }
