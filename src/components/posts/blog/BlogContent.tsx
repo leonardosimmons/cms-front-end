@@ -12,7 +12,7 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({
   children
 }) => {
   return (
-    <div className="">
+    <div id="blog-content">
       <div id="header" className="">
         <h2 className="">
           { title }
@@ -20,8 +20,12 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({
         <p className="">by { author }</p>
         <p className="">Posted on { date }</p>
       </div>
-      { image }
-      { content || children }
+      { 
+        <div>
+          { image }
+          {content || children} 
+        </div>
+      }
     </div>
   )
 };

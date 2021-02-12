@@ -35,6 +35,7 @@ export type PostDataBank = {
  */
 export type PostInfo = {
   id: number;
+  type: string;
   tags: string[];
   status: string;
   categoryId: number;
@@ -67,6 +68,7 @@ export type Post = PostInfo & PostContent;
  */
 export type BlogPostConfig = {
   preview: boolean;
+  type: string;
   parent?: string;
   index?: number;
 };
