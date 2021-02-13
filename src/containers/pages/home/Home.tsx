@@ -9,7 +9,7 @@ import BlogPost from '../../../components/posts/blog';
 
 
 const Home: React.FunctionComponent = (): JSX.Element => {
-  const previewMode = useRef<boolean>(true);
+  const previewMode = useRef<boolean>(false);
   const [ name ] = useState<string>(Element.HOME_PAGE);
   const posts = useSelector((state: RootState) => state.posts.bank[1] || '');
 
