@@ -3,7 +3,7 @@ import { PostContent, PostConfig } from '../../../store/types/post/post-types';
 
 type BlogContentProps = PostContent & PostConfig;
 
-const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title, author, date, image,  content, parent, children }): JSX.Element => {
+const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title, author, date, image, content, parent, children }): JSX.Element => {
   return (
     <div className={`${ parent }__content 
       w-95/100 p-2 border-gray-200 border-2 border-solid shadow-md hover: transform scale-105 transition
@@ -31,7 +31,7 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title
           ${ preview ? 'flex ml-2 mt-1' : 'flex flex-col'}`}
         >
           { image }
-          { content || children} 
+          { content || children}
         </div>
       }
     </div>

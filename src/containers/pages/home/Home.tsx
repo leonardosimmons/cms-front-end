@@ -6,10 +6,11 @@ import Element from '../../../store/keys/elements';
 import img from '../../../assets/images/people-at-desk-01.png';
 import NavigationBar from '../../../components/navbar/main';
 import BlogPost from '../../../components/posts/blog';
+import Button from '../../../components/buttons/BaseButton-01';
 
 
 const Home: React.FunctionComponent = (): JSX.Element => {
-  const previewMode = useRef<boolean>(false);
+  const previewMode = useRef<boolean>(true);
   const [ name ] = useState<string>(Element.HOME_PAGE);
   const posts = useSelector((state: RootState) => state.posts.bank[1] || '');
 
@@ -61,13 +62,14 @@ const Home: React.FunctionComponent = (): JSX.Element => {
                       'w-75/100 mr-6 border-b-2' : 
                       'w-80/100 m-auto'}
                 `}>
-                  <div className={`
-                    ${ previewMode.current ? 'w-full' : ''}
-                  `}>
+                  <div className={`${ previewMode.current ? 'w-full mb-4' : ''}`}>
                     { posts.content }
                   </div>
+                  <Button 
+                    text={'Read More'} />
                 </div> 
-              }>
+              }
+              >
             </BlogPost>
           </div>
         </div>

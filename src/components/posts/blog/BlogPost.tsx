@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Element from '../../../store/keys/elements';
 import { Post } from '../../../store/types/post';
+
 import PostConfig from '../../../components/posts';
 import BlogContent from './BlogContent';
 

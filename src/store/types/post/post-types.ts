@@ -52,6 +52,7 @@ export type PostContent = {
   date: string;
   content?: JSX.Element;
   image?: JSX.Element;
+  button?: JSX.Element;
 };
 
 /**
