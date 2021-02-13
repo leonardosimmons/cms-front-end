@@ -24,7 +24,5 @@ export type ButtonConfig = {
 export type ImageConfig = {
   image: string;
   parent?: string;
-  previewMode?: {
-    current: boolean;
-  }
+  previewMode?: boolean;
 }

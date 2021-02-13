@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { CategoryDataToken } from '../types/category/category-types';
 import { PostDataToken } from '../types/post/post-types';
@@ -7,16 +7,20 @@ import { PostDataToken } from '../types/post/post-types';
 import { set as initCategories } from './Categories';
 import { set as initPosts } from './Posts';
 
+import { initBlogs  } from './Posts';
+
 
 //*  --------------------  INTERFACES  --------------------  *// 
 type DataBank = {
   categories: CategoryDataToken[];
   posts: PostDataToken[];
+  isLoading: boolean;
 }
 
 const initialState: DataBank = {
   categories: [],
-  posts: []
+  posts: [],
+  isLoading: false
 };
 
 
@@ -24,12 +28,25 @@ const initialState: DataBank = {
 export const apiSlice = createSlice({
   name: 'apibank',
   initialState,
-  reducers: {}
+  reducers: {
+    /*  ----------------------  isLOADING  ----------------------  */
+    isLoading: (state) =>
+    {
+      state.isLoading = !state.isLoading;
+    }
+  }
 });
+export const { isLoading } = apiSlice.actions;
 
 
 //*  -----------------------  ASYNC  -----------------------  *//
+export const initAux = (): AppThunk => (dispatch) => {
+  dispatch(initBlogs());
+}
+
+
 export const start = (): AppThunk => (dispatch) => {
+  dispatch(isLoading());
   axios.all([
     axios.get(process.env.REACT_APP_CATEGORIES_API as string, {
       headers: { 'Content-Type': 'application/json' }
@@ -44,7 +61,8 @@ export const start = (): AppThunk => (dispatch) => {
         {
           const dataBankToken: DataBank = { 
             categories: categories.data, 
-            posts: posts.data 
+            posts: posts.data,
+            isLoading: false 
           };
 
           return dataBankToken;
@@ -53,6 +71,10 @@ export const start = (): AppThunk => (dispatch) => {
   .then(token => {
     dispatch(initCategories(token!.categories));
     dispatch(initPosts(token!.posts));
+  })
+  .then(() => {
+    dispatch(initAux());
+    dispatch(isLoading());
   })
   .catch(e => console.log(e));
 };
