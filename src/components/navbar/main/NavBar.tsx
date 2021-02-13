@@ -12,8 +12,8 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
   const config = useSelector(getConfiguration);
 
   return (
-    <nav className={`${ name }   h-24 w-full rounded-t-3xl shadow-sm bg-purple-600`}>
-      <div className={`${ name }__container   h-full w-95 m-auto relative flex justify-start items-center text-white text-2xl`}>
+    <nav className={`${ name }  h-24 w-full rounded-t-3xl shadow-sm bg-purple-400`}>
+      <div className={`${ name }__container  h-full w-95 m-auto relative flex justify-start items-center text-white text-2xl`}>
         <LogoBox
           name={ name }
           logo={ logo }

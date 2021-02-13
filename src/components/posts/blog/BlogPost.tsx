@@ -5,12 +5,13 @@ import PostConfig from '../../../components/posts';
 import BlogContent from './BlogContent';
 
 
-const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commentCount, title, author, date, image, content, categoryId, children }): JSX.Element => {
+const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commentCount, title, author, date, image, content, preview, categoryId, children }): JSX.Element => {
   const [ name ] = useState<string>(Element.BLOG_POST);
 
   return (
     <PostConfig
       parent={ name }
+      preview={ preview }
       type={ type }
       id={ id }
       categoryId={ categoryId }
@@ -20,6 +21,7 @@ const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commen
       >
         <BlogContent
           parent={ name }
+          preview={ preview }
           type={ type }
           title={ title }
           author={ author }
