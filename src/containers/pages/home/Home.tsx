@@ -76,7 +76,7 @@ const Home: React.FunctionComponent = (): JSX.Element => {
           </div>
         </div>
         {
-          <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-600`}></div>
+          <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}></div>
         }
       </div>
     </div>
