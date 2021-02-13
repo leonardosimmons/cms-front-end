@@ -1,14 +1,16 @@
 import React from 'react';
 import { ButtonConfig } from '../../store/types';
 
-const Button: React.FunctionComponent<ButtonConfig> = ({ parent, text, clicked, style }) => {
+type Test = ButtonConfig & { arrow?: boolean };
+
+const Button: React.FunctionComponent<Test> = ({ parent, text, clicked, style, arrow }) => {
   return (
     <button 
-      className={`${ parent }__button px-3 py-1 bg-green-300 rounded-lg`} 
+      className={`${ parent }__button px-3 py-1 bg-green-300 rounded-lg relative btn-hoverConfig btn-ActiveFocus`} 
       style={ style }
       onClick={ clicked } 
     >
-      { text } 
+      { text } {arrow ? <div className={`inline-block`}>&#10132;</div> : ''}
     </button>
   );
 };

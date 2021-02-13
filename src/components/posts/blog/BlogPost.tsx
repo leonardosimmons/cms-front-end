@@ -19,18 +19,18 @@ const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commen
       tags={ tags }
       status={ status }
       commentCount={ commentCount }
+    >
+      <BlogContent
+        parent={ name }
+        preview={ preview }
+        type={ type }
+        title={ title }
+        author={ author }
+        date={ date }
+        image={ image }
       >
-        <BlogContent
-          parent={ name }
-          preview={ preview }
-          type={ type }
-          title={ title }
-          author={ author }
-          date={ date }
-          image={ image }
-        >
-          { children || content }
-        </BlogContent>
+        { children || content }
+      </BlogContent>
     </PostConfig>
   );
 };

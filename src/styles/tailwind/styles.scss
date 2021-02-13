@@ -11,3 +11,52 @@
     transform: translate(-50%, -50%)
   }
 }
+
+@layer utilities {
+  .background-fix {
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow: auto;
+  }
+}
+
+
+@layer utilities {
+  .btn-hover {
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      backgroud: #A7F3D0;
+      height: 100%;
+      width: 100%;
+      border-radius: .5rem;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+    }
+  
+    &:hover {
+      font-weight: 500;
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba(black, .2);
+  
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@layer utilities {
+  .btn-active {
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-0.1rem);
+      box-shadow: 0 .5rem 1rem rgba(black, .2);
+    }
+  }
+}

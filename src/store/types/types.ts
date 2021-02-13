@@ -18,3 +18,13 @@ export type ButtonConfig = {
     backgroundColor: string
   };
 };
+
+
+//* -------------------  IMAGES  ------------------ *//
+export type ImageConfig = {
+  image: string;
+  parent?: string;
+  previewMode?: {
+    current: boolean;
+  }
+}

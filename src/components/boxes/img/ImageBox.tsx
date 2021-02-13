@@ -1,18 +1,16 @@
 import React from 'react';
+import { ImageConfig } from '../../../store/types';
 
-type ImageBoxProps = {
-  parent: string;
-  image: string;
-}
-
-const LogoBox: React.FunctionComponent<ImageBoxProps> = ({ parent, image }) => {
+const Image: React.FunctionComponent<ImageConfig> = ({ parent, image, previewMode }) => {
   return (
-    <div className={`${ parent }__image-box`}>
-      <img className={`${ parent }__image-box--img  transform-gpu scale-75`}
-        src={ image } 
-        alt="" />
-    </div>
+    <img className={`
+      ${ parent }__blog-post--img
+      ${ previewMode!.current ? 
+        'h-full w-full object-contain' : 
+        'h-full w-full object-contain' }`} 
+      src={ image } alt="" 
+    />
   );
 };
 
-export default LogoBox;
+export default Image;
