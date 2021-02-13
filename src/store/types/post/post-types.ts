@@ -24,7 +24,8 @@ export type PostDataToken = {
  */
 export type PostDataBank = {
   bank: PostDataToken[];
-  isLoading: boolean
+  isLoading: boolean;
+  completed: boolean;
 };
 
 

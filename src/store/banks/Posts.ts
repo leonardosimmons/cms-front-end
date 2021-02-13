@@ -1,11 +1,13 @@
-import { RootState } from '../store';
+import { AppThunk, RootState } from '../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PostDataToken, PostDataBank } from '../types/post/post-types';
+import { set as setBlogPosts } from '../../components/posts/blog/blog-slice';
 
 //*  ----------------------  REDUCER  ----------------------  *//
 const initialState: PostDataBank = {
   bank: [],
-  isLoading: false
+  isLoading: false,
+  completed: false
 };
 
 export const postSlice = createSlice({
@@ -16,18 +18,24 @@ export const postSlice = createSlice({
     set: (state, action: PayloadAction<PostDataToken[]>) => 
     {
       const posts: PostDataToken[] = action.payload;
-      state.bank = posts;
+      state.bank = posts; 
     },
 
     /*  ----------------------  isLOADING  ----------------------  */
-    isLoading: (state) =>
+    completed: (state) =>
     {
-      state.isLoading = !state.isLoading;
+      state.completed = !state.completed;
     }
 
   }
 });
-export const { set, isLoading } = postSlice.actions;
+export const { set, completed } = postSlice.actions;
+
+export const initBlogs = (): AppThunk => (dispatch, getState) => {
+  const posts = getState().posts;
+  const blogs = posts.bank.filter(post => post.type === 'blog');
+  dispatch(setBlogPosts(blogs));
+}
 
 
 //*  -----------------------  STATE  -----------------------  *//
