@@ -3,11 +3,11 @@ import { PostContent, PostConfig } from '../../../store/types/post/post-types';
 
 type BlogContentProps = PostContent & PostConfig;
 
-const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title, author, date, image,  content, parent, children }): JSX.Element => {
+const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title, author, date, image, content, parent, children }): JSX.Element => {
   return (
     <div className={`${ parent }__content 
-      w-95/100 p-2 border-gray-200 border-2 border-solid shadow-md hover: transform scale-105 transition
-      ${ preview ? 'h-72' : 'h-95/100' }`}>
+      w-95/100 p-2 border-gray-200 border-2 border-solid shadow-md overflow-auto
+      ${ preview ? 'h-72' : 'h-85/100' }`}>
       <div className={`${ parent }__content--header 
         ${ preview ? 'ml-3' : 'ml-5'}`}
       >
@@ -16,8 +16,7 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title
             { title }
         </h2>
         <p className={`${ parent }__content--author font-light`}>
-          by 
-          <span className={`text-base font-semibold`}> { author }</span>
+          by <span className={`text-base font-semibold`}> { author }</span>
         </p>
         <p className={`${ parent }__content--date w-20 text-xs border-b-2 font-thin
           ${ preview ? '' : 'mb-2'}`}>
@@ -31,7 +30,7 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title
           ${ preview ? 'flex ml-2 mt-1' : 'flex flex-col'}`}
         >
           { image }
-          { content || children} 
+          { content || children}
         </div>
       }
     </div>
@@ -39,21 +38,3 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title
 };
 
 export default BlogContent;
-
-/*
-  <div id="blog-content" className={`h-full w-full px-4 py-2`}>
-    <div id="header" className="">
-      <h2 className={`text-3xl`}>
-        { title }
-      </h2>
-      <p className="">by <span className={`font-bold`}>{ author }</span></p>
-      <p className={`text-xs mb-2`}>Posted on { date }</p>
-    </div>
-    { 
-      <div className={`flex h-72 w-full overflow-hidden`}>
-        { image }
-        { content || children} 
-      </div>
-    }
-  </div>
-*/

@@ -13,7 +13,7 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
 
   return (
     <nav className={`${ name }  h-24 w-full rounded-t-3xl shadow-sm bg-purple-400`}>
-      <div className={`${ name }__container  h-full w-95 m-auto relative flex justify-start items-center text-white text-2xl`}>
+      <div className={`${ name }__container  h-full w-95 m-auto px-3 relative flex justify-start items-center text-white text-2xl`}>
         <LogoBox
           name={ name }
           logo={ logo }
@@ -21,6 +21,7 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
         <MenuTabs
           name={ name } 
           list={ config.categories } 
+          hover={ true }
         />
       </div>
     </nav>

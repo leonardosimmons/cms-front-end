@@ -8,9 +8,7 @@ const App: React.FunctionComponent = (): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    function initApp() {
-      dispatch(start());
-    }
+    const initApp = () => dispatch(start());
     initApp();
 
   }, [ dispatch ]);
