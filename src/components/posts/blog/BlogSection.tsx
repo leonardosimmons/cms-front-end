@@ -1,16 +1,13 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import { BlogSectionProps } from './types';
 
 import BlogPost from './BlogPost';
 import Image from '../../boxes/img/ImageBox';
 import img from '../../../assets/svg/undraw_Collaboration_re_vyau.svg';
 import Button from '../../buttons/BaseButton-01';
 
-type BlogSectionProps = {
-  parent: string;
-  currentViewMode: (status: boolean) => void;
-}
 
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, currentViewMode }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//

@@ -4,14 +4,14 @@ import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
 import BlogSection from '../../../components/posts/blog/BlogSection';
 
-const Home: React.FunctionComponent = () => {
+const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const [ name ] = useState<string>(Element.HOME_PAGE);
   const [ blogViewMode, setBlogViewMode ] = useState<boolean>(true);
 
   //*  --------------------  HANDLERS  --------------------  *//
 
-  const blogViewHandler = (status: boolean): void => {
+  const blogViewToggle = (status: boolean): void => {
     const currentViewMode = status;
     setBlogViewMode(currentViewMode);
   }
@@ -36,7 +36,7 @@ const Home: React.FunctionComponent = () => {
             }
             <BlogSection 
               parent={ name } 
-              currentViewMode={ blogViewHandler }>
+              currentViewMode={ blogViewToggle }>
             </BlogSection>  
           </div>
         </div>

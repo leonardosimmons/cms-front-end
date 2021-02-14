@@ -17,7 +17,6 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
     const getSlideCount = () => {
       slideCount(React.Children.count(children));
     };
-
     getSlideCount();
 
     return() => { slideCount(0) };
@@ -37,7 +36,7 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
       transform: `translateX(-${ translate }px)`,
       transition: `transform ease-out ${ transition }s`,
       height: `${ height }rem`,
-      width: `${ width * React.Children.count(children) }px`, // mulitplies width by # of slides
+      width: `${ width * React.Children.count(children) }px`,
       display: styles!.display,
     };
     setStyles(style);
