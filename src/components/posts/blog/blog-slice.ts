@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../store';
 import { Post, PostDataToken } from '../../../store/types/post';
 
-import Element from '../../../store/keys/elements';
-
 type BlogPostStatus = {
   bank: Post[];
   current: Post;
