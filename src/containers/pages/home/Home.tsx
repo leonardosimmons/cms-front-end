@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from  '../../../store/store';
 
 import Element from '../../../store/keys/elements';
-import img from '../../../assets/svg/undraw_Collaboration_re_vyau.svg';
 import NavigationBar from '../../../components/navbar/main';
-import BlogPost from '../../../components/posts/blog';
-import Image from '../../../components/boxes/img';
-import Button from '../../../components/buttons/BaseButton-01';
-
+import BlogSection from '../../../components/posts/blog/BlogSection';
 
 const Home: React.FunctionComponent = () => {
-  const [ previewMode, setPreviewMode ] = useState<boolean>(true);
+  //*  ----------------------  STATE  ----------------------  *//
   const [ name ] = useState<string>(Element.HOME_PAGE);
-  const posts = useSelector((state: RootState) => state.posts.bank || '');
+  const [ blogViewMode, setBlogViewMode ] = useState<boolean>(true);
 
-  const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
+  //*  --------------------  HANDLERS  --------------------  *//
 
-  const blogPostButtonHandler = () => {
-    const current = previewMode;
-    setPreviewMode(!current);
-    console.log('button clicked')
-    console.log(current)
-  };
+  const blogViewHandler = (status: boolean): void => {
+    const currentViewMode = status;
+    setBlogViewMode(currentViewMode);
+  }
 
+  //*  ---------------------  RENDER  ---------------------  *//
   return (
     <div className={`${ name } h-full max-w-full flex flex-col rounded`}>
       <NavigationBar />
@@ -31,62 +24,20 @@ const Home: React.FunctionComponent = () => {
         <div className={`
           ${ name }__interface 
           flex-75 flex justify-center items-center rounded-bl-3xl bg-white`}>
-          <div className={`
+           <div className={`
             ${ name }__interface--container h-full w-95/100 flex flex-col 
-            ${ previewMode ? 'overflow-auto' : ''}`}>
+            ${ blogViewMode ? 'overflow-auto' : ''}`}>
             { 
-            previewMode && 
+            blogViewMode && 
               <div className={`${ name }__interface--heading h-18 w-30/100 flex p-2 border-b-2 mt-3`}>
                 <h1 className={`text-5xl font-semibold pr-2 self-end mb-2`}>Blog Posts</h1>
                 <h2 className={`text-base font-medium self-end mb-2 ml-1`}>(Recently Featured)</h2>
               </div>
             }
-            {
-              posts.map((post, index) => (
-                <BlogPost
-                key={ index }
-                index={ index }
-                preview={ previewMode }
-                type={ post.type }
-                id={ post.id } 
-                status={ post.status } 
-                title={ post.title }
-                author={ post.author }
-                date={ post.date }
-                tags={ fakeTags } 
-                image={ 
-                  <div className={` ${ name }__blog-post--img-box 
-                    ${ previewMode ? 
-                      'h-40 w-25/100' : 
-                      'h-30/100 self-center mb-4' }`}>
-                    <Image 
-                      previewMode={ previewMode }
-                      image={ img } 
-                    />
-                  </div> 
-                }
-                content={ 
-                  <div className={` ${ name }__blog-post--content-box
-                      ${ previewMode ? 
-                        'w-75/100 mr-6 border-b-2' : 
-                        'w-80/100 m-auto'}
-                  `}>
-                    <div className={` mb-4
-                      ${ previewMode ? 'w-full' : ''}`}>
-                      { post.content }
-                    </div>
-                    <div className={`${ previewMode ? '' : 'text-center mb-6'}`}>
-                      <Button 
-                        arrow={ true }
-                        text={`${ previewMode ? 'Read More' : 'Back to Blog'}`} 
-                        clicked={ blogPostButtonHandler }
-                      />
-                    </div>
-                  </div> 
-                }>
-              </BlogPost>
-              ))
-            }
+            <BlogSection 
+              parent={ name } 
+              currentViewMode={ blogViewHandler }>
+            </BlogSection>  
           </div>
         </div>
         {
