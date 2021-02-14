@@ -1,16 +1,9 @@
 import React from 'react';
-
+import { BlogContentBlockProps } from '../types';
 import Button from '../../../buttons/BaseButton-01';
 
-type ContentBlockProps = {
-  previewMode: boolean;
-  content: string;
-  btnArrow: boolean;
-  btnText: string;
-  btnClickHandler: () => void;
-}
 
-const ContentBlock: React.FunctionComponent<ContentBlockProps> = ({previewMode, content, btnArrow, btnText, btnClickHandler}): JSX.Element => {
+const ContentBlock: React.FunctionComponent<BlogContentBlockProps> = ({previewMode, content, btnArrow, btnText, btnClickHandler}): JSX.Element => {
   return (
     <>
       <div className={` mb-4

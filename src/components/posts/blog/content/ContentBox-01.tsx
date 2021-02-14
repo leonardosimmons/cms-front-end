@@ -1,11 +1,8 @@
 import React from 'react';
+import { BlogContentBoxProps } from '../types';
 
-type ContentBoxProps = {
-  parent: string;
-  previewMode: boolean;
-}
 
-const ContentBox: React.FunctionComponent<ContentBoxProps> = ({ parent, previewMode, children}) => {
+const ContentBox: React.FunctionComponent<BlogContentBoxProps> = ({ parent, previewMode, children}) => {
   return (
     <div className={` ${ parent }__blog-post--content-box
         ${ previewMode ? 

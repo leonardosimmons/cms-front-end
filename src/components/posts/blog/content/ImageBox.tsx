@@ -1,9 +1,6 @@
 import React from 'react';
+import { BlogImageBoxProps } from '../types';
 
-type BlogImageBoxProps = {
-  parent: string;
-  previewMode: boolean;
-}
 
 const BlogImageBox: React.FunctionComponent<BlogImageBoxProps> = ({ parent, previewMode, children}) => {
   return (
