@@ -1,16 +1,8 @@
 import React from 'react';
+import { ListConfig } from './types';
 
-type ListProps = {
-  name: string;
-  list: {
-    title?: string;
-    text?: string;
-    link?: string;
-  }[];
-  hover?: boolean;
-};
 
-const List: React.FunctionComponent<ListProps> = ({ name, list, hover}): JSX.Element => {
+const List: React.FunctionComponent<ListConfig> = ({ name, list, hover}): JSX.Element => {
   return (
     <ul className={`${ name }__list flex ml-5`}>
       { list.map((item, index) => (

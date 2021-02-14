@@ -1,9 +1,8 @@
 import React from 'react';
-import { ButtonConfig } from '../../store/types';
+import { ButtonConfig } from './types';
 
-type Test = ButtonConfig & { arrow?: boolean };
 
-const Button: React.FunctionComponent<Test> = ({ parent, text, clicked, style, arrow }) => {
+const Button: React.FunctionComponent<ButtonConfig> = ({ parent, text, clicked, style, arrow }) => {
   return (
     <button 
       className={`${ parent }__button px-3 py-1 bg-green-300 rounded-lg relative btn-hoverConfig btn-ActiveFocus`} 
