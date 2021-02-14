@@ -13,18 +13,20 @@ type BlogSectionProps = {
 }
 
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, currentViewMode }): JSX.Element => {
+  //*  ----------------------  STATE  ----------------------  *//
   const viewMode = useRef(true);
   const posts = useSelector((state: RootState) => state.posts.bank || '');
   
   const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const buttonHandler = () => {
+  const buttonHandler = (): void => {
     const current = viewMode.current;
     viewMode.current = !current;
     currentViewMode( viewMode.current );
   };
 
+  //*  ---------------------  RENDER  ---------------------  *//
   return (
     <>
     { posts.map((post, index) => (

@@ -7,7 +7,7 @@ import BlogSection from '../../../components/posts/blog/BlogSection';
 const Home: React.FunctionComponent = () => {
   //*  ----------------------  STATE  ----------------------  *//
   const [ name ] = useState<string>(Element.HOME_PAGE);
-  const [ blogViewMode, setBlogViewMode ] = useState<boolean>();
+  const [ blogViewMode, setBlogViewMode ] = useState<boolean>(true);
 
   //*  --------------------  HANDLERS  --------------------  *//
 
@@ -36,7 +36,7 @@ const Home: React.FunctionComponent = () => {
             }
             <BlogSection 
               parent={ name } 
-              currentViewMode={ blogViewHandler } >
+              currentViewMode={ blogViewHandler }>
             </BlogSection>  
           </div>
         </div>
