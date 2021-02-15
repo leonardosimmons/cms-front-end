@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
 import BlogSection from '../../../components/posts/blog/BlogSection';
+import Carousel from '../../../features/Carousel';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
@@ -34,10 +35,12 @@ const Home: React.FunctionComponent = (): JSX.Element => {
                 <h2 className={`text-base font-medium self-end mb-2 ml-1`}>(Recently Featured)</h2>
               </div>
             }
-            <BlogSection 
-              parent={ name } 
-              currentViewMode={ blogViewToggle }>
-            </BlogSection>  
+            <Carousel>
+              <BlogSection 
+                parent={ name } 
+                currentViewMode={ blogViewToggle }>
+              </BlogSection>  
+            </Carousel>
           </div>
         </div>
         {

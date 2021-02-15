@@ -1,0 +1,22 @@
+.arrow {      
+  top: 50%;
+  transition: transform ease-in 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  & span {
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__right, &__left {
+    font-size: 4.75rem;
+  }
+
+  &__left {
+    transform: rotate(180deg);
+  }
+};

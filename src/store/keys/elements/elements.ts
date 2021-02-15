@@ -2,6 +2,9 @@
  * Keys for each element within the app
  */
 enum ElementKeys {
+  //* General
+  RIGHT = 'right',
+  LEFT = 'left',
 
   //* Pages
   APP = 'App',
@@ -20,7 +23,7 @@ enum ElementKeys {
   ABOUT_01 = 'about-01',
   ABOUT_02 = 'about-02',
   ARROW = 'arrow',
-  MAIN_HEADER_CAROUSEL = 'main-header-carousel',
+  CAROUSEL = 'carousel',
   CONTACT_ME_01 = 'contact-me-1',
   FLIP_CARD = 'flip-card',
   FOOTER_01 = 'footer-01',
@@ -28,6 +31,7 @@ enum ElementKeys {
   MAIN_HEADER_02 = 'main-header-02',
   MAIN_HEADER_03 = 'main-header-03',
   MISSION_STATEMENT = 'mission-statement',
+  MAIN_HEADER_CAROUSEL = 'main-header-carousel',
   PORTFOLIO = 'portfolio',
   SERVICES_OFFERED = 'services-offered',
   SERVICE_CARD = 'service-card',

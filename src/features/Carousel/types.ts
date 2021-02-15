@@ -1,4 +1,9 @@
 //*  ----------------------  STATE  ----------------------  *// 
+export type CarouselConfig = {
+  autoPlay?: number;
+  slides?: [];
+}
+
 export type CarouselStatus = {
   translate: number;
   transition: number;

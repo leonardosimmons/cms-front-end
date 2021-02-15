@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { CarouselContentProps, CarouselContentStyles } from './types';
 import Element from '../../store/keys/elements';
 
-const initContentState: CarouselContentStyles = {
+const initSlideCount: number = 0;
+
+const initContentStyles: CarouselContentStyles = {
   transform: '',
   transition: '',
   width: '',
@@ -11,7 +13,7 @@ const initContentState: CarouselContentStyles = {
 };
 
 const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width, translate, transition, height = Element.BASE_HEADER_SLIDER_HEIGHT, slideCount, dotCount, children }): JSX.Element => {
-  /* --------------------  COUNT  -------------------- */   
+  /* --------------------  COUNT  -------------------- */  
   /** Returns the current slide count */
   useEffect(() => {
     const getSlideCount = () => {
@@ -19,7 +21,9 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
     };
     getSlideCount();
 
-    return() => { slideCount(0) };
+    return() => {
+      slideCount(initSlideCount);
+    }
   }, [ slideCount, children ]);
 
   //! [DEPRICATED] Note: get slide count from content component (same as slide count) */
@@ -29,6 +33,10 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
 
   /* --------------------  STYLES  -------------------- */ 
   const [ styles, setStyles ] = useState<CarouselContentStyles>();
+
+  const resetContentStyles = useCallback(() => {
+    return initContentStyles;
+  }, []);
 
   /** Creates and set carousel styles */
   useEffect(() => {
@@ -41,8 +49,10 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
     };
     setStyles(style);
 
-    return () => setStyles(initContentState);
-  }, [ height, translate, transition, width, styles, children ]);
+    return () => {
+      setStyles(resetContentStyles);
+    }
+  }, [ height, translate, transition, width, styles, children, resetContentStyles ]);
 
   /* --------------------  RENDER  -------------------- */ 
   return (
