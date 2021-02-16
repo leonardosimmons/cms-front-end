@@ -10,7 +10,7 @@ import Arrow from './components/arrows';
 import Dots from './components/dots';
 
 
-const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, children }): JSX.Element => {
+const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, previewMode, children }): JSX.Element => {
   const dispatch = useDispatch();
   const [ name ] = useState<string>(Element.CAROUSEL)
   const carousel: CarouselStatus = useSelector((state: RootState) => state.carousel || '');
@@ -84,7 +84,10 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, c
 
   /* ---------------------  RENDER  --------------------- */ 
   return (
-    <div className={`${ name } relative h-full max-w-full my-0 mx-auto overflow-hidden`}>
+    <div className={`
+      ${ name } 
+      ${ previewMode ? 'h-full' : 'h-vh-full'}
+      relative w-vh-full m-auto`}>
       <CarouselContent
         translate={ carousel.translate }
         transition={ carousel.transition }

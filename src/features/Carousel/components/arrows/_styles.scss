@@ -3,7 +3,7 @@
   transition: transform ease-in 0.1s;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   & span {
@@ -13,7 +13,7 @@
   }
 
   &__right, &__left {
-    font-size: 4.75rem;
+    font-size: 2.75rem;
   }
 
   &__left {

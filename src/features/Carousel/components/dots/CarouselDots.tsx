@@ -3,7 +3,7 @@ import { DotsConfig, DotStatus } from './types';
 
 const Dot: React.FunctionComponent<DotStatus> = ({ active, index }) => (
   <span style={{ 
-    background: `${active ? index === 0 ? 'white' : index === 1 ? 'white' : index === 2 ? 'white' : 'black' : 'black' }`
+    background: `${active ? '#A7F3D0' : '#374151' }`
   }} />
 );
 

@@ -21,12 +21,13 @@ const Arrows: React.FunctionComponent<ArrowConfig> = ({ index, direction, clicke
   useEffect(() => {
     const style = {
       container: {
-        backgroundColor: `${ index === 1 ? 'white' : index === 2 ? 'white' : 'white' }`,
-        right: `${ direction === Element.RIGHT ? '25px' : ''}`,
-        left: `${ direction === Element.LEFT ? '25px' : ''}`,
+        backgroundColor: `#374151`,
+        right: `${ direction === Element.RIGHT ? '5px' : ''}`,
+        left: `${ direction === Element.LEFT ? '5px' : ''}`,
+        top: '40%'
       },
       arrow: {
-        transform: `translateX(${direction === Element.LEFT ? '-2' : '2'}px)`
+        transform: `translateX(${direction === Element.LEFT ? '-3' : '3'}px) translateY(-4px)`
       }
     };
     setStyles(style);
@@ -37,7 +38,7 @@ const Arrows: React.FunctionComponent<ArrowConfig> = ({ index, direction, clicke
   }, [ direction, index ]);
   
   return (
-    <div className={`${ name } absolute h-12 w-12 flex justify-center items-center rounded-full cursor-pointer text-white bg-green-400`}
+    <div className={`${ name } absolute h-12 w-12 flex justify-center items-center rounded-full cursor-pointer text-green-200`}
       style={ styles.container }
       onClick={ clicked } >
       { 
