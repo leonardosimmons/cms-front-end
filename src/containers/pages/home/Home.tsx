@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
-import BlogSection from '../../../components/posts/blog/BlogSection';
+import BlogSection from '../../sections/BlogPost';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowConfig, ArrowStyles } from './types';
-import Element from '../../../../store/keys/elements/elements';
+import Element from '../../../../../../store/keys/elements/elements';
 
 const initArrowStyle: ArrowStyles = {
   container: {

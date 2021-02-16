@@ -3,7 +3,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import categoryReducer from './banks/Categories';
 import postReducer from './banks/Posts'; 
 import blogPostReducer from '../components/posts/blog/state';
-import carouselReducer from '../features/Carousel/state';
+import carouselReducer from '../containers/sections/BlogPost/Carousel/state';
 
 export const store = configureStore({
   reducer: {

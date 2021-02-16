@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from './state';
-import { RootState } from '../../store';
+import { RootState } from '../../../../store';
 import { CarouselConfig, CarouselStatus } from './types';
 
-import Element from '../../store/keys/elements';
+import Element from '../../../../store/keys/elements';
 import CarouselContent from './CarouselContent';
 import Arrow from './components/arrows';
 import Dots from './components/dots';

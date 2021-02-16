@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { BlogSectionProps } from './types';
+import { BlogSectionProps } from '../../../components/posts/blog/types';
 
-import BlogPost from './BlogPost';
-import Image from '../../boxes/img/ImageBox';
+import BlogPost from '../../../components/posts/blog/BlogPost';
+import Image from '../../../components/boxes/img/ImageBox';
 import img from '../../../assets/svg/undraw_Collaboration_re_vyau.svg';
-import Button from '../../buttons/BaseButton-01';
-import Carousel from '../../../features/Carousel';
+import Button from '../../../components/buttons/BaseButton-01';
+import Carousel from './Carousel';
 
 
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, currentViewMode }): JSX.Element => {
@@ -35,7 +35,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
         </div>
       }
     <div className={`overflow-hidden mx-6`}>
-      <div className={`
+      <div className={`transition-all duration-700
         ${ viewMode.current ? 'h-25r' : 'h-full overflow-y-auto'} flex `}>
         <Carousel
           previewMode={ viewMode.current} >
