@@ -1,0 +1,14 @@
+.dots {
+  bottom: 25px;
+
+  & * {
+    padding: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+}
+
+.carousel {
+  width: 75rem;
+}

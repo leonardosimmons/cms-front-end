@@ -8,6 +8,11 @@ export type BlogPostStatus = {
   buffer?: Post | Post[];
 };
 
+export type BlogSectionProps = {
+  parent: string;
+  currentViewMode: (status: boolean) => void;
+}
+
 //*  ------------------------  CONENT  -----------------------  *// 
 export type BlogContentBlockProps = {
   previewMode: boolean;

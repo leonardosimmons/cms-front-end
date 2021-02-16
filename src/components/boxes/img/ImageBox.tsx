@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageConfig } from '../../../store/types';
+import { ImageConfig } from './types';
 
 const Image: React.FunctionComponent<ImageConfig> = ({ parent, image, previewMode }) => {
   return (

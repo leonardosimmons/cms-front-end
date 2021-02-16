@@ -6,12 +6,13 @@ import PostConfig from '../../../components/posts';
 import BlogContent from './BlogContent';
 
 
-const Blog: React.FunctionComponent<Post> = ({ id,  type, tags,  status,  commentCount, title, author, date, image, content, preview, categoryId, children }): JSX.Element => {
+const Blog: React.FunctionComponent<Post> = ({ id, index,  type, tags,  status,  commentCount, title, author, date, image, content, preview, categoryId, children }): JSX.Element => {
   const [ name ] = useState<string>(Element.BLOG_POST);
 
   return (
     <PostConfig
       parent={ name }
+      index={ index! + 1}
       preview={ preview }
       type={ type }
       id={ id }

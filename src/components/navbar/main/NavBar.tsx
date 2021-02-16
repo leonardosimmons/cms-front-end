@@ -4,8 +4,8 @@ import { getConfiguration } from '../../navbar/main/config';
 
 import Element from '../../../store/keys/elements'
 import logo from '../../../assets/images/logo.png';
-import LogoBox from '../../boxes/logo';
-import MenuTabs from '../../lists/base';
+import LogoBox from '../../boxes/logo/LogoBox';
+import MenuTabs from '../../lists/base/List';
 
 const NavBar: React.FunctionComponent = (): JSX.Element => {
   const [ name ] = useState<string>(Element.MAIN_NAVBAR);
