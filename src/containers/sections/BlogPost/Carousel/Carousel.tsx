@@ -86,8 +86,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   return (
     <div className={`
       ${ name } 
-      ${ previewMode ? 'h-full' : 'h-vh-full'}
-      relative w-vh-full m-auto`}>
+      ${ previewMode ? 'h-full' : 'h-vh-full overflow-y-auto'}
+      relative w-75r m-auto`}>
       <CarouselContent
         translate={ carousel.translate }
         transition={ carousel.transition }
@@ -95,22 +95,38 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
         slideCount={ handleSlideCount }
         dotCount={ handleDotCount }
       >
-        {/* CAN be replaced with .map of components instead of props.children */}
         { children } 
       </CarouselContent>
-      { !autoPlay && ( // disables arrows when autoPlay is turned on
+      { previewMode && (
+      <>
         <>
           <Arrow direction="left" index={ carousel.activeIndex } clicked={ prevSlide } />
           <Arrow direction="right" index={ carousel.activeIndex } clicked={ nextSlide } />       
         </>
-      )}
-      <Dots 
+        <Dots 
         slides={ carousel.dotCount }
         activeIndex={ carousel.activeIndex }
-      />
+        />
+      </>
+      )}
     </div>
   );
 };
 
 export default Carousel;
 
+/*
+  { !autoPlay && ( // disables arrows when autoPlay is turned on
+    <>
+      <Arrow direction="left" index={ carousel.activeIndex } clicked={ prevSlide } />
+      <Arrow direction="right" index={ carousel.activeIndex } clicked={ nextSlide } />       
+    </>
+  )}
+  <Dots 
+  slides={ carousel.dotCount }
+  activeIndex={ carousel.activeIndex }
+  />
+
+
+
+*/

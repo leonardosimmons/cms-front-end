@@ -47,7 +47,7 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
 
   /* --------------------  RENDER  -------------------- */ 
   return (
-    <div className="" style={ styles }>
+    <div style={ styles }>
       { children }
     </div>
   );

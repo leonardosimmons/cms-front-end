@@ -22,8 +22,8 @@ const Arrows: React.FunctionComponent<ArrowConfig> = ({ index, direction, clicke
     const style = {
       container: {
         backgroundColor: `#374151`,
-        right: `${ direction === Element.RIGHT ? '5px' : ''}`,
-        left: `${ direction === Element.LEFT ? '5px' : ''}`,
+        right: `${ direction === Element.RIGHT ? '0px' : ''}`,
+        left: `${ direction === Element.LEFT ? '0px' : ''}`,
         top: '40%'
       },
       arrow: {

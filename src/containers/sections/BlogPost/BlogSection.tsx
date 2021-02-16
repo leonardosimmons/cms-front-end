@@ -36,7 +36,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
       }
     <div className={`overflow-hidden mx-6`}>
       <div className={`transition-all duration-700
-        ${ viewMode.current ? 'h-25r' : 'h-full overflow-y-auto'} flex `}>
+        ${ viewMode.current ? 'h-25r' : 'h-full'} flex `}>
         <Carousel
           previewMode={ viewMode.current} >
         { posts.map((post, index) => (

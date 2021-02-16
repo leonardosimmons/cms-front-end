@@ -7,7 +7,7 @@ const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title
   return (
     <div className={`${ parent }__content 
       w-60/100 p-2 border-gray-200 border-2 border-solid shadow-md transition-all duration-500
-      ${ preview ? ' h-80' : 'h-vh-full overflow-auto my-auto' }`}>
+      ${ preview ? ' h-80' : 'h-vh-full my-auto' }`}>
       <div className={`${ parent }__content--header 
         ${ preview ? 'ml-3' : 'ml-5'}`}
       >
