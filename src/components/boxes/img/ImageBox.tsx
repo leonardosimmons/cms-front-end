@@ -7,7 +7,7 @@ const Image: React.FunctionComponent<ImageConfig> = ({ parent, image, previewMod
       ${ parent }__blog-post--img
       ${ previewMode! ? 
         'h-full w-full object-contain' : 
-        'h-full w-full object-contain' }`} 
+        'h-full max-w-full object-contain' }`} 
       src={ image } alt="" 
     />
   );

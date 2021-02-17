@@ -5,7 +5,6 @@ import { BlogSectionProps } from '../../../components/posts/blog/types';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
-import img from '../../../assets/svg/undraw_Collaboration_re_vyau.svg';
 import Button from '../../../components/buttons/BaseButton-01';
 import Carousel from './Carousel';
 
@@ -38,51 +37,55 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
       <div className={`transition-all duration-700
         ${ viewMode.current ? 'h-25r' : 'h-full'} flex `}>
         <Carousel
-          previewMode={ viewMode.current} >
-        { posts.map((post, index) => (
-          <BlogPost
-          key={ index }
-          index={ index }
-          preview={ viewMode.current }
-          type={ post.type }
-          id={ post.id } 
-          status={ post.status } 
-          title={ post.title }
-          author={ post.author }
-          date={ post.date }
-          tags={ fakeTags } 
-          image={ 
-            <div className={` ${ parent }__blog-post--img-box 
-            ${ viewMode.current ? 
-              'h-40 w-25/100' : 
-              'h-30/100 self-center mb-4' }`}>
-                <Image 
-                  previewMode={ viewMode.current }
-                  image={ img }>
-                </Image>
-              </div> 
-            }
-            content={ 
-              <div className={` ${ parent }__blog-post--content-box
-              ${ viewMode.current ? 
-                'w-75/100 mr-6 ' : 
-                'w-80/100 m-auto'}
-                `}>
-                <div className={` mb-4
-                  ${ viewMode.current ? 'w-full mb-4' : 'mb-6'}`}>
-                  { post.content }
-                </div>
-                <div className={`${ viewMode.current ? '' : 'text-center mb-6'}`}>
-                  <Button 
-                    arrow={ true }
-                    text={`${ viewMode.current ? 'Read More' : 'Back to Blog'}`} 
-                    clicked={ buttonHandler }>
-                  </Button>    
-                </div>
-              </div> 
-            }>
-          </BlogPost>
-        ))}
+          autoPlay={ 6 }
+          previewMode={ viewMode.current} 
+        >
+          { 
+            posts.map((post, index) => (
+              <BlogPost
+                key={ index }
+                index={ index }
+                preview={ viewMode.current }
+                type={ post.type }
+                id={ post.id } 
+                status={ post.status } 
+                title={ post.title }
+                author={ post.author }
+                date={ post.date }
+                tags={ fakeTags } 
+                image={ 
+                  <div className={` ${ parent }__blog-post--img-box 
+                  ${ viewMode.current ? 
+                    'h-40 w-25/100' : 
+                    'h-30/100 self-center mb-4' }`}>
+                      <Image 
+                        previewMode={ viewMode.current }
+                        image={ process.env.PUBLIC_URL + post.image }>
+                      </Image>
+                  </div> 
+                }
+                content={ 
+                  <div className={` ${ parent }__blog-post--content-box
+                  ${ viewMode.current ? 
+                    'w-75/100 mr-6 ' : 
+                    'w-80/100 m-auto'}
+                    `}>
+                    <div className={` mb-4
+                      ${ viewMode.current ? 'w-full mb-4' : 'mb-6'}`}>
+                      { post.content }
+                    </div>
+                    <div className={`${ viewMode.current ? '' : 'text-center mb-12'}`}>
+                      <Button 
+                        arrow={ true }
+                        text={`${ viewMode.current ? 'Read More' : 'Back to Blog'}`} 
+                        clicked={ buttonHandler }>
+                      </Button>    
+                    </div>
+                  </div> 
+                }>
+              </BlogPost>
+            ))
+          }
         </Carousel>
       </div>
     </div>

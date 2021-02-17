@@ -60,12 +60,12 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
       return autoPlayRef.current();
     }
     
-    if(autoPlay) {
+    if(autoPlay && previewMode) {
       const interval = setInterval(play, autoPlay! * 1000);
       return () => clearInterval(interval)
     }
 
-  }, [ autoPlay ]);
+  }, [ autoPlay, previewMode ]);
 
   
   /* --------------------  HANDLERS  -------------------- */  
@@ -114,19 +114,3 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
 };
 
 export default Carousel;
-
-/*
-  { !autoPlay && ( // disables arrows when autoPlay is turned on
-    <>
-      <Arrow direction="left" index={ carousel.activeIndex } clicked={ prevSlide } />
-      <Arrow direction="right" index={ carousel.activeIndex } clicked={ nextSlide } />       
-    </>
-  )}
-  <Dots 
-  slides={ carousel.dotCount }
-  activeIndex={ carousel.activeIndex }
-  />
-
-
-
-*/

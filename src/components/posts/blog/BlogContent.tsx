@@ -6,13 +6,13 @@ type BlogContentProps = PostContent & PostConfig;
 const BlogContent: React.FunctionComponent<BlogContentProps> = ({ preview, title, author, date, image, content, parent, children }): JSX.Element => {
   return (
     <div className={`${ parent }__content 
-      w-60/100 p-2 border-gray-200 border-2 border-solid shadow-md transition-all duration-500
-      ${ preview ? ' h-80' : 'h-vh-full my-auto' }`}>
+      w-60/100 p-2 border-gray-200 border-2 border-solid shadow-md transition-all duration-500 rounded-lg
+      ${ preview ? ' h-80' : 'my-auto' }`}>
       <div className={`${ parent }__content--header 
         ${ preview ? 'ml-3' : 'ml-5'}`}
       >
         <h2 className={`${ parent }__content--header--heading font-bold
-          ${ preview ? 'text-3xl' : 'text-6xl mb-2'} `}>
+          ${ preview ? 'text-3xl' : 'text-6xl mb-2 py-2'} `}>
             { title }
         </h2>
         <p className={`${ parent }__content--author font-light`}>
