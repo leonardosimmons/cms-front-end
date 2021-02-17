@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from './state';
-import { RootState } from '../../store';
+import { RootState } from '../../../../store';
 import { CarouselConfig, CarouselStatus } from './types';
 
-import Element from '../../store/keys/elements';
+import Element from '../../../../store/keys/elements';
 import CarouselContent from './CarouselContent';
 import Arrow from './components/arrows';
 import Dots from './components/dots';
@@ -60,12 +60,12 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
       return autoPlayRef.current();
     }
     
-    if(autoPlay) {
+    if(autoPlay && previewMode) {
       const interval = setInterval(play, autoPlay! * 1000);
       return () => clearInterval(interval)
     }
 
-  }, [ autoPlay ]);
+  }, [ autoPlay, previewMode ]);
 
   
   /* --------------------  HANDLERS  -------------------- */  
@@ -86,8 +86,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   return (
     <div className={`
       ${ name } 
-      ${ previewMode ? 'h-full' : 'h-vh-full'}
-      relative w-vh-full m-auto`}>
+      ${ previewMode ? 'h-full' : 'h-vh-full overflow-y-auto'}
+      relative w-75r m-auto`}>
       <CarouselContent
         translate={ carousel.translate }
         transition={ carousel.transition }
@@ -95,22 +95,22 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
         slideCount={ handleSlideCount }
         dotCount={ handleDotCount }
       >
-        {/* CAN be replaced with .map of components instead of props.children */}
         { children } 
       </CarouselContent>
-      { !autoPlay && ( // disables arrows when autoPlay is turned on
+      { previewMode && (
+      <>
         <>
           <Arrow direction="left" index={ carousel.activeIndex } clicked={ prevSlide } />
           <Arrow direction="right" index={ carousel.activeIndex } clicked={ nextSlide } />       
         </>
-      )}
-      <Dots 
+        <Dots 
         slides={ carousel.dotCount }
         activeIndex={ carousel.activeIndex }
-      />
+        />
+      </>
+      )}
     </div>
   );
 };
 
 export default Carousel;
-

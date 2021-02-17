@@ -8,8 +8,8 @@ const Post: React.FunctionComponent<PostProps> = ({ id, preview, type, tags,  st
     <div className={`
       ${ type }__post 
       ${ parent || '' }__post${ index || ''}  
-      ${ preview ? '' : 'items-center'} 
-       h-96 p-3 pb-2 flex-1 flex justify-start ml-6`}
+      ${ preview ? 'ml-7' : 'items-center ml-3'} 
+       h-96 p-3 pb-2 flex-1 flex justify-start`}
     >
       { children } 
     </div>

@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { start } from  '../../store/banks';
+import { useTime } from '../../helpers/hooks/useTime';
 
 import HomePage from '../pages/home';
 
 const App: React.FunctionComponent = (): JSX.Element => {
   const dispatch = useDispatch();
+
+  useTime();
 
   useEffect(() => {
     const initApp = () => dispatch(start());

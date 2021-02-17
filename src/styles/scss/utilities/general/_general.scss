@@ -1,3 +1,4 @@
+//* HOVER
 .hover-scale {
   &:hover {
     font-weight: 500;
@@ -7,11 +8,20 @@
 }
 
 
+//* FOCUS
 .active-focus {
   &:active,
   &:focus {
     outline: none;
     transform: translateY(-0.1rem);
     box-shadow: 0 .5rem 1rem rgba(black, .2);
+  }
+}
+
+.input-focus {
+  &:active,
+  &:focus {
+    outline: none;
+    border: 2px solid #6B7280;
   }
 }

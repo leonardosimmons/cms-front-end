@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
-import BlogSection from '../../../components/posts/blog/BlogSection';
+import BlogSection from '../../sections/BlogPost';
+import BlogSearchBox from '../../../components/posts/blog/search';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
@@ -34,7 +35,11 @@ const Home: React.FunctionComponent = (): JSX.Element => {
           </div>
         </div>
         {
-          <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}></div>
+          <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
+            {
+              BlogSection && <BlogSearchBox/>
+            }
+          </div>
         }
       </div>
     </div>

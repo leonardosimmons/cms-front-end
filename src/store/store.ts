@@ -3,7 +3,8 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import categoryReducer from './banks/Categories';
 import postReducer from './banks/Posts'; 
 import blogPostReducer from '../components/posts/blog/state';
-import carouselReducer from '../features/Carousel/state';
+import carouselReducer from '../containers/sections/BlogPost/Carousel/state';
+import timeReducer from '../components/time/state';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     posts: postReducer,
     blogs: blogPostReducer,
     carousel: carouselReducer,
+    time: timeReducer
   },
 });
 
