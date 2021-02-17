@@ -37,7 +37,8 @@ const Home: React.FunctionComponent = (): JSX.Element => {
         {
           <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
             {
-              BlogSection && <BlogSearchBox/>
+              BlogSection && 
+                <BlogSearchBox/>
             }
           </div>
         }

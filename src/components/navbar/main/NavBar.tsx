@@ -6,7 +6,8 @@ import Element from '../../../store/keys/elements'
 import logo from '../../../assets/images/logo.png';
 import LogoBox from '../../boxes/logo/LogoBox';
 import MenuTabs from '../../lists/base/List';
-import TimeClock from '../../time/clock';
+import TimeClock from '../../time/Clock';
+import Date from '../../time/Date'
 
 const NavBar: React.FunctionComponent = (): JSX.Element => {
   const [ name ] = useState<string>(Element.MAIN_NAVBAR);
@@ -27,10 +28,15 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
           hover={ true }>
         </MenuTabs>
       </div>
+      <div className={`flex h-full w-80/100 text-white text-4xl justify-center items-center`}>
+        <p>Welcome Back</p>
+      </div>
       <div className={`${ name }__right-container 
         flex-50 h-full text-white`}>
         <div className={`h-full flex items-center justify-end mr-12`}>
-          <span className={`mr-2 mt-7 font-medium`}>Current Time: </span>
+          <span className={`mr-4 mt-6`}>
+            <Date />
+          </span>
           <TimeClock />
         </div>
       </div>

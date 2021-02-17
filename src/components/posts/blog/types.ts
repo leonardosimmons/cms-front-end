@@ -1,10 +1,10 @@
-import { Post } from '../../../store/types/post';
+import { Post, PostDataToken } from '../../../store/types/post';
 
 //*  -------------------------  STATE  ------------------------  *//
 export type BlogPostStatus = {
-  bank: Post[];
+  bank: PostDataToken[];
   current: Post;
-  currentSet: Post[];
+  currentSet: PostDataToken[];
   buffer?: Post | Post[];
 };
 

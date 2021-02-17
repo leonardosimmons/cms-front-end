@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { BlogPosts } from '../../../components/posts/blog/state';
 import { BlogSectionProps } from '../../../components/posts/blog/types';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
@@ -12,7 +12,7 @@ import Carousel from './Carousel';
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, currentViewMode }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const viewMode = useRef(true);
-  const posts = useSelector((state: RootState) => state.posts.bank || '');
+  const blogPosts = useSelector(BlogPosts);
   
   const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
 
@@ -41,7 +41,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
           previewMode={ viewMode.current} 
         >
           { 
-            posts.map((post, index) => (
+            blogPosts.currentSet.map((post, index) => (
               <BlogPost
                 key={ index }
                 index={ index }

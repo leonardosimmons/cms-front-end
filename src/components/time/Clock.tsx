@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { currentTime } from '../state';
+import { currentTime } from './state';
 
-const Clock: React.FunctionComponent = () => {
+const Clock: React.FunctionComponent = (): JSX.Element => {
   const time = useSelector(currentTime);
 
   return (
