@@ -8,6 +8,7 @@ import HomePage from '../pages/home';
 const App: React.FunctionComponent = (): JSX.Element => {
   const dispatch = useDispatch();
 
+  // init internal clock
   useTime();
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { getConfiguration } from '../../navbar/main/config';
 
@@ -10,20 +10,19 @@ import TimeClock from '../../time/Clock';
 import Date from '../../time/Date'
 
 const NavBar: React.FunctionComponent = (): JSX.Element => {
-  const [ name ] = useState<string>(Element.MAIN_NAVBAR);
   const config = useSelector(getConfiguration);
 
   return (
-    <nav className={`${ name }  
+    <nav className={`${ Element.MAIN_NAVBAR }  
       flex items-center h-24 w-full rounded-t-3xl shadow-sm bg-purple-400 justify-between`}>
-      <div className={`${ name }__left-container 
+      <div className={`${ Element.MAIN_NAVBAR }__left-container 
       flex items-center flex-50 h-full w-95 m-auto px-3 relative text-white text-2xl`}>
         <LogoBox
-          name={ name }
+          name={ Element.MAIN_NAVBAR }
           logo={ logo }>
         </LogoBox>
         <MenuTabs
-          name={ name } 
+          name={ Element.MAIN_NAVBAR } 
           list={ config.categories } 
           hover={ true }>
         </MenuTabs>
@@ -31,7 +30,7 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
       <div className={`flex h-full w-80/100 text-white text-4xl justify-center items-center`}>
         <p>Welcome Back</p>
       </div>
-      <div className={`${ name }__right-container 
+      <div className={`${ Element.MAIN_NAVBAR }__right-container 
         flex-50 h-full text-white`}>
         <div className={`h-full flex items-center justify-end mr-12`}>
           <span className={`mr-4 mt-6`}>

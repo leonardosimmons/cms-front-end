@@ -13,12 +13,12 @@ const initArrowStyle: ArrowStyles = {
 };
 
 const Arrows: React.FunctionComponent<ArrowConfig> = ({ index, direction, clicked }): JSX.Element => {
-  const [ name ] = useState<string>(Element.ARROW);
-  
+
  /* --------------------  STYLES  -------------------- */
   const [ styles, setStyles ] = useState<ArrowStyles>(initArrowStyle);
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     const style = {
       container: {
         backgroundColor: `#374151`,
@@ -38,14 +38,14 @@ const Arrows: React.FunctionComponent<ArrowConfig> = ({ index, direction, clicke
   }, [ direction, index ]);
   
   return (
-    <div className={`${ name } absolute h-12 w-12 flex justify-center items-center rounded-full cursor-pointer text-green-200`}
+    <div className={`${ Element.ARROW } absolute h-12 w-12 flex justify-center items-center rounded-full cursor-pointer text-green-200`}
       style={ styles.container }
       onClick={ clicked } >
       { 
         direction === 'right' ?
-        <span className={`${ name }__right`} style={ styles.arrow }>&#62;</span>
+        <span className={`${ Element.ARROW }__right`} style={ styles.arrow }>&#62;</span>
         :
-        <span className={`${ name }__left`} style={ styles.arrow }>&#60;</span> 
+        <span className={`${ Element.ARROW }__left`} style={ styles.arrow }>&#60;</span> 
       }
     </div>
   );
