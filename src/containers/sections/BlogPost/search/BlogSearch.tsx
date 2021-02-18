@@ -6,6 +6,7 @@ import { BlogSearch as BlogSearchStatus } from '../types';
 
 
 const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
+  
   //*  ----------------------  STATE  ----------------------  *//  
   const dispatch = useDispatch(); 
   const search: BlogSearchStatus = useSelector((state: RootState) => state.blogSection.search);
