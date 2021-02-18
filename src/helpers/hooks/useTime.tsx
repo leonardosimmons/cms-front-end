@@ -14,12 +14,15 @@ export const useTime = (): void => {
     return { month, date, year, hour, minute, second }
   }, []);
 
-  useEffect(() => {
-    const getCurrentTime = (): void => {
+  useEffect(() => 
+  {
+    const getCurrentTime = (): void => 
+    {
       timeRef.current = getTime();
     }
 
-    const interval = setInterval(() => {
+    const interval = setInterval(() => 
+    {
       getCurrentTime();
       dispatch(setTime(timeRef.current as Time));
     }, 1000);

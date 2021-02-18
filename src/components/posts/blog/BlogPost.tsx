@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Element from '../../../store/keys/elements';
 import { Post } from '../../../store/types/post';
 
@@ -7,11 +7,10 @@ import BlogContent from './BlogContent';
 
 
 const Blog: React.FunctionComponent<Post> = ({ id, index,  type, tags,  status,  commentCount, title, author, date, image, content, preview, categoryId, children }): JSX.Element => {
-  const [ name ] = useState<string>(Element.BLOG_POST);
 
   return (
     <PostConfig
-      parent={ name }
+      parent={ Element.BLOG_POST }
       index={ index! + 1}
       preview={ preview }
       type={ type }
@@ -22,7 +21,7 @@ const Blog: React.FunctionComponent<Post> = ({ id, index,  type, tags,  status, 
       commentCount={ commentCount }
     >
       <BlogContent
-        parent={ name }
+        parent={ Element.BLOG_POST }
         preview={ preview }
         type={ type }
         title={ title }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 
@@ -9,27 +9,26 @@ import BlogSearchBox from '../../sections/BlogPost/search';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
-  const [ name ] = useState<string>(Element.HOME_PAGE);
   const blogViewMode: boolean = useSelector((state: RootState) => state.blogSection.previewMode)
 
   //*  ---------------------  RENDER  ---------------------  *//
   return (
-    <div className={`${ name } h-full max-w-full flex flex-col rounded`}>
+    <div className={`${ Element.HOME_PAGE } h-full max-w-full flex flex-col rounded`}>
       <NavigationBar />
-      <div className={`${ name }__dashboard flex-auto flex overflow-hidden`}>
+      <div className={`${ Element.HOME_PAGE }__dashboard flex-auto flex overflow-hidden`}>
         <div className={`
-          ${ name }__interface 
+          ${ Element.HOME_PAGE }__interface 
           flex-75 flex justify-center items-center rounded-bl-3xl bg-white`}>
            <div className={`
-            ${ name }__interface--container h-full w-full flex flex-col items-center
+            ${ Element.HOME_PAGE }__interface--container h-full w-full flex flex-col items-center
             ${ blogViewMode ? 'overflow-auto' : ''}`}>
             <BlogSection 
-              parent={ name }>
+              parent={ Element.HOME_PAGE }>
             </BlogSection>  
           </div>
         </div>
         {
-          <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
+          <div className={`${ Element.HOME_PAGE }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
             {
               BlogSection && 
                 <BlogSearchBox/>

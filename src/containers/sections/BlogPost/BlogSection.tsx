@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { BlogSection as BlogSectionConfig, toggleViewMode } from './state'; 
+import { RootState } from '../../../store';
+import { toggleViewMode } from './state'; 
 import { BlogSectionProps } from './types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
@@ -12,7 +13,7 @@ import Carousel from './Carousel';
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const dispatch = useDispatch();
-  const section = useSelector(BlogSectionConfig);
+  const section = useSelector((state: RootState) => state.blogSection);
   
   const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
 
