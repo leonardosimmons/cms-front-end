@@ -1,7 +1,7 @@
 import { AppThunk, RootState } from '../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PostDataToken, PostDataBank } from '../types/post/post-types';
-import { set as setBlogPosts } from '../../components/posts/blog/state';
+import { setBlogs } from '../../containers/sections/BlogPost/state';
 
 //*  ----------------------  REDUCER  ----------------------  *//
 const initialState: PostDataBank = {
@@ -36,7 +36,7 @@ export const { set, completed } = postSlice.actions;
 export const initBlogs = (): AppThunk => (dispatch, getState) => {
   const posts = getState().posts;
   const blogs = posts.bank.filter(post => post.type === 'blog');
-  dispatch(setBlogPosts(blogs));
+  dispatch(setBlogs(blogs));
 }
 
 

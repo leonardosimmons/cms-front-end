@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
 import BlogSection from '../../sections/BlogPost';
-import BlogSearchBox from '../../../components/posts/blog/search';
+import BlogSearchBox from '../../sections/BlogPost/search';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const [ name ] = useState<string>(Element.HOME_PAGE);
-  const [ blogViewMode, setBlogViewMode ] = useState<boolean>(true);
-
-  //*  --------------------  HANDLERS  --------------------  *//
-
-  const blogViewToggle = (status: boolean): void => {
-    const currentViewMode = status;
-    setBlogViewMode(currentViewMode);
-  }
+  const blogViewMode: boolean = useSelector((state: RootState) => state.blogSection.previewMode)
 
   //*  ---------------------  RENDER  ---------------------  *//
   return (
@@ -29,15 +24,15 @@ const Home: React.FunctionComponent = (): JSX.Element => {
             ${ name }__interface--container h-full w-full flex flex-col items-center
             ${ blogViewMode ? 'overflow-auto' : ''}`}>
             <BlogSection 
-              parent={ name } 
-              currentViewMode={ blogViewToggle }>
+              parent={ name }>
             </BlogSection>  
           </div>
         </div>
         {
           <div className={`${ name }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
             {
-              BlogSection && <BlogSearchBox/>
+              BlogSection && 
+                <BlogSearchBox/>
             }
           </div>
         }

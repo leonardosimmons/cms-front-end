@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { BlogSectionProps } from '../../../components/posts/blog/types';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { BlogSection as BlogSectionConfig, toggleViewMode } from './state'; 
+import { BlogSectionProps } from './types';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
@@ -9,25 +9,24 @@ import Button from '../../../components/buttons/BaseButton-01';
 import Carousel from './Carousel';
 
 
-const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, currentViewMode }): JSX.Element => {
+const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
-  const viewMode = useRef(true);
-  const posts = useSelector((state: RootState) => state.posts.bank || '');
+  const dispatch = useDispatch();
+  const section = useSelector(BlogSectionConfig);
   
   const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const buttonHandler = (): void => {
-    const current = viewMode.current;
-    viewMode.current = !current;
-    currentViewMode( viewMode.current );
+  const viewModeToggle = (): void => 
+  { 
+    dispatch(toggleViewMode()) 
   };
 
   //*  ---------------------  RENDER  ---------------------  *//
   return (
     <>
       { 
-      viewMode.current && 
+      section.previewMode && 
         <div className={`h-18 w-40/100 flex p-2 border-b-2 mt-3 self-start ml-12`}>
           <h1 className={`text-5xl font-semibold pr-2 self-end mb-2`}>Blog Posts</h1>
           <h2 className={`text-base font-medium self-end mb-2 ml-1`}>(Recently Featured)</h2>
@@ -35,17 +34,17 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
       }
     <div className={`overflow-hidden mx-6`}>
       <div className={`transition-all duration-700
-        ${ viewMode.current ? 'h-25r' : 'h-full'} flex `}>
+        ${ section.previewMode ? 'h-25r' : 'h-full'} flex `}>
         <Carousel
           autoPlay={ 6 }
-          previewMode={ viewMode.current} 
+          previewMode={ section.previewMode } 
         >
           { 
-            posts.map((post, index) => (
+            section.blogs.current.map((post, index) => (
               <BlogPost
                 key={ index }
                 index={ index }
-                preview={ viewMode.current }
+                preview={ section.previewMode }
                 type={ post.type }
                 id={ post.id } 
                 status={ post.status } 
@@ -55,30 +54,30 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent, curren
                 tags={ fakeTags } 
                 image={ 
                   <div className={` ${ parent }__blog-post--img-box 
-                  ${ viewMode.current ? 
+                  ${ section.previewMode ? 
                     'h-40 w-25/100' : 
                     'h-30/100 self-center mb-4' }`}>
                       <Image 
-                        previewMode={ viewMode.current }
+                        previewMode={ section.previewMode }
                         image={ process.env.PUBLIC_URL + post.image }>
                       </Image>
                   </div> 
                 }
                 content={ 
                   <div className={` ${ parent }__blog-post--content-box
-                  ${ viewMode.current ? 
+                  ${ section.previewMode ? 
                     'w-75/100 mr-6 ' : 
                     'w-80/100 m-auto'}
                     `}>
                     <div className={` mb-4
-                      ${ viewMode.current ? 'w-full mb-4' : 'mb-6'}`}>
+                      ${ section.previewMode ? 'w-full mb-4' : 'mb-6'}`}>
                       { post.content }
                     </div>
-                    <div className={`${ viewMode.current ? '' : 'text-center mb-12'}`}>
+                    <div className={`${ section.previewMode ? '' : 'text-center mb-12'}`}>
                       <Button 
                         arrow={ true }
-                        text={`${ viewMode.current ? 'Read More' : 'Back to Blog'}`} 
-                        clicked={ buttonHandler }>
+                        text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
+                        clicked={ viewModeToggle }>
                       </Button>    
                     </div>
                   </div> 

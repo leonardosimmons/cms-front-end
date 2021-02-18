@@ -13,7 +13,7 @@ const initialState: CarouselStatus = {
 };
 
 const carouselSlice = createSlice({
-  name: 'carousel',
+  name: 'blog-carousel',
   initialState,
   reducers: {
     /* ------------------- GENERAL -------------------- */
@@ -78,5 +78,5 @@ export const {
 
 
 //*  -----------------------  STATE  -----------------------  *//
-export const  selectCarousel = (state: RootState) => state.carousel;
+export const  selectCarousel = (state: RootState) => state.blogSection.carousel;
 export default carouselSlice.reducer;

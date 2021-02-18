@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from './state';
+import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from '../state';
 import { RootState } from '../../../../store';
 import { CarouselConfig, CarouselStatus } from './types';
 
@@ -10,14 +10,15 @@ import Arrow from './components/arrows';
 import Dots from './components/dots';
 
 
-const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, previewMode, children }): JSX.Element => {
+const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMode, children }): JSX.Element => {
+  //*  -------------------  STATE  -------------------  *//
   const dispatch = useDispatch();
-  const [ name ] = useState<string>(Element.CAROUSEL)
-  const carousel: CarouselStatus = useSelector((state: RootState) => state.carousel || '');
+  const carousel: CarouselStatus = useSelector((state: RootState) => state.blogSection.carousel);
 
-  /* --------------------  WIDTH  -------------------- */ 
+  //* --------------------  WIDTH  -------------------- *// 
   /** gets the width of the curernt user screen */
-  useEffect(() => {
+  useEffect(() => 
+  {
     dispatch(width(window.innerWidth));
 
     return () => {
@@ -26,8 +27,9 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ dispatch ]);
 
 
-  /* -------------------  CONTROLS  ------------------- */   
-  const nextSlide = useCallback(() => {
+  //* -------------------  CONTROLS  ------------------- *//   
+  const nextSlide = useCallback(() => 
+  {
     if (carousel.activeIndex === carousel.slideCount -1 )
       return dispatch(lastSlide());
 
@@ -35,7 +37,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ carousel.activeIndex, carousel.slideCount, dispatch ]);
 
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = useCallback(() => 
+  {
     if (carousel.activeIndex === 0)
       return dispatch(firstSlide());
     
@@ -43,24 +46,29 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ carousel.activeIndex, dispatch ]);
 
 
-  /* -------------------  AUTOPLAY  ------------------- */ 
+  //* -------------------  AUTOPLAY  ------------------- *//
   const autoPlayRef = useRef<any>(); 
 
-  const updateAutoPlayRef = useCallback(() => {
+  const updateAutoPlayRef = useCallback((): void => 
+  {
     autoPlayRef.current = nextSlide;
   }, [ nextSlide]);
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     updateAutoPlayRef();
   }, [ updateAutoPlayRef ]);
 
   // Autoplay feature (handler)
-  useEffect(() => {
-    const play = () => {
+  useEffect(() => 
+  {
+    const play = () => 
+    {
       return autoPlayRef.current();
     }
     
-    if(autoPlay && previewMode) {
+    if(autoPlay && previewMode) 
+    {
       const interval = setInterval(play, autoPlay! * 1000);
       return () => clearInterval(interval)
     }
@@ -68,24 +76,28 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ autoPlay, previewMode ]);
 
   
-  /* --------------------  HANDLERS  -------------------- */  
-  const handleSlideCount = useCallback((count: number): void => {
+  //* --------------------  HANDLERS  -------------------- *//  
+  const handleSlideCount = useCallback((count: number): void => 
+  {
     dispatch(setSlideCount(count));
   }, [ dispatch ]);
   
-  const handleDotCount = useCallback((dots: number): void => {
-    let arr: number[] = [];
-    for(let i = 0; i < dots; i++ ) {
-      arr.push(i + 1);
+  const handleDotCount = useCallback((slides: number): void => 
+  {
+    let dots: number[] = [];
+    for(let i = 0; i < slides; i++ ) 
+    {
+      dots.push(i + 1);
     }
-    dispatch(setDotCount(arr));
+    
+    dispatch(setDotCount(dots));
   }, [ dispatch ]);
 
 
-  /* ---------------------  RENDER  --------------------- */ 
+  //* ---------------------  RENDER  --------------------- *// 
   return (
     <div className={`
-      ${ name } 
+      ${ Element.CAROUSEL } 
       ${ previewMode ? 'h-full' : 'h-vh-full overflow-y-auto'}
       relative w-75r m-auto`}>
       <CarouselContent

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store/store';
+////import { RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post/post-types';
 import { BlogPostStatus } from './types'
 
@@ -37,30 +37,30 @@ export const blogPostSlice = createSlice({
     /*  ------------------------  POSTS  -----------------------  */
     set: (state, action: PayloadAction<PostDataToken[]>) => 
     {
-      const temp: PostDataToken[] = action.payload;
-      const blogs = temp.filter(post => post.type === 'blog');
-      const blogPostToken = blogs.map(blog => {
-        return { 
-          ...blog,
-          tags: [], 
-          index: 0,
-          parent: '',
-          preview: false,
-          content: undefined,
-          image: undefined,
-          button: undefined,    
-        };
-      });
-    
-      state.bank = blogPostToken;
-      state.currentSet = blogPostToken;
+      // const blogs: PostDataToken[] = action.payload;
+      // const blogPostToken = blogs.map(blog => {
+      //   return { 
+      //     ...blog,
+      //     tags: [], 
+      //     index: 0,
+      //     parent: '',
+      //     preview: false,
+      //     content: undefined,
+      //     image: undefined,
+      //     button: undefined,    
+      //   };
+      // });
+      state.bank = action.payload;
+      state.currentSet = action.payload;
     },
 
-
+    updateCurrentBlogList: (state, action: PayloadAction<PostDataToken[]>) => {
+      state.currentSet = action.payload;
+    }
   }
 });
 export const { set } = blogPostSlice.actions;
 
 //*  -----------------------  STATE  -----------------------  *//
-export const selectBlogPost = (state: RootState) => state.blogs;
+////export const BlogPosts = (state: RootState) => state.blogs;
 export default blogPostSlice.reducer;
