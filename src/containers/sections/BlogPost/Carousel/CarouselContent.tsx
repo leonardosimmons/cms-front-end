@@ -15,18 +15,18 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
   //* -----------------  SLIDE COUNT  ----------------- *// 
   const [ count, setCount ] = useState<number>();
   
-  const getSlideCount = useCallback((): void => 
+  const setSlideCount = useCallback((): void => 
   {
     let slides = React.Children.count(children);
     setCount(slides);
   }, [ children ]);
   
-  // get slide count
+  // set slide count
   useEffect(() => 
   {
-    getSlideCount();
+    setSlideCount();
     slideCount(count as number);
-  }, [ count, getSlideCount, slideCount ])
+  }, [ count, setSlideCount, slideCount ])
 
   // get dot count
   useEffect(() => 

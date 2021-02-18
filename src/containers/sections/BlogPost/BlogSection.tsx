@@ -1,8 +1,8 @@
 import React from 'react';
 import { RootState } from '../../../store';
-import { toggleViewMode } from './state'; 
-import { BlogSectionProps, BlogSectionConfig } from './types';
 import { useSelector, useDispatch } from 'react-redux';
+import { BlogSectionProps, BlogSectionConfig } from './types';
+import { toggleViewMode } from './state'; 
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';

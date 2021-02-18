@@ -98,6 +98,7 @@ const blogSectionSlice = createSlice({
       state.carousel.translate = 0;
     },
 
+    //* COUNTS
     /* ------------------ SLIDE COUNT ------------------ */
     setSlideCount: (state, action: PayloadAction<number>) =>
     {
@@ -115,7 +116,8 @@ const blogSectionSlice = createSlice({
 });
 export const { 
   toggleViewMode, 
-  setInquiry, setBuffer, setResult, setBlogs, updateCurrentBlogList, resetCurrentBlogList, 
+  setBuffer, setInquiry, setResult, setBlogs, 
+  updateCurrentBlogList, resetCurrentBlogList, 
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount 
 } = blogSectionSlice.actions;
 

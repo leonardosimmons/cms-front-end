@@ -22,7 +22,7 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
     dispatch(setBuffer(''));
   }
 
-  const formSubmitHandler = (e: React.FormEvent): void => 
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => 
   {
     e.preventDefault();
     const inquiry = search.buffer;
