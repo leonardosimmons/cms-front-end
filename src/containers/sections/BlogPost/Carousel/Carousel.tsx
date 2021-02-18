@@ -17,7 +17,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
 
   /* --------------------  WIDTH  -------------------- */ 
   /** gets the width of the curernt user screen */
-  useEffect(() => {
+  useEffect(() => 
+  {
     dispatch(width(window.innerWidth));
 
     return () => {
@@ -27,7 +28,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
 
 
   /* -------------------  CONTROLS  ------------------- */   
-  const nextSlide = useCallback(() => {
+  const nextSlide = useCallback(() => 
+  {
     if (carousel.activeIndex === carousel.slideCount -1 )
       return dispatch(lastSlide());
 
@@ -35,7 +37,8 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ carousel.activeIndex, carousel.slideCount, dispatch ]);
 
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = useCallback(() => 
+  {
     if (carousel.activeIndex === 0)
       return dispatch(firstSlide());
     
@@ -46,21 +49,26 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   /* -------------------  AUTOPLAY  ------------------- */ 
   const autoPlayRef = useRef<any>(); 
 
-  const updateAutoPlayRef = useCallback(() => {
+  const updateAutoPlayRef = useCallback(() => 
+  {
     autoPlayRef.current = nextSlide;
   }, [ nextSlide]);
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     updateAutoPlayRef();
   }, [ updateAutoPlayRef ]);
 
   // Autoplay feature (handler)
-  useEffect(() => {
-    const play = () => {
+  useEffect(() => 
+  {
+    const play = () => 
+    {
       return autoPlayRef.current();
     }
     
-    if(autoPlay && previewMode) {
+    if(autoPlay && previewMode) 
+    {
       const interval = setInterval(play, autoPlay! * 1000);
       return () => clearInterval(interval)
     }
@@ -69,13 +77,16 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
 
   
   /* --------------------  HANDLERS  -------------------- */  
-  const handleSlideCount = useCallback((count: number): void => {
+  const handleSlideCount = useCallback((count: number): void => 
+  {
     dispatch(setSlideCount(count));
   }, [ dispatch ]);
   
-  const handleDotCount = useCallback((dots: number): void => {
+  const handleDotCount = useCallback((dots: number): void => 
+  {
     let arr: number[] = [];
-    for(let i = 0; i < dots; i++ ) {
+    for(let i = 0; i < dots; i++ ) 
+    {
       arr.push(i + 1);
     }
     dispatch(setDotCount(arr));

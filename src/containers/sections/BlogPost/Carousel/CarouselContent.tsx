@@ -40,7 +40,6 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
       display: styles.display,
     };
     setStyles(style);
-    console.log(style.width)
 
     return () => setStyles(initContentStyles);
   }, [ height, translate, transition, width, styles.display, children ]);

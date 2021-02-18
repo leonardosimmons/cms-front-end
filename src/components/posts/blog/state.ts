@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store/store';
+////import { RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post/post-types';
 import { BlogPostStatus } from './types'
 
@@ -62,5 +62,5 @@ export const blogPostSlice = createSlice({
 export const { set } = blogPostSlice.actions;
 
 //*  -----------------------  STATE  -----------------------  *//
-export const BlogPosts = (state: RootState) => state.blogs;
+////export const BlogPosts = (state: RootState) => state.blogs;
 export default blogPostSlice.reducer;
