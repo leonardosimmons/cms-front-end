@@ -2,7 +2,6 @@
 export type CarouselConfig = {
   previewMode?: boolean;
   autoPlay?: number;
-  slides?: [];
 }
 
 export type CarouselStatus = {
@@ -20,7 +19,7 @@ export type CarouselContentProps = {
   translate: number;
   transition: number;
   slideCount: (count: number) => void;
-  dotCount: (dots: number) => void;
+  dotCount: (slides: number) => void;
   height?: number;  
 }
 

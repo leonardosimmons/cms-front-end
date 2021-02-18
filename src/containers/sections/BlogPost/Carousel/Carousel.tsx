@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from './state';
+import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from '../state';
 import { RootState } from '../../../../store';
 import { CarouselConfig, CarouselStatus } from './types';
 
@@ -10,12 +10,12 @@ import Arrow from './components/arrows';
 import Dots from './components/dots';
 
 
-const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, previewMode, children }): JSX.Element => {
+const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMode, children }): JSX.Element => {
+  //*  -------------------  STATE  -------------------  *//
   const dispatch = useDispatch();
-  const [ name ] = useState<string>(Element.CAROUSEL)
-  const carousel: CarouselStatus = useSelector((state: RootState) => state.blogCarousel || '');
+  const carousel: CarouselStatus = useSelector((state: RootState) => state.blogSection.carousel);
 
-  /* --------------------  WIDTH  -------------------- */ 
+  //* --------------------  WIDTH  -------------------- *// 
   /** gets the width of the curernt user screen */
   useEffect(() => 
   {
@@ -27,7 +27,7 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ dispatch ]);
 
 
-  /* -------------------  CONTROLS  ------------------- */   
+  //* -------------------  CONTROLS  ------------------- *//   
   const nextSlide = useCallback(() => 
   {
     if (carousel.activeIndex === carousel.slideCount -1 )
@@ -46,10 +46,10 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ carousel.activeIndex, dispatch ]);
 
 
-  /* -------------------  AUTOPLAY  ------------------- */ 
+  //* -------------------  AUTOPLAY  ------------------- *//
   const autoPlayRef = useRef<any>(); 
 
-  const updateAutoPlayRef = useCallback(() => 
+  const updateAutoPlayRef = useCallback((): void => 
   {
     autoPlayRef.current = nextSlide;
   }, [ nextSlide]);
@@ -76,27 +76,28 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, p
   }, [ autoPlay, previewMode ]);
 
   
-  /* --------------------  HANDLERS  -------------------- */  
+  //* --------------------  HANDLERS  -------------------- *//  
   const handleSlideCount = useCallback((count: number): void => 
   {
     dispatch(setSlideCount(count));
   }, [ dispatch ]);
   
-  const handleDotCount = useCallback((dots: number): void => 
+  const handleDotCount = useCallback((slides: number): void => 
   {
-    let arr: number[] = [];
-    for(let i = 0; i < dots; i++ ) 
+    let dots: number[] = [];
+    for(let i = 0; i < slides; i++ ) 
     {
-      arr.push(i + 1);
+      dots.push(i + 1);
     }
-    dispatch(setDotCount(arr));
+    
+    dispatch(setDotCount(dots));
   }, [ dispatch ]);
 
 
-  /* ---------------------  RENDER  --------------------- */ 
+  //* ---------------------  RENDER  --------------------- *// 
   return (
     <div className={`
-      ${ name } 
+      ${ Element.CAROUSEL } 
       ${ previewMode ? 'h-full' : 'h-vh-full overflow-y-auto'}
       relative w-75r m-auto`}>
       <CarouselContent

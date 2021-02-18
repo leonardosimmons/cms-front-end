@@ -11,24 +11,30 @@ const initContentStyles: CarouselContentStyles = {
 };
 
 const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width, translate, transition, height = Element.BASE_HEADER_SLIDER_HEIGHT, slideCount, dotCount, children }): JSX.Element => {
-  /* -----------------  SLIDE COUNT  ----------------- */ 
-  const getSlideCount = useCallback(() => {
-    slideCount(React.Children.count(children));
-  }, [ slideCount, children ]);
-  
-  useEffect(() => {
-    getSlideCount();
-    
-    return () => {
-      slideCount(0);
-    }
-  }, [ getSlideCount, slideCount ]);
 
-  useEffect(() => {
-    dotCount(React.Children.count(children))
-  }, [dotCount, children ]);
+  //* -----------------  SLIDE COUNT  ----------------- *// 
+  const [ count, setCount ] = useState<number>();
   
-  /* --------------------  STYLES  -------------------- */ 
+  const getSlideCount = useCallback((): void => 
+  {
+    let slides = React.Children.count(children);
+    setCount(slides);
+  }, [ children ]);
+  
+  // get slide count
+  useEffect(() => 
+  {
+    getSlideCount();
+    slideCount(count as number);
+  }, [ count, getSlideCount, slideCount ])
+
+  // get dot count
+  useEffect(() => 
+  {
+    dotCount(count as number)
+  }, [ count, dotCount ]);
+  
+  //* --------------------  STYLES  -------------------- *// 
   const [ styles, setStyles ] = useState<CarouselContentStyles>(initContentStyles);
 
   useEffect(() => {
@@ -44,7 +50,7 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
     return () => setStyles(initContentStyles);
   }, [ height, translate, transition, width, styles.display, children ]);
 
-  /* --------------------  RENDER  -------------------- */ 
+  //* --------------------  RENDER  -------------------- *//
   return (
     <div style={ styles }>
       { children }

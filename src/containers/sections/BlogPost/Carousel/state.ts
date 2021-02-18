@@ -78,5 +78,5 @@ export const {
 
 
 //*  -----------------------  STATE  -----------------------  *//
-export const  selectCarousel = (state: RootState) => state.blogCarousel;
+export const  selectCarousel = (state: RootState) => state.blogSection.carousel;
 export default carouselSlice.reducer;

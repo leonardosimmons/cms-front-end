@@ -8,16 +8,14 @@ import postReducer from './banks/Posts';
 import timeReducer from '../components/time/state';
 
 // containers
-import carouselReducer from '../containers/sections/BlogPost/Carousel/state';
 import blogSectionReducer from '../containers/sections/BlogPost/state';
 
 
 export const store = configureStore({
   reducer: {
+    time: timeReducer,
     categories: categoryReducer,
     posts: postReducer,
-    time: timeReducer,
-    blogCarousel: carouselReducer,
     blogSection: blogSectionReducer, 
     
   },

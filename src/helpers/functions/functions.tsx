@@ -1,5 +1,14 @@
+import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { GetRequest } from '../../store/types';
+
+/**
+ * returns the number of children the element currently has
+ * @param children 
+ */
+export function getChildrenCount(children: React.ReactNode): number {
+  return React.Children.count(children)
+}
 
 /**
  * * Converts month's format from number to it's name varient

@@ -43,7 +43,7 @@ const blogSectionSlice = createSlice({
       state.search.result = action.payload;
     },
 
-    //* Blogs
+    //* BLOGS
     /*  -------------------------  BLOGS  -----------------------  */
     setBlogs: (state, action: PayloadAction<PostDataToken[]>) => {
       state.blogs.bank = action.payload;
@@ -63,7 +63,7 @@ const blogSectionSlice = createSlice({
       state.previewMode = !state.previewMode;
     },
 
-    //* Carousel
+    //* CAROUSEL
     /* ------------------- GENERAL -------------------- */
     width: (state, action: PayloadAction<number>) => {
       const width = action.payload;
@@ -118,8 +118,6 @@ export const {
   setInquiry, setBuffer, setResult, setBlogs, updateCurrentBlogList, resetCurrentBlogList, 
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount 
 } = blogSectionSlice.actions;
-
-//*  -----------------------  ASYNC  -----------------------  *//
 
 
 //*  -----------------------  STATE  -----------------------  *//
