@@ -13,7 +13,7 @@ import Dots from './components/dots';
 const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, slides, previewMode, children }): JSX.Element => {
   const dispatch = useDispatch();
   const [ name ] = useState<string>(Element.CAROUSEL)
-  const carousel: CarouselStatus = useSelector((state: RootState) => state.carousel || '');
+  const carousel: CarouselStatus = useSelector((state: RootState) => state.blogCarousel || '');
 
   /* --------------------  WIDTH  -------------------- */ 
   /** gets the width of the curernt user screen */

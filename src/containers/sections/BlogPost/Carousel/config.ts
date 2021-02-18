@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../../../../store';
 
-const getSliderState = (state: RootState) => state.carousel;
+const getSliderState = (state: RootState) => state.blogCarousel;
 
 export const getConfiguration = createSelector(
   getSliderState,

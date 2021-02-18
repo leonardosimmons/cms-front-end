@@ -17,7 +17,7 @@ export const store = configureStore({
     categories: categoryReducer,
     posts: postReducer,
     time: timeReducer,
-    carousel: carouselReducer,
+    blogCarousel: carouselReducer,
     blogSection: blogSectionReducer, 
     
   },
