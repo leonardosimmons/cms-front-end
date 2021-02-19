@@ -93,6 +93,11 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMo
     dispatch(setDotCount(dots));
   }, [ dispatch ]);
 
+  const dotClickHandler = useCallback(() => 
+  {
+    // click handle logic here (upcomming feature)
+  }, [ ]);
+
 
   //* ---------------------  RENDER  --------------------- *// 
   return (
@@ -118,6 +123,7 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMo
         <Dots 
         slides={ carousel.dotCount }
         activeIndex={ carousel.activeIndex }
+        clicked={ dotClickHandler }
         />
       </>
       )}

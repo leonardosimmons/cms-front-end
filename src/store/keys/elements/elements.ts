@@ -6,12 +6,13 @@ enum ElementKeys {
   RIGHT = 'right',
   LEFT = 'left',
 
-  //* Pages
+  //* COMPONENTS
   APP = 'App',
   HOME_PAGE = 'home-page',
   MAIN_NAVBAR = 'main-navbar',
   POST = 'post',
   BLOG_POST = 'blog-post',
+  BLOG_SECTION = 'blog-section',
 
   //* Properties
   HEADER = 'header',

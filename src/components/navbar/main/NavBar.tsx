@@ -22,7 +22,7 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
           logo={ logo }>
         </LogoBox>
         <MenuTabs
-          name={ Element.MAIN_NAVBAR } 
+          parent={ Element.MAIN_NAVBAR } 
           list={ config.categories } 
           hover={ true }>
         </MenuTabs>

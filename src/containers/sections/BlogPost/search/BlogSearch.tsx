@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../../store';
 import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
+import SideBarContentBox from '../../../../components/boxes/content/sidebar';
+import Element from '../../../../store/keys/elements';
 
 
-const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
+const BlogSearch: React.FunctionComponent = (): JSX.Element  => 
+{
   
   //*  ----------------------  STATE  ----------------------  *//  
   const dispatch = useDispatch(); 
@@ -35,11 +38,12 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
   
   //*  ---------------------  RENDER  ---------------------  *//  
   return (
-    <div className={`search h-28 w-90/100 bg-gray-100 mx-auto mt-4 rounded p-2 border-gray-200 border-2 border-solid shadow`}>
+    <SideBarContentBox
+      parent={ Element.BLOG_SECTION }>
       <form className={`flex flex-col justify-center items-center w-85/100 m-auto`}
         onSubmit={ formSubmitHandler }>
         <label htmlFor="blog-search-input"
-          className={`item self-start text-xl font-semibold pb-2`}
+          className={`item self-start text-xl font-semibold pb-2 mt-1`}
         >
           Blog Search
         </label>
@@ -49,17 +53,17 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
             type="text"
             value={ search.buffer }
             onChange={ inputChangeHandler }
-            className={`flex-auto border-gray-300 border-2 border-solid input-focus`}  
+            className={`flex-auto border-gray-300 border-2 border-solid input-focus mb-4`}  
           />
           <button 
             type="submit"
-            className={`input-focus active-focus bg-gray-400 border-gray-200 border-2 border-solid`}
+            className={`input-focus active-focus bg-gray-400 border-gray-200 border-2 border-solid mb-4`}
           >
             &#x1F50D;
           </button>
         </div>
       </form>
-    </div>
+    </SideBarContentBox>
   );
 };
 

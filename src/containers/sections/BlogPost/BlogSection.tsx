@@ -18,7 +18,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const viewModeToggle = (post: PostDataToken) => 
+  const viewModeToggle = (post: PostDataToken): void => 
   { 
     dispatch(toggleViewMode());
     if (section.previewMode)
@@ -45,7 +45,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
         ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
           autoPlay={ section.search.inquiry ? 0 : section.previewMode ? 6 : 0 }
-          previewMode={ section.previewMode } 
+          previewMode={ section.previewMode }
         >
           { 
             section.blogs.current.map((post, index) => (
@@ -85,7 +85,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                       <Button 
                         arrow={ true }
                         text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
-                        clicked={() => viewModeToggle(post) }>
+                        clicked={ () => viewModeToggle(post) }>
                       </Button>    
                     </div>
                   </div> 
@@ -101,3 +101,4 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 };
 
 export default BlogSection;
+ 

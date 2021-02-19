@@ -1,5 +1,5 @@
 export type ListConfig = {
-  name: string;
+  parent: string;
   list: {
     title?: string;
     text?: string;

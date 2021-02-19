@@ -4,6 +4,7 @@
 export type DotsConfig = {
   slides: any[];
   activeIndex: number;
+  clicked: () => void;
 };
 
 
@@ -13,4 +14,5 @@ export type DotsConfig = {
 export type DotStatus = {
   index: number;
   active: boolean;
+  clicked: () => void;
 };

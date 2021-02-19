@@ -10,7 +10,8 @@ const initialState: BlogSectionConfig = {
   search: {
     buffer: '',
     inquiry: '',
-    result: []
+    result: [],
+    isError: false
   },
   blogs: {
     bank: [],
@@ -146,7 +147,11 @@ export const search = (): AppThunk => (dispatch, getState) => {
   })
   .then(posts => 
   {
-    dispatch(setResult(posts as PostDataToken[]));
+    if (posts) {
+      dispatch(setResult(posts as PostDataToken[]));
+    } else {
+        console.log('error here')
+    }
   })
   .catch(e => console.log(e));
 };
