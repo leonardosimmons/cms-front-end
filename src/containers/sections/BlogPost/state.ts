@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post';
 import { BlogSectionConfig } from './types';
+
 
 const initialState: BlogSectionConfig = {
   previewMode: true,
@@ -100,6 +101,12 @@ const blogSectionSlice = createSlice({
       state.carousel.translate = 0;
     },
 
+    resetCarouselPosition: (state) =>
+    {
+      state.carousel.activeIndex = 0;
+      state.carousel.translate = 0;
+    },
+
     //* COUNTS
     /* ------------------ SLIDE COUNT ------------------ */
     setSlideCount: (state, action: PayloadAction<number>) =>
@@ -120,7 +127,7 @@ export const {
   toggleViewMode, 
   setBuffer, setInquiry, setResult, setBlogs, 
   updateCurrentBlogList, resetCurrentBlogList, 
-  width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount 
+  width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount, resetCarouselPosition 
 } = blogSectionSlice.actions;
 
 //*  -----------------------  ASYNC  -----------------------  *//
@@ -142,8 +149,14 @@ export const search = (): AppThunk => (dispatch, getState) => {
     dispatch(setResult(posts as PostDataToken[]));
   })
   .catch(e => console.log(e));
-
 };
+
+
+export const reset = (): AppThunk => (dispatch) => {
+  dispatch(resetCurrentBlogList());
+  dispatch(resetCarouselPosition());
+};
+
 
 //*  -----------------------  STATE  -----------------------  *//
 export const BlogSection = (state: RootState) => state.blogSection;

@@ -2,7 +2,8 @@ import React from 'react';
 import { RootState } from '../../../store';
 import { useSelector, useDispatch } from 'react-redux';
 import { BlogSectionProps, BlogSectionConfig } from './types';
-import { toggleViewMode } from './state'; 
+import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition } from './state';
+import { PostDataToken } from '../../../store/types/post';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
@@ -17,9 +18,16 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const viewModeToggle = (): void => 
+  const viewModeToggle = (post: PostDataToken) => 
   { 
-    dispatch(toggleViewMode()); 
+    dispatch(toggleViewMode());
+    if (section.previewMode)
+    {
+      dispatch(updateCurrentBlogList([post]));
+    } else {
+        dispatch(resetCurrentBlogList());
+    }
+    dispatch(resetCarouselPosition());
   };
 
   //*  ---------------------  RENDER  ---------------------  *//
@@ -34,7 +42,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       }
     <div className={`overflow-hidden mx-6`}>
       <div className={`transition-all duration-700
-        ${ section.previewMode ? 'h-25r' : 'h-full'} flex `}>
+        ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
           autoPlay={ section.search.inquiry ? 0 : section.previewMode ? 6 : 0 }
           previewMode={ section.previewMode } 
@@ -77,7 +85,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                       <Button 
                         arrow={ true }
                         text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
-                        clicked={ viewModeToggle }>
+                        clicked={() => viewModeToggle(post) }>
                       </Button>    
                     </div>
                   </div> 
@@ -93,3 +101,19 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 };
 
 export default BlogSection;
+
+
+/* 
+  const viewModeToggle = (post: PostDataToken) => 
+  { 
+    dispatch(toggleViewMode());
+    dispatch(reset());
+    if (section.previewMode)
+    {
+      dispatch(reset());
+      return dispatch(updateCurrentBlogList([post]));
+    } 
+  };
+
+
+*/

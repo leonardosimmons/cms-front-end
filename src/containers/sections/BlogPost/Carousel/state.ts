@@ -50,6 +50,13 @@ const carouselSlice = createSlice({
       state.translate = 0;
     },
 
+    resetPosition: (state) =>
+    {
+      console.log('posistion reset');
+      state.translate = 0;
+      state.activeIndex = 0;
+    },
+
     /* ------------------ SLIDE COUNT ------------------ */
     setSlideCount: (state, action: PayloadAction<number>) =>
     {
@@ -73,7 +80,8 @@ export const {
   firstSlide, 
   lastSlide,  
   setSlideCount, 
-  setDotCount 
+  setDotCount,
+  resetPosition 
 } = carouselSlice.actions;
 
 

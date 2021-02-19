@@ -33,6 +33,7 @@ const CarouselContent: React.FunctionComponent<CarouselContentProps> = ({ width,
   {
     dotCount(count as number)
   }, [ count, dotCount ]);
+
   
   //* --------------------  STYLES  -------------------- *// 
   const [ styles, setStyles ] = useState<CarouselContentStyles>(initContentStyles);
