@@ -1,7 +1,7 @@
 import React from 'react';
-import { RootState } from '../../../../store';
-import { setInquiry, setBuffer, search as searchBlogs } from '../state';
 import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../../store';
+import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
 
 
@@ -28,6 +28,7 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
     const inquiry = search.buffer;
     dispatch(setInquiry(inquiry));
     dispatch(searchBlogs());
+    dispatch(resetCarouselPosition());
     resetInputHandler();
   };
   

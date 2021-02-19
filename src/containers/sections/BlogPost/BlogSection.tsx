@@ -101,19 +101,3 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 };
 
 export default BlogSection;
-
-
-/* 
-  const viewModeToggle = (post: PostDataToken) => 
-  { 
-    dispatch(toggleViewMode());
-    dispatch(reset());
-    if (section.previewMode)
-    {
-      dispatch(reset());
-      return dispatch(updateCurrentBlogList([post]));
-    } 
-  };
-
-
-*/
