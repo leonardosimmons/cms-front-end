@@ -40,7 +40,7 @@ enum ElementKeys {
   SLIDER = 'slider',
 
   //* Specifics
-  BASE_HEADER_SLIDER_HEIGHT = '80',
+  BASE_HEADER_SLIDER_HEIGHT = '80'
 };
 
 export default ElementKeys;

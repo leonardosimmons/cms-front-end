@@ -4,5 +4,6 @@
  */
 export type GetRequest = {
   url: string | string[];
+  query?: string;
   headers?: {};
 };

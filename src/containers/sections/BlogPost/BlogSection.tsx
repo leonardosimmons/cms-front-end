@@ -14,8 +14,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
   //*  ----------------------  STATE  ----------------------  *//
   const dispatch = useDispatch();
   const section: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
-  
-  const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
+
 
   //*  --------------------  HANDLERS  --------------------  *//
   const viewModeToggle = (): void => 
@@ -37,7 +36,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       <div className={`transition-all duration-700
         ${ section.previewMode ? 'h-25r' : 'h-full'} flex `}>
         <Carousel
-          autoPlay={ 6 }
+          autoPlay={ section.search.inquiry ? 0 : section.previewMode ? 6 : 0 }
           previewMode={ section.previewMode } 
         >
           { 
@@ -52,7 +51,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                 title={ post.title }
                 author={ post.author }
                 date={ post.date }
-                tags={ fakeTags } 
+                tags={ post.tags } 
                 image={ 
                   <div className={` ${ parent }__blog-post--img-box 
                   ${ section.previewMode ? 

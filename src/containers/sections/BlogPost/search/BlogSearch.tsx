@@ -1,6 +1,6 @@
 import React from 'react';
 import { RootState } from '../../../../store';
-import { setInquiry, setBuffer } from '../state';
+import { setInquiry, setBuffer, search as searchBlogs } from '../state';
 import { useSelector, useDispatch } from 'react-redux';
 import { BlogSearch as BlogSearchStatus } from '../types';
 
@@ -15,25 +15,26 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  => {
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => 
   {
     dispatch(setBuffer(e.target.value));
-  }
+  };
 
   const resetInputHandler = (): void => 
   {
     dispatch(setBuffer(''));
-  }
+  };
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => 
   {
     e.preventDefault();
     const inquiry = search.buffer;
     dispatch(setInquiry(inquiry));
+    dispatch(searchBlogs());
     resetInputHandler();
-  }
+  };
   
   
   //*  ---------------------  RENDER  ---------------------  *//  
   return (
-    <div className={`search h-28 w-95/100 bg-gray-100 mx-auto mt-4 rounded p-2 border-gray-200 border-2 border-solid`}>
+    <div className={`search h-28 w-90/100 bg-gray-100 mx-auto mt-4 rounded p-2 border-gray-200 border-2 border-solid shadow`}>
       <form className={`flex flex-col justify-center items-center w-85/100 m-auto`}
         onSubmit={ formSubmitHandler }>
         <label htmlFor="blog-search-input"

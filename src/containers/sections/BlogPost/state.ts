@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store/store';
+import axios from 'axios';
+import { AppThunk, RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post';
 import { BlogSectionConfig } from './types';
 
@@ -41,6 +42,7 @@ const blogSectionSlice = createSlice({
 
     setResult: (state, action: PayloadAction<PostDataToken[]>) => {
       state.search.result = action.payload;
+      state.blogs.current = action.payload;
     },
 
     //* BLOGS
@@ -121,6 +123,27 @@ export const {
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount 
 } = blogSectionSlice.actions;
 
+//*  -----------------------  ASYNC  -----------------------  *//
+export const search = (): AppThunk => (dispatch, getState) => {
+  const current = getState().blogSection.search;
+  axios.get<PostDataToken[]>(`${ process.env.REACT_APP_SEARCH_API}?tag=%${ current.inquiry }%`, 
+  {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => 
+  {
+    if(res.status === 200 && res.statusText === "OK" && Array.isArray(res.data))
+    {
+      return res.data
+    }
+  })
+  .then(posts => 
+  {
+    dispatch(setResult(posts as PostDataToken[]));
+  })
+  .catch(e => console.log(e));
+
+};
 
 //*  -----------------------  STATE  -----------------------  *//
 export const BlogSection = (state: RootState) => state.blogSection;

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef } from 'react';
+import { RootState } from '../../../../store';
 import { useSelector, useDispatch } from 'react-redux';
 import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from '../state';
-import { RootState } from '../../../../store';
 import { CarouselConfig, CarouselStatus } from './types';
 
 import Element from '../../../../store/keys/elements';
