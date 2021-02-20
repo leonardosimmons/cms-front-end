@@ -11,6 +11,7 @@ const initialState: BlogSectionConfig = {
     buffer: '',
     inquiry: '',
     result: [],
+    isLoading: false,
     isError: false
   },
   blogs: {
@@ -44,7 +45,21 @@ const blogSectionSlice = createSlice({
 
     setResult: (state, action: PayloadAction<PostDataToken[]>) => {
       state.search.result = action.payload;
-      state.blogs.current = action.payload;
+    },
+
+    clearCache: (state) =>
+    {
+      state.search.result = [];
+    },
+
+    loading: (state) =>
+    {
+      state.search.isLoading = !state.search.isLoading;
+    },
+
+    error: (state) => 
+    {
+      state.search.isError = !state.search.isError;
     },
 
     //* BLOGS
@@ -126,15 +141,18 @@ const blogSectionSlice = createSlice({
 });
 export const { 
   toggleViewMode, 
-  setBuffer, setInquiry, setResult, setBlogs, 
-  updateCurrentBlogList, resetCurrentBlogList, 
+  setBuffer, setInquiry, setResult, setBlogs, loading, 
+  updateCurrentBlogList, resetCurrentBlogList, error, clearCache,
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount, resetCarouselPosition 
 } = blogSectionSlice.actions;
 
 //*  -----------------------  ASYNC  -----------------------  *//
-export const search = (): AppThunk => (dispatch, getState) => {
+export const search = (): AppThunk => (dispatch, getState) => 
+{
+  dispatch(loading());
   const current = getState().blogSection.search;
-  axios.get<PostDataToken[]>(`${ process.env.REACT_APP_SEARCH_API}?tag=%${ current.inquiry }%`, 
+  axios.get<PostDataToken[]>(
+    `${ process.env.REACT_APP_SEARCH_API }?tag=%${ current.inquiry !== "" ? current.inquiry : '' }%`, 
   {
     headers: { 'Content-Type': 'application/json' }
   })
@@ -149,11 +167,13 @@ export const search = (): AppThunk => (dispatch, getState) => {
   {
     if (posts) {
       dispatch(setResult(posts as PostDataToken[]));
+      dispatch(updateCurrentBlogList(posts as PostDataToken[]));
     } else {
-        console.log('error here')
+        dispatch(error());
     }
   })
-  .catch(e => console.log(e));
+  .catch(e => console.log(e))
+  .then(() => dispatch(loading()));
 };
 
 

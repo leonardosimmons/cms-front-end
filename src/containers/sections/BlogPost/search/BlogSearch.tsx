@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../../store';
-import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition } from '../state';
+import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition, clearCache, error } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
 import SideBarContentBox from '../../../../components/boxes/content/sidebar';
 import Element from '../../../../store/keys/elements';
@@ -28,11 +28,19 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => 
   {
     e.preventDefault();
+    dispatch(clearCache());
+    if(search.isError) 
+      dispatch(error());
+
     const inquiry = search.buffer;
     dispatch(setInquiry(inquiry));
     dispatch(searchBlogs());
-    dispatch(resetCarouselPosition());
-    resetInputHandler();
+
+    if (!search.isError) 
+    {
+      dispatch(resetCarouselPosition());
+      resetInputHandler();
+    } 
   };
   
   
@@ -63,6 +71,12 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
           </button>
         </div>
       </form>
+      { 
+        search.isError &&
+          <div className={` text-red-800 text-sm font-bold mb-3 ml-8`}>
+            {`Error: Could not find search, please try again` }
+          </div> 
+      }
     </SideBarContentBox>
   );
 };
