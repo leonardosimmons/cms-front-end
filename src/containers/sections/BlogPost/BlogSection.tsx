@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RootState } from '../../../store';
 import { useSelector, useDispatch } from 'react-redux';
 import { BlogSectionProps, BlogSectionConfig } from './types';
-import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition } from './state';
+import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition, setTags } from './state';
 import { PostDataToken } from '../../../store/types/post';
+import { useGetTags } from '../../../helpers/hooks/useGetTags';
 
 import { ElementNumbers as Element } from '../../../store/keys/elements/';
 import BlogPost from '../../../components/posts/blog/BlogPost';
@@ -16,8 +17,16 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
   //*  ----------------------  STATE  ----------------------  *//
   const dispatch = useDispatch();
   const section: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
+  
 
+  //*  --------------------  BLOG TAGS  --------------------  *//
+  const blogTags: string[] = useGetTags(section.blogs.bank);
+  useEffect(() => 
+  {
+    dispatch(setTags(blogTags));
+  }, [ dispatch, blogTags ]);
 
+  
   //*  --------------------  HANDLERS  --------------------  *//
   const viewModeToggle = (post: PostDataToken): void => 
   { 

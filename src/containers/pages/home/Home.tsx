@@ -6,6 +6,7 @@ import Element from '../../../store/keys/elements';
 import NavigationBar from '../../../components/navbar/main';
 import BlogSection from '../../sections/BlogPost';
 import BlogSearchBox from '../../sections/BlogPost/search';
+import BlogCategories from '../../sections/BlogPost/Categories';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
@@ -31,7 +32,10 @@ const Home: React.FunctionComponent = (): JSX.Element => {
           <div className={`${ Element.HOME_PAGE }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
             {
               BlogSection && 
-                <BlogSearchBox/>
+                <div>
+                  <BlogSearchBox />
+                  <BlogCategories />
+                </div>
             }
           </div>
         }

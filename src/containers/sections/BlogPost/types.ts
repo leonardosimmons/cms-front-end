@@ -19,6 +19,7 @@ export type BlogSectionConfig = {
   blogs: {
     bank: PostDataToken[];
     current: PostDataToken[];
+    tags: string[];
   }
   carousel: CarouselStatus;
 };
