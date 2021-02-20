@@ -41,7 +41,9 @@ enum ElementKeys {
   SLIDER = 'slider',
 
   //* Specifics
-  BASE_HEADER_SLIDER_HEIGHT = '80'
+  BASE_HEADER_SLIDER_HEIGHT = '80',
+  CAROUSEL_AUTOPLAY_DEFAULT = '6',
+  AUTOPLAY_OFF = '0'
 };
 
 export default ElementKeys;

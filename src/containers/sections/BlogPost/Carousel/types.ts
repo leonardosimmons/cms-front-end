@@ -1,7 +1,7 @@
 //*  ----------------------  STATE  ----------------------  *// 
 export type CarouselConfig = {
   previewMode?: boolean;
-  autoPlay?: number;
+  autoPlay?: string;
 }
 
 export type CarouselStatus = {

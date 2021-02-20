@@ -5,6 +5,7 @@ import { BlogSectionProps, BlogSectionConfig } from './types';
 import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition } from './state';
 import { PostDataToken } from '../../../store/types/post';
 
+import Element from '../../../store/keys/elements';
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
 import Button from '../../../components/buttons/BaseButton-01';
@@ -44,7 +45,8 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       <div className={`transition-all duration-700
         ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
-          autoPlay={ section.search.inquiry ? 0 : section.previewMode ? 6 : 0 }
+          autoPlay={ section.search.inquiry ? Element.AUTOPLAY_OFF : 
+                      section.previewMode ? Element.CAROUSEL_AUTOPLAY_DEFAULT : Element.AUTOPLAY_OFF }
           previewMode={ section.previewMode }
         >
           { 

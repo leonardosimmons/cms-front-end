@@ -46,8 +46,7 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
   
   //*  ---------------------  RENDER  ---------------------  *//  
   return (
-    <SideBarContentBox
-      parent={ Element.BLOG_SECTION }>
+    <SideBarContentBox parent={ Element.BLOG_SECTION }>
       <form className={`flex flex-col justify-center items-center w-85/100 m-auto`}
         onSubmit={ formSubmitHandler }>
         <label htmlFor="blog-search-input"

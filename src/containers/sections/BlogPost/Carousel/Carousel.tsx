@@ -69,7 +69,7 @@ const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMo
     
     if(autoPlay && previewMode) 
     {
-      const interval = setInterval(play, autoPlay! * 1000);
+      const interval = setInterval(play, parseInt(autoPlay!) * 1000);
       return () => clearInterval(interval)
     }
 
