@@ -5,7 +5,7 @@ import { BlogSectionProps, BlogSectionConfig } from './types';
 import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition } from './state';
 import { PostDataToken } from '../../../store/types/post';
 
-import Element from '../../../store/keys/elements';
+import { ElementNumbers as Element } from '../../../store/keys/elements/';
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
 import Button from '../../../components/buttons/BaseButton-01';

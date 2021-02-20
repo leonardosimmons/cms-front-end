@@ -46,4 +46,9 @@ enum ElementKeys {
   AUTOPLAY_OFF = '0'
 };
 
+export enum ElementNumbers {
+  CAROUSEL_AUTOPLAY_DEFAULT = 6,
+  AUTOPLAY_OFF = 0
+}
+
 export default ElementKeys;
