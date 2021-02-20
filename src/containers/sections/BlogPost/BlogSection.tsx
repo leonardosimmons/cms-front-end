@@ -1,8 +1,9 @@
 import React from 'react';
 import { RootState } from '../../../store';
-import { toggleViewMode } from './state'; 
-import { BlogSectionProps } from './types';
 import { useSelector, useDispatch } from 'react-redux';
+import { BlogSectionProps, BlogSectionConfig } from './types';
+import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition } from './state';
+import { PostDataToken } from '../../../store/types/post';
 
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
@@ -13,14 +14,20 @@ import Carousel from './Carousel';
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const dispatch = useDispatch();
-  const section = useSelector((state: RootState) => state.blogSection);
-  
-  const fakeTags = ['apples', 'oranges', 'bananas', 'pears'];
+  const section: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
+
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const viewModeToggle = (): void => 
+  const viewModeToggle = (post: PostDataToken): void => 
   { 
-    dispatch(toggleViewMode()) 
+    dispatch(toggleViewMode());
+    if (section.previewMode)
+    {
+      dispatch(updateCurrentBlogList([post]));
+    } else {
+        dispatch(resetCurrentBlogList());
+    }
+    dispatch(resetCarouselPosition());
   };
 
   //*  ---------------------  RENDER  ---------------------  *//
@@ -35,10 +42,10 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       }
     <div className={`overflow-hidden mx-6`}>
       <div className={`transition-all duration-700
-        ${ section.previewMode ? 'h-25r' : 'h-full'} flex `}>
+        ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
-          autoPlay={ 6 }
-          previewMode={ section.previewMode } 
+          autoPlay={ section.search.inquiry ? 0 : section.previewMode ? 6 : 0 }
+          previewMode={ section.previewMode }
         >
           { 
             section.blogs.current.map((post, index) => (
@@ -52,7 +59,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                 title={ post.title }
                 author={ post.author }
                 date={ post.date }
-                tags={ fakeTags } 
+                tags={ post.tags } 
                 image={ 
                   <div className={` ${ parent }__blog-post--img-box 
                   ${ section.previewMode ? 
@@ -78,7 +85,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                       <Button 
                         arrow={ true }
                         text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
-                        clicked={ viewModeToggle }>
+                        clicked={ () => viewModeToggle(post) }>
                       </Button>    
                     </div>
                   </div> 
@@ -94,3 +101,4 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
 };
 
 export default BlogSection;
+ 

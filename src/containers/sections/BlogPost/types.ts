@@ -9,6 +9,8 @@ export type BlogSearch = {
   buffer: string;
   inquiry: string;
   result: PostDataToken[];
+  isLoading: boolean;
+  isError: boolean;
 };
 
 export type BlogSectionConfig = {

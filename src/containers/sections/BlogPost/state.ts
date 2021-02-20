@@ -1,14 +1,18 @@
+import axios from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store/store';
+import { AppThunk, RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post';
 import { BlogSectionConfig } from './types';
+
 
 const initialState: BlogSectionConfig = {
   previewMode: true,
   search: {
     buffer: '',
     inquiry: '',
-    result: []
+    result: [],
+    isLoading: false,
+    isError: false
   },
   blogs: {
     bank: [],
@@ -41,6 +45,21 @@ const blogSectionSlice = createSlice({
 
     setResult: (state, action: PayloadAction<PostDataToken[]>) => {
       state.search.result = action.payload;
+    },
+
+    clearCache: (state) =>
+    {
+      state.search.result = [];
+    },
+
+    loading: (state) =>
+    {
+      state.search.isLoading = !state.search.isLoading;
+    },
+
+    error: (state) => 
+    {
+      state.search.isError = !state.search.isError;
     },
 
     //* BLOGS
@@ -98,6 +117,13 @@ const blogSectionSlice = createSlice({
       state.carousel.translate = 0;
     },
 
+    resetCarouselPosition: (state) =>
+    {
+      state.carousel.activeIndex = 0;
+      state.carousel.translate = 0;
+    },
+
+    //* COUNTS
     /* ------------------ SLIDE COUNT ------------------ */
     setSlideCount: (state, action: PayloadAction<number>) =>
     {
@@ -115,9 +141,46 @@ const blogSectionSlice = createSlice({
 });
 export const { 
   toggleViewMode, 
-  setInquiry, setBuffer, setResult, setBlogs, updateCurrentBlogList, resetCurrentBlogList, 
-  width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount 
+  setBuffer, setInquiry, setResult, setBlogs, loading, 
+  updateCurrentBlogList, resetCurrentBlogList, error, clearCache,
+  width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount, resetCarouselPosition 
 } = blogSectionSlice.actions;
+
+//*  -----------------------  ASYNC  -----------------------  *//
+export const search = (): AppThunk => (dispatch, getState) => 
+{
+  dispatch(loading());
+  const current = getState().blogSection.search;
+  axios.get<PostDataToken[]>(
+    `${ process.env.REACT_APP_SEARCH_API }?tag=%${ current.inquiry !== "" ? current.inquiry : '' }%`, 
+  {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => 
+  {
+    if(res.status === 200 && res.statusText === "OK" && Array.isArray(res.data))
+    {
+      return res.data
+    }
+  })
+  .then(posts => 
+  {
+    if (posts) {
+      dispatch(setResult(posts as PostDataToken[]));
+      dispatch(updateCurrentBlogList(posts as PostDataToken[]));
+    } else {
+        dispatch(error());
+    }
+  })
+  .catch(e => console.log(e))
+  .then(() => dispatch(loading()));
+};
+
+
+export const reset = (): AppThunk => (dispatch) => {
+  dispatch(resetCurrentBlogList());
+  dispatch(resetCarouselPosition());
+};
 
 
 //*  -----------------------  STATE  -----------------------  *//

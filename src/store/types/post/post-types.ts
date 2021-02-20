@@ -38,7 +38,7 @@ export type PostDataBank = {
 export type PostInfo = {
   id: number;
   type: string;
-  tags: string[];
+  tags: string | string[];
   status: string;
   categoryId?: number;
   commentCount?: number;
