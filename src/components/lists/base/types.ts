@@ -1,4 +1,4 @@
-export type ListConfig = {
+export type ListProps = {
   parent: string;
   list: {
     title?: string;

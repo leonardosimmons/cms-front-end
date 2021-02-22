@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { RootState } from '../../../store';
 import { useSelector, useDispatch } from 'react-redux';
 import { BlogSectionProps, BlogSectionConfig } from './types';
-import { toggleViewMode, updateCurrentBlogList, resetCurrentBlogList, resetCarouselPosition, setTags } from './state';
+import { toggleViewMode, updateCurrentBlogList, 
+          resetCurrentBlogList, resetCarouselPosition, setTags } from './state';
 import { PostDataToken } from '../../../store/types/post';
 import { useGetTags } from '../../../helpers/hooks/useGetTags';
 
-import { ElementNumbers as Element } from '../../../store/keys/elements/';
+import { ElementNumbers as Element } from '../../../store/keys';
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
 import Button from '../../../components/buttons/BaseButton-01';

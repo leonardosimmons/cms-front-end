@@ -2,15 +2,15 @@ import React, { useEffect, useCallback, useRef } from 'react';
 import { RootState } from '../../../../store';
 import { useSelector, useDispatch } from 'react-redux';
 import { width, next, prev, firstSlide, lastSlide, setSlideCount, setDotCount } from '../state';
-import { CarouselConfig, CarouselStatus } from './types';
+import { CarouselProps, CarouselStatus } from './types';
 
-import Element from '../../../../store/keys/elements';
+import Element from '../../../../store/keys';
 import CarouselContent from './CarouselContent';
 import Arrow from './components/arrows';
 import Dots from './components/dots';
 
 
-const Carousel: React.FunctionComponent<CarouselConfig> = ({ autoPlay, previewMode, children }): JSX.Element => {
+const Carousel: React.FunctionComponent<CarouselProps> = ({ autoPlay, previewMode, children }): JSX.Element => {
   //*  -------------------  STATE  -------------------  *//
   const dispatch = useDispatch();
   const carousel: CarouselStatus = useSelector((state: RootState) => state.blogSection.carousel);

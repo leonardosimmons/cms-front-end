@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 
-import Element from '../../../store/keys/elements';
+import Element from '../../../store/keys';
 import NavigationBar from '../../../components/navbar/main';
 import BlogSection from '../../sections/BlogPost';
 import BlogSearchBox from '../../sections/BlogPost/search';

@@ -1,5 +1,5 @@
 //*  ----------------------  STATE  ----------------------  *// 
-export type CarouselConfig = {
+export type CarouselProps = {
   previewMode?: boolean;
   autoPlay?: number;
 }

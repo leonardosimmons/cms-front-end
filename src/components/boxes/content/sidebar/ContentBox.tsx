@@ -1,9 +1,9 @@
 import React from 'react';
-import { ContentBoxConfig } from './types';
-import Element from '../../../../store/keys/elements/elements';
+import { ContentBoxProps } from './types';
+import Element from '../../../../store/keys';
 
 
-const ContentBox: React.FunctionComponent<ContentBoxConfig> = ({ parent, children }): JSX.Element => 
+const ContentBox: React.FunctionComponent<ContentBoxProps> = ({ parent, children }): JSX.Element => 
 {
   return (
     <div className={`${ parent }__content-box

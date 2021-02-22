@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getConfiguration } from '../../navbar/main/config';
 
-import Element from '../../../store/keys/elements'
+import Element from '../../../store/keys';
 import logo from '../../../assets/images/logo.png';
 import LogoBox from '../../boxes/logo/LogoBox';
 import MenuTabs from '../../lists/base/List';

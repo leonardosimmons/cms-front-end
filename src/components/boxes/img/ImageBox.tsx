@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageConfig } from './types';
+import { ImageProps } from './types';
 
-const Image: React.FunctionComponent<ImageConfig> = ({ parent, image, previewMode }) => {
+const Image: React.FunctionComponent<ImageProps> = ({ parent, image, previewMode }) => {
   return (
     <img className={`
       ${ parent }__blog-post--img

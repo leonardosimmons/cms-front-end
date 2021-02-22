@@ -1,9 +1,9 @@
 import React from 'react';
-import { ListConfig } from './types';
-import Element from '../../../store/keys/elements';
+import { ListProps } from './types';
+import Element from '../../../store/keys';
 
 
-const List: React.FunctionComponent<ListConfig> = ({ parent, list, hover}): JSX.Element => {
+const List: React.FunctionComponent<ListProps> = ({ parent, list, hover}): JSX.Element => {
 
   return (
     <ul className={`${ parent }__list 

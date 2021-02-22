@@ -1,8 +1,8 @@
 import React from 'react';
-import { ButtonConfig } from './types';
+import { ButtonProps } from './types';
 
 
-const Button: React.FunctionComponent<ButtonConfig> = ({ parent, text, clicked, style, arrow }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({ parent, text, clicked, style, arrow }) => {
   return (
     <button 
       className={`${ parent }__button px-3 py-1 bg-green-300 rounded-lg relative btn-hoverConfig btn-ActiveFocus`} 

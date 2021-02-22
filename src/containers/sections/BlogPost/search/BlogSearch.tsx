@@ -4,7 +4,7 @@ import { RootState } from '../../../../store';
 import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition, clearCache, error } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
 import SideBarContentBox from '../../../../components/boxes/content/sidebar';
-import Element from '../../../../store/keys/elements';
+import Element from '../../../../store/keys';
 
 
 const BlogSearch: React.FunctionComponent = (): JSX.Element  => 
