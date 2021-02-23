@@ -4,13 +4,17 @@ import { RootState } from '../../../store';
 
 import Element from '../../../store/keys';
 import NavigationBar from '../../../components/navbar/main';
+
+import TodoSection from '../../sections/Todo';
+
 import BlogSection from '../../sections/BlogPost';
 import BlogSearchBox from '../../sections/BlogPost/search';
 import BlogCategories from '../../sections/BlogPost/Categories';
+import { BlogSectionConfig } from '../../sections/BlogPost/types';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
-  const blogViewMode: boolean = useSelector((state: RootState) => state.blogSection.previewMode)
+  const blogSection: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
 
   //*  ---------------------  RENDER  ---------------------  *//
   return (
@@ -22,19 +26,32 @@ const Home: React.FunctionComponent = (): JSX.Element => {
           flex-75 flex justify-center items-center rounded-bl-3xl bg-white`}>
            <div className={`
             ${ Element.HOME_PAGE }__interface--container h-full w-full flex flex-col items-center
-            ${ blogViewMode ? 'overflow-auto' : ''}`}>
+            ${ blogSection.previewMode ? 'overflow-auto' : ''}`}>
+            <div>
+              <TodoSection
+                parent={ Element.HOME_PAGE }> 
+              </TodoSection>
+            </div>
+            <div>
             <BlogSection 
               parent={ Element.HOME_PAGE }>
             </BlogSection>  
+            </div>
           </div>
         </div>
         {
-          <div className={`${ Element.HOME_PAGE }__side-bar h-full flex-25 rounded-br-3xl bg-yellow-700`}>
+          <div className={`${ Element.HOME_PAGE }__side-bar 
+            h-full flex-25 flex flex-col rounded-br-3xl bg-yellow-700`}>
+            <div className={`TEMP flex-50 w-full`}></div>
             {
               BlogSection && 
-                <div>
+                <div className={`flex flex-col justify-between items-center
+                  ${ blogSection.previewMode ? 'h-20r' : 'h-20r'}`}>     
                   <BlogSearchBox />
-                  <BlogCategories />
+                  <BlogCategories
+                    hover={ true }
+                    tags={ blogSection.blogs.tags }  >
+                  </BlogCategories>
                 </div>
             }
           </div>

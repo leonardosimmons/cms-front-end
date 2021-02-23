@@ -1,10 +1,6 @@
 import { PostDataToken } from '../../../store/types/post';
 import { CarouselStatus } from './Carousel/types';
-
-export type BlogSectionProps = {
-  parent: string;
-}
-
+//*  --------------------  BLOG SEARCH  --------------------  *//
 export type BlogSearch = {
   buffer: string;
   inquiry: string;
@@ -12,6 +8,21 @@ export type BlogSearch = {
   isLoading: boolean;
   isError: boolean;
 };
+
+//*  --------------------  CATEGORY LIST  --------------------  *//
+export type BlogCategoryListProps = {
+  tags: string[];
+  hover?: boolean;
+}
+
+
+
+
+//*  --------------------  BLOG SECTION  --------------------  *//
+export type BlogSectionProps = {
+  parent: string;
+}
+
 
 export type BlogSectionConfig = {
   previewMode: boolean;
@@ -23,3 +34,5 @@ export type BlogSectionConfig = {
   }
   carousel: CarouselStatus;
 };
+
+

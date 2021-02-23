@@ -7,7 +7,7 @@ import { toggleViewMode, updateCurrentBlogList,
 import { PostDataToken } from '../../../store/types/post';
 import { useGetTags } from '../../../helpers/hooks/useGetTags';
 
-import { ElementNumbers as Element } from '../../../store/keys';
+import { Numbers as Element } from '../../../store/keys';
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
 import Button from '../../../components/buttons/BaseButton-01';
@@ -46,8 +46,8 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
     <>
       { 
       section.previewMode && 
-        <div className={`h-18 w-40/100 flex p-2 border-b-2 mt-3 self-start ml-12`}>
-          <h1 className={`text-5xl font-semibold pr-2 self-end mb-2`}>Blog Posts</h1>
+        <div className={`h-18 w-30/100 flex p-2 border-b-2 mt-3 self-start ml-12`}>
+          <h1 className={`text-4xl font-semibold pr-2 self-end mb-2`}>Blog Posts</h1>
           <h2 className={`text-base font-medium self-end mb-2 ml-1`}>(Recently Featured)</h2>
         </div>
       }

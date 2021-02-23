@@ -22,6 +22,11 @@ module.exports = {
       },
       height: {
         'vh-full': '100vh',
+        '20r': '20rem',
+        '21r': '21rem',
+        '22r': '22rem',
+        '23r': '23rem',
+        '24r': '24rem',
         '25r': '25rem',
         '26r': '26rem',
         '27r': '27rem',
@@ -71,6 +76,11 @@ module.exports = {
       },
       width: {
         'vh-full': '100vh',
+        '20r': '20rem',
+        '21r': '21rem',
+        '22r': '22rem',
+        '23r': '23rem',
+        '24r': '24rem',
         '25r': '25rem',
         '26r': '26rem',
         '27r': '27rem',

@@ -1,5 +1,5 @@
 import React from 'react';
-import Element from '../../../store/keys/elements';
+import Element from '../../../store/keys';
 import { Post } from '../../../store/types/post';
 
 import PostConfig from '../../../components/posts';

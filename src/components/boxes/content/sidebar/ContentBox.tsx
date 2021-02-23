@@ -7,7 +7,7 @@ const ContentBox: React.FunctionComponent<ContentBoxProps> = ({ parent, children
 {
   return (
     <div className={`${ parent }__content-box
-      flex flex-col rounded-lg bg-gray-100 border-gray-200 border-2 border-solid shadow mx-auto mt-4
+      flex flex-col rounded-lg bg-gray-100 border-gray-200 border-2 border-solid shadow mx-auto mt-2
       transition-all duration-700
       ${ parent === Element.BLOG_SECTION ? 'w-85/100' : '' }
     `}>
