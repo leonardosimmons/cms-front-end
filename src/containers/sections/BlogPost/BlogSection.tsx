@@ -7,7 +7,8 @@ import { toggleViewMode, updateCurrentBlogList,
 import { PostDataToken } from '../../../store/types/post';
 import { useGetTags } from '../../../helpers/hooks/useGetTags';
 
-import { Numbers as Element } from '../../../store/keys';
+
+import Element, { Numbers as Config } from '../../../store/keys';
 import BlogPost from '../../../components/posts/blog/BlogPost';
 import Image from '../../../components/boxes/img/ImageBox';
 import Button from '../../../components/buttons/BaseButton-01';
@@ -55,8 +56,8 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       <div className={`transition-all duration-700
         ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
-          autoPlay={ section.search.inquiry ? Element.AUTOPLAY_OFF : 
-                      section.previewMode ? Element.CAROUSEL_AUTOPLAY_DEFAULT : Element.AUTOPLAY_OFF }
+          autoPlay={ section.search.inquiry ? Config.AUTOPLAY_OFF : 
+                      section.previewMode ? Config.CAROUSEL_AUTOPLAY_DEFAULT : Config.AUTOPLAY_OFF }
           previewMode={ section.previewMode }
         >
           { 
@@ -95,6 +96,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                     </div>
                     <div className={`${ section.previewMode ? '' : 'text-center mb-12'}`}>
                       <Button 
+                        parent={ Element.BLOG_SECTION }
                         arrow={ true }
                         text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
                         clicked={ () => viewModeToggle(post) }>

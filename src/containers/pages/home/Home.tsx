@@ -42,7 +42,7 @@ const Home: React.FunctionComponent = (): JSX.Element => {
         {
           <div className={`${ Element.HOME_PAGE }__side-bar 
             h-full flex-25 flex flex-col rounded-br-3xl bg-yellow-700`}>
-            <div className={`TEMP flex-50 w-full`}></div>
+            <div className={`TEMP h-31r w-full`}></div>
             {
               BlogSection && 
                 <div className={`flex flex-col justify-between items-center

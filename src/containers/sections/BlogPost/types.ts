@@ -1,4 +1,6 @@
+import React from 'react';
 import { PostDataToken } from '../../../store/types/post';
+import { FormProps } from '../../../store/types/types';
 import { CarouselStatus } from './Carousel/types';
 //*  --------------------  BLOG SEARCH  --------------------  *//
 export type BlogSearch = {
@@ -9,13 +11,12 @@ export type BlogSearch = {
   isError: boolean;
 };
 
+export type BlogSearchFormProps = FormProps;
 //*  --------------------  CATEGORY LIST  --------------------  *//
 export type BlogCategoryListProps = {
   tags: string[];
   hover?: boolean;
 }
-
-
 
 
 //*  --------------------  BLOG SECTION  --------------------  *//

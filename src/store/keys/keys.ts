@@ -12,9 +12,11 @@ enum Keys {
   MAIN_NAVBAR = 'main-navbar',
   POST = 'post',
   BLOG_POST = 'blog-post',
+  BLOG_SEARCH = 'blog-search',
   BLOG_SECTION = 'blog-section',
   TODO = 'todo',
   TODO_LIST = 'todo-list',
+  ADD_TODO = 'add-todo',
   TODO_SECTION = 'todo-section',
 
   //* Properties

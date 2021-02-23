@@ -1,15 +1,15 @@
 import React from 'react';
-import { TodoConfig, TodoSectionProps } from './types';
+import { TodoSectionProps } from './types';
 
 import Element from '../../../store/keys/keys';
-import TodoConfigBar from './components/TodoBar';
+import TodoConfigBar from './ConfigBar';
 
 
 
 const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX.Element => 
 {
   return (
-    <div className={`${ Element.TODO_SECTION } 
+    <div className={`${ parent + '__' + Element.TODO_SECTION } 
      h-27r w-75r flex flex-col justify-center items-center max-w-full mt-3`}>
       <h2 className={` w-27r text-4xl font-semibold self-start mb-3 mx-5 border-b-2 leading-relaxed`}>
         What's On Your Agenda:
