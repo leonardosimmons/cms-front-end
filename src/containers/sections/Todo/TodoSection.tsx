@@ -2,8 +2,7 @@ import React from 'react';
 import { TodoSectionProps } from './types';
 
 import Element from '../../../store/keys/keys';
-import TodoConfigBar from './ConfigBar';
-
+import TodoBar from './TodoBar';
 
 
 const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX.Element => 
@@ -16,10 +15,10 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
       </h2>
       <div className={`
         ${ Element.TODO_SECTION }__container h-full w-95/100 bg-gray-300 rounded-lg shadow-inner`}>
-          <TodoConfigBar>
+          <TodoBar>
             {/* ADD TODO component */}
             {/* FILTER TODOS component*/}
-          </TodoConfigBar>
+          </TodoBar>
           {/* ADD TODO LIST component */}
       </div>
     </div>

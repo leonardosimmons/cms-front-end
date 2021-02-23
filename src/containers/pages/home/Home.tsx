@@ -26,12 +26,15 @@ const Home: React.FunctionComponent = (): JSX.Element => {
           flex-75 flex justify-center items-center rounded-bl-3xl bg-white`}>
            <div className={`
             ${ Element.HOME_PAGE }__interface--container h-full w-full flex flex-col items-center
-            ${ blogSection.previewMode ? 'overflow-auto' : ''}`}>
-            <div>
-              <TodoSection
-                parent={ Element.HOME_PAGE }> 
-              </TodoSection>
-            </div>
+            ${ blogSection.previewMode ? 'overflow-auto' : 'overflow-y-auto'}`}>
+            {
+              blogSection.previewMode && 
+              <div>
+                <TodoSection
+                  parent={ Element.HOME_PAGE }> 
+                </TodoSection>
+              </div>
+            }
             <div>
             <BlogSection 
               parent={ Element.HOME_PAGE }>

@@ -103,7 +103,7 @@ const Carousel: React.FunctionComponent<CarouselProps> = ({ autoPlay, previewMod
   return (
     <div className={`
       ${ Element.CAROUSEL } 
-      ${ previewMode ? 'h-full' : 'h-vh-full overflow-y-auto'}
+      ${ previewMode ? 'h-full' : 'h-full'}
       relative w-75r m-auto`}>
       <CarouselContent
         translate={ carousel.translate }
