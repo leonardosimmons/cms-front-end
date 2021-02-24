@@ -1,30 +1,44 @@
 import React from 'react';
-import { FormProps } from '../../../../store/types';
-import Button from '../../../../components/buttons/BaseButton-01';
+import { AddTodoFormProps } from '../types';
+
 import Element from '../../../../store/keys';
+import Input from '../../../../components/input';
+import Button from '../../../../components/buttons/BaseButton-01';
 
 
-
-const AddTodoForm: React.FunctionComponent<FormProps> = ({ value, changed, submitted }) =>
-{
+const AddTodoForm: React.FunctionComponent<AddTodoFormProps> = (
+  { 
+    title,
+     note, 
+     titleChange, 
+     noteChange, 
+     submitted 
+  }
+) => {
   return ( 
     <form className={`flex`} onSubmit={ submitted }>
       <div>
-        <label htmlFor="title">
-          Title: 
-        </label>
-        <input id="title" type="text" />
+        <Input
+          name={`${ Element.TITLE }__${ Element.INPUT }`}
+          label={`Title:`}
+          value={ title }
+          changed={ titleChange }>
+        </Input>
       </div>
       <div>
-        <label htmlFor="note">
-          Note: 
-        </label>
-        <input id="note" type="text" />
+        <Input
+          name={`${ Element.NOTE }__${ Element.INPUT }`}
+          label={`Note:`}
+          value={ note }
+          changed={ noteChange }>
+        </Input>
       </div>
       <Button
         parent={ Element.TODO_SECTION }
-        text={ 'ADD'}>
+        text={ 'Add'}>
       </Button>
     </form>
   );
 };
+
+export default AddTodoForm;

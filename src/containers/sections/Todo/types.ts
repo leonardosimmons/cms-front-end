@@ -1,3 +1,6 @@
+import { FormProps } from "../../../store/types/types";
+
+//* -------------  STATE  ------------- *//
 export type TodoDataToken = {
   id: string;
   title: string;
@@ -13,11 +16,14 @@ export type TodoStatus = {
   current: TodoDataToken[];
 }
 
+
+//* -------------  PROPS  ------------- *//
 export type TodoProps = {
   title: string;
   note: string;
 };
 
+//* ------------  SECTION  ------------ *//
 export type TodoSectionProps = {
   parent: string;
 };
@@ -27,5 +33,25 @@ export type TodoSectionConfig = {
   todos: {
     bank: TodoDataToken[];
     current: TodoDataToken[];
+  },
+  addTodo: {
+    buffer: {
+      title: string;
+      note: string;
+    },
+    input: {
+      title: string;
+      note: string;
+    }
   }
+};
+
+//* ------------  ADD TODO  ------------ *//
+export type AddTodoFormProps = {
+
+  title: string;
+  note: string;
+  titleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  noteChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitted: (e: React.FormEvent<HTMLFormElement>) => void;
 };

@@ -16,7 +16,7 @@ const Input: React.FunctionComponent<InputProps> = ({ name , label, value, type,
         ${ button ? 'flex' : '' }`}>
         <input 
           id={ name } 
-          type={ type }
+          type={ type ? type : 'text' }
           value={ value }
           className={ inputStyle }
           onChange={ changed }

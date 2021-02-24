@@ -3,6 +3,7 @@ import { TodoSectionProps } from './types';
 
 import Element from '../../../store/keys/keys';
 import TodoBar from './TodoBar';
+import AddTodo from './AddTodo';
 
 
 const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX.Element => 
@@ -16,7 +17,7 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
       <div className={`
         ${ Element.TODO_SECTION }__container h-full w-95/100 bg-gray-300 rounded-lg shadow-inner`}>
           <TodoBar>
-            {/* ADD TODO component */}
+            <AddTodo />
             {/* FILTER TODOS component*/}
           </TodoBar>
           {/* ADD TODO LIST component */}

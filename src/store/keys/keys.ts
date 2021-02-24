@@ -5,6 +5,9 @@ enum Keys {
   //* General
   RIGHT = 'right',
   LEFT = 'left',
+  INPUT = 'input',
+  TITLE = 'title',
+  NOTE = 'note',
 
   //* COMPONENTS
   APP = 'App',
@@ -44,11 +47,14 @@ enum Keys {
   SKILL_GRID = 'skill-grid',
   SLIDE = 'slide',
   SLIDER = 'slider',
-
+  
   //* Specifics
   BASE_HEADER_SLIDER_HEIGHT = '80',
   CAROUSEL_AUTOPLAY_DEFAULT = '6',
-  AUTOPLAY_OFF = '0'
+  AUTOPLAY_OFF = '0',
+  TITLE_INPUT = 'title__input',
+  NOTE_INPUT = 'note__input',
+
 };
 
 export enum Numbers {

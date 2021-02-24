@@ -44,12 +44,9 @@ export const { isLoading } = apiSlice.actions;
 
 
 //*  -----------------------  ASYNC  -----------------------  *//
-export const initAux = (): AppThunk => (dispatch, getState) => {
-  const todos = getState().todoSection.todos.bank;  
+export const initAux = (): AppThunk => (dispatch) => { 
   dispatch(initBlogs());
-  dispatch(initTodos(todos));
 }
-
 
 export const start = (): AppThunk => (dispatch) => {
   dispatch(isLoading());
@@ -65,22 +62,23 @@ export const start = (): AppThunk => (dispatch) => {
     })
   ])
   .then(axios.spread((categories, posts, todos) => {
-    if (categories.status === 200 && posts.status === 200 &&
-        categories.statusText === "OK" && posts.statusText === "OK") 
-        {
-          const dataBankToken: DataBank = { 
-            categories: categories.data, 
-            posts: posts.data,
-            todos: todos.data,
-            isLoading: false 
-          };
+    if (categories.status === 200 && posts.status === 200 && todos.status === 200 &&
+        categories.statusText === "OK" && posts.statusText === "OK" && todos.statusText === "OK") 
+      {
+        const dataBankToken: DataBank = { 
+          categories: categories.data, 
+          posts: posts.data,
+          todos: todos.data,
+          isLoading: false 
+        };
 
-          return dataBankToken;
-        }
+        return dataBankToken;
+      }
   }))
   .then(token => {
     dispatch(initCategories(token!.categories));
     dispatch(initPosts(token!.posts));
+    dispatch(initTodos(token!.todos));
   })
   .then(() => {
     dispatch(initAux());
