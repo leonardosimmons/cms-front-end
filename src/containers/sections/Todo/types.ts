@@ -1,5 +1,3 @@
-import { FormProps } from "../../../store/types/types";
-
 //* -------------  STATE  ------------- *//
 export type TodoDataToken = {
   id: string;

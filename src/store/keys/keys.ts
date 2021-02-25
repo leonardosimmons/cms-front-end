@@ -18,6 +18,7 @@ enum Keys {
   SUCCESS = 'success',
   FILTERED = 'filtered',
   UPDATE = 'update',
+  DELETE = 'delete',
   RESET = 'reset',
   REJECTED = 'rejected',
   ERROR = 'error',

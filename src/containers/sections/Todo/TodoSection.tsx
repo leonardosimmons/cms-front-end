@@ -4,7 +4,7 @@ import axios from 'axios';
 import { TodoSectionProps } from './types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { status, updateTodoList } from './state';
+import { clearTodoList, deleteTodo, status, updateTodoList } from './state';
 
 import Element from '../../../store/keys/keys';
 import TodoBar from './TodoBar';
@@ -23,7 +23,8 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
   useEffect(() => 
   {
     statusRef.current = context.status;
-    const idleCheck = setTimeout(() => {
+    const idleCheck = setTimeout(() => 
+    {
       if (statusRef.current === context.status)
       {
         dispatch(status(Element.IDLE));
@@ -38,7 +39,7 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
 
 
   //* --------------------  AUTO UPDATE  -------------------- *//
-  const updateTodos = useCallback(() =>
+  const updateTodos = useCallback((): void =>
   {
     dispatch(status(Element.PENDING));
     axios.get(process.env.REACT_APP_READ_TODOS_API as string, {
@@ -52,11 +53,16 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
           throw new Error('Unable to update todo list');
       }
     )
-    .then(todos => {
-      todos && 
-        dispatch(updateTodoList(todos.sort((a: any, b: any) => (a.created < b.created) ? 1 : -1)));
-    })
-    .then(() => dispatch(status(Element.SUCCESS)))
+    .then(todos => 
+      {
+        if(todos) {
+          dispatch(updateTodoList(todos.sort((a: any, b: any) => (a.created < b.created) ? 1 : -1)));
+        } else {
+            dispatch(clearTodoList());
+        }
+      }
+    )
+    .then(() => dispatch(status(Element.SUCCESS))) 
     .catch(e => {
       dispatch(status(Element.ERROR));
       console.log(e);
@@ -76,15 +82,23 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
     }
   }, [ dispatch, updateTodos, context.status ]);
 
+
+  //* ----------------------  HANDLERS  ---------------------- *//
+  const deleteTodoHandler = (id: string): void =>
+  {
+    dispatch(deleteTodo(id));
+  };
+
+
   //* -----------------------  RENDER  ----------------------- *//
   return (
     <div className={`${ parent + '__' + Element.TODO_SECTION } 
-     h-27r w-75r flex flex-col justify-center items-center max-w-full mt-3 relative`}>
+     h-28r w-75r flex flex-col justify-center items-center max-w-full mt-3 relative`}>
       <h2 className={` w-27r text-4xl font-semibold self-start mb-3 mx-5 border-b-2 leading-relaxed`}>
         What's On Your Agenda:
       </h2>
       <div className={`
-        ${ Element.TODO_SECTION }__container h-full w-95/100 bg-gray-300 rounded-lg shadow-inner overflow-y-auto overflow-x-hidden relative`}>
+        ${ Element.TODO_SECTION }__container h-full w-95/100 bg-gray-300 rounded-lg shadow-inner overflow-y-auto overflow-x-hidden relative noselect`}>
           <TodoBar>
             <AddTodo />
             {/* FILTER TODOS component*/}
@@ -92,11 +106,12 @@ const TodoSection: React.FunctionComponent<TodoSectionProps> = ({ parent }): JSX
           <div className={`w-full`}>
           {
             context.todos.current && 
-            context.todos.current.map(todo => (
+            context.todos.current.map((todo, index) => (
               <Todo
-                key={ todo.id }
+                key={ index }
                 title={ todo.title }
-                note={ todo.note }>
+                note={ todo.note }
+                clicked={ ()=> deleteTodoHandler(todo.id) }>
               </Todo>
             ))
           }

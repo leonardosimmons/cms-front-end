@@ -33,13 +33,24 @@ const todoSlice = createSlice({
       state.todos.bank = action.payload;
       state.todos.current = action.payload;
     },
-    // * ---------------------  TODO LIST  ---------------------  *//
+
+    // * ----------------------  STATUS  ----------------------  *//
+    status: (state, action: PayloadAction<string>) =>
+    {
+      state.status = action.payload;
+    },
+
+    // * --------------------  TODO LIST  ---------------------  *//
     updateTodoList: (state, action: PayloadAction<TodoDataToken[]>) =>
     {
       state.todos.current = action.payload;
     },
+    clearTodoList: (state) =>
+    {
+      state.todos.current = [];
+    },
 
-    // * ---------------------  ADD TODO  ---------------------  *//
+    // * --------------------  ADD TODO  ---------------------  *//
     // BUFFERS
     setTitleBuffer: (state, action: PayloadAction<string>) => 
     {
@@ -53,24 +64,17 @@ const todoSlice = createSlice({
     {
       state.addTodo.buffer.title = '';
       state.addTodo.buffer.note = '';
-    },
-
-    // * ----------------------  STATUS  ----------------------  *//
-    status: (state, action: PayloadAction<string>) =>
-    {
-      state.status = action.payload;
     }
-  
   }
 });
 export const 
 { 
-  initTodos, clearBuffer, status,
+  initTodos, clearBuffer, clearTodoList, status,
   setTitleBuffer, setNoteBuffer, updateTodoList
 } = todoSlice.actions;
 
 //*  -----------------------  ASYNC  -----------------------  *//
-export const addNewTodo = (token: AddTodoToken): AppThunk => (dispatch, getState) =>
+export const addNewTodo = (token: AddTodoToken): AppThunk => (dispatch) =>
 {
   dispatch(status(State.PENDING));
 
@@ -84,6 +88,21 @@ export const addNewTodo = (token: AddTodoToken): AppThunk => (dispatch, getState
       console.log(e);
     });
 }
+
+export const deleteTodo = (id: string): AppThunk => (dispatch) => 
+{
+  dispatch(status(State.PENDING));
+
+  const source = axios.CancelToken.source();
+  axios.delete(process.env.REACT_APP_DELETE_TODOS_API as string, { data: { id: id }})
+    .then(res => console.log(res.data.message))
+    .then(() => source.cancel())
+    .then(() => dispatch(status(State.UPDATE)))
+    .catch(e => {
+      dispatch(status(State.ERROR));
+      console.log(e);
+    });
+} 
 
 //*  -----------------------  STATE  -----------------------  *//
 export const TodoSection = (state: RootState) => state.todoSection;
