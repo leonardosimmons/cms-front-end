@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../../store';
-import { setInquiry, setBuffer, search as searchBlogs, resetCarouselPosition, clearCache, error } from '../state';
+import { 
+  setInquiry, setBuffer, search as searchBlogs, 
+  resetCarouselPosition, clearCache, clearBuffer, error } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
+import BlogSearchForm from './BlogSearchForm';
 import SideBarContentBox from '../../../../components/boxes/content/sidebar';
-import Element from '../../../../store/keys/elements';
+import Element from '../../../../store/keys';
 
 
 const BlogSearch: React.FunctionComponent = (): JSX.Element  => 
@@ -15,17 +18,12 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
   const search: BlogSearchStatus = useSelector((state: RootState) => state.blogSection.search);
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => 
+  const inputChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => 
   {
     dispatch(setBuffer(e.target.value));
-  };
+  }, [ dispatch ]);
 
-  const resetInputHandler = (): void => 
-  {
-    dispatch(setBuffer(''));
-  };
-
-  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => 
+  const formSubmitHandler = useCallback((e: React.FormEvent<HTMLFormElement>): void => 
   {
     e.preventDefault();
     dispatch(clearCache());
@@ -39,38 +37,19 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
     if (!search.isError) 
     {
       dispatch(resetCarouselPosition());
-      resetInputHandler();
+      dispatch(clearBuffer());
     } 
-  };
+  }, [ dispatch, search.buffer, search.isError ]);
   
   
   //*  ---------------------  RENDER  ---------------------  *//  
   return (
-    <SideBarContentBox
-      parent={ Element.BLOG_SECTION }>
-      <form className={`flex flex-col justify-center items-center w-85/100 m-auto`}
-        onSubmit={ formSubmitHandler }>
-        <label htmlFor="blog-search-input"
-          className={`item self-start text-xl font-semibold pb-2 mt-1`}
-        >
-          Blog Search
-        </label>
-        <div className={`flex w-full`}>
-          <input 
-            id="blog-search-input" 
-            type="text"
-            value={ search.buffer }
-            onChange={ inputChangeHandler }
-            className={`flex-auto border-gray-300 border-2 border-solid input-focus mb-4`}  
-          />
-          <button 
-            type="submit"
-            className={`input-focus active-focus bg-gray-400 border-gray-200 border-2 border-solid mb-4`}
-          >
-            &#x1F50D;
-          </button>
-        </div>
-      </form>
+    <SideBarContentBox parent={ Element.BLOG_SECTION }>
+      <BlogSearchForm
+        value={ search.buffer }
+        changed={ inputChangeHandler }
+        submitted={ formSubmitHandler }>
+      </BlogSearchForm>
       { 
         search.isError &&
           <div className={` text-red-800 text-sm font-bold mb-3 ml-8`}>

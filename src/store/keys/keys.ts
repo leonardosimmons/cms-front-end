@@ -1,10 +1,26 @@
 /**
  * Keys for each element within the app
  */
-enum ElementKeys {
+enum Keys {
   //* General
   RIGHT = 'right',
   LEFT = 'left',
+  INPUT = 'input',
+  TITLE = 'title',
+  NOTE = 'note',
+
+  //* Status Indicators
+  PASS = 'pass',
+  FAIL = 'fail',
+  IDLE = 'idle',
+  PENDING = 'pending',
+  RESOLVED = 'resovled',
+  SUCCESS = 'success',
+  FILTERED = 'filtered',
+  UPDATE = 'update',
+  RESET = 'reset',
+  REJECTED = 'rejected',
+  ERROR = 'error',
 
   //* COMPONENTS
   APP = 'App',
@@ -12,7 +28,12 @@ enum ElementKeys {
   MAIN_NAVBAR = 'main-navbar',
   POST = 'post',
   BLOG_POST = 'blog-post',
+  BLOG_SEARCH = 'blog-search',
   BLOG_SECTION = 'blog-section',
+  TODO = 'todo',
+  TODO_LIST = 'todo-list',
+  ADD_TODO = 'add-todo',
+  TODO_SECTION = 'todo-section',
 
   //* Properties
   HEADER = 'header',
@@ -39,9 +60,18 @@ enum ElementKeys {
   SKILL_GRID = 'skill-grid',
   SLIDE = 'slide',
   SLIDER = 'slider',
-
+  
   //* Specifics
-  BASE_HEADER_SLIDER_HEIGHT = '80'
+  BASE_HEADER_SLIDER_HEIGHT = '80',
+  CAROUSEL_AUTOPLAY_DEFAULT = '6',
+  AUTOPLAY_OFF = '0',
+  TITLE_INPUT = 'title__input',
+  NOTE_INPUT = 'note__input',
 };
 
-export default ElementKeys;
+export enum Numbers {
+  CAROUSEL_AUTOPLAY_DEFAULT = 6,
+  AUTOPLAY_OFF = 0
+}
+
+export default Keys;

@@ -1,3 +1,3 @@
-export type ContentBoxConfig = {
+export type ContentBoxProps = {
   parent: string;
 };

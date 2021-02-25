@@ -4,7 +4,7 @@ import { Time } from '../../components/time/types';
 import { setTime } from '../../components/time/state';
 
 export const useTime = (): void => {
-  const dispatch = useDispatch();
+  const dispatch: React.Dispatch<any> = useDispatch();
   const timeRef = useRef<Time>();
 
   const getTime = useCallback((): Time => {

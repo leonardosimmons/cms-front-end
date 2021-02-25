@@ -2,8 +2,38 @@ import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { GetRequest } from '../../store/types';
 
+//* --------------------  GENERAL  -------------------- *//
 /**
- * returns the number of children the element currently has
+ * * Converts given string into an array (cleans up whitespace as well)
+ * @param str 
+ */
+export function strToArr(str: string): string[] {
+  return str.trim().split(" ");
+}
+
+/**
+ * * Merges 2 arrays together and returns a new one with all unique values
+ * * [note]: removes duplicates
+ * @param arr
+ */
+export function uniqueArray(arr: string[]) {
+  const buffer: string[] = arr.concat();
+  for(let i=0; i < buffer.length; ++i) 
+  {
+    for(let j=i+1; j < buffer.length; ++j) 
+    {
+      if(buffer[i] === buffer[j]) 
+      {
+        buffer.splice(j--, 1);
+      }
+    }
+  }
+
+  return buffer;
+};
+
+/**
+ * * returns the number of children the element currently has
  * @param children 
  */
 export function getChildrenCount(children: React.ReactNode): number {

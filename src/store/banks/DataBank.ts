@@ -8,18 +8,22 @@ import { set as initCategories } from './Categories';
 import { set as initPosts } from './Posts';
 
 import { initBlogs  } from './Posts';
+import { initTodos } from '../../containers/sections/Todo/state';
+import { TodoDataToken } from '../../containers/sections/Todo/types';
 
 
 //*  --------------------  INTERFACES  --------------------  *// 
 type DataBank = {
   categories: CategoryDataToken[];
   posts: PostDataToken[];
+  todos: TodoDataToken[];
   isLoading: boolean;
 }
 
 const initialState: DataBank = {
   categories: [],
   posts: [],
+  todos: [],
   isLoading: false
 };
 
@@ -40,10 +44,9 @@ export const { isLoading } = apiSlice.actions;
 
 
 //*  -----------------------  ASYNC  -----------------------  *//
-export const initAux = (): AppThunk => (dispatch) => {
+export const initAux = (): AppThunk => (dispatch) => { 
   dispatch(initBlogs());
 }
-
 
 export const start = (): AppThunk => (dispatch) => {
   dispatch(isLoading());
@@ -53,24 +56,29 @@ export const start = (): AppThunk => (dispatch) => {
     }),
     axios.get(process.env.REACT_APP_POSTS_API as string, {
       headers: { 'Content-Type': 'application/json' }
+    }),
+    axios.get(process.env.REACT_APP_READ_TODOS_API as string, {
+      headers: { 'Content-Type': 'application/json' }
     })
   ])
-  .then(axios.spread((categories, posts) => {
-    if (categories.status === 200 && posts.status === 200 &&
-        categories.statusText === "OK" && posts.statusText === "OK") 
-        {
-          const dataBankToken: DataBank = { 
-            categories: categories.data, 
-            posts: posts.data,
-            isLoading: false 
-          };
+  .then(axios.spread((categories, posts, todos) => {
+    if (categories.status === 200 && posts.status === 200 && todos.status === 200 &&
+        categories.statusText === "OK" && posts.statusText === "OK" && todos.statusText === "OK") 
+      {
+        const dataBankToken: DataBank = { 
+          categories: categories.data, 
+          posts: posts.data,
+          todos: todos.data,
+          isLoading: false 
+        };
 
-          return dataBankToken;
-        }
+        return dataBankToken;
+      }
   }))
   .then(token => {
     dispatch(initCategories(token!.categories));
     dispatch(initPosts(token!.posts));
+    dispatch(initTodos(token!.todos));
   })
   .then(() => {
     dispatch(initAux());

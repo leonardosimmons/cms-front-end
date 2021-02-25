@@ -1,4 +1,4 @@
-export type ButtonConfig = {
+export type ButtonProps = {
   text: string;
   parent?: string;
   clicked?: () => void;

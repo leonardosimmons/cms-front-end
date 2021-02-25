@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getConfiguration } from '../../navbar/main/config';
 
-import Element from '../../../store/keys/elements'
+import Element from '../../../store/keys';
 import logo from '../../../assets/images/logo.png';
 import LogoBox from '../../boxes/logo/LogoBox';
 import MenuTabs from '../../lists/base/List';
@@ -14,7 +14,7 @@ const NavBar: React.FunctionComponent = (): JSX.Element => {
 
   return (
     <nav className={`${ Element.MAIN_NAVBAR }  
-      flex items-center h-24 w-full rounded-t-3xl shadow-sm bg-purple-400 justify-between`}>
+      flex items-center h-20 w-full rounded-t-3xl shadow-sm bg-purple-400 justify-between`}>
       <div className={`${ Element.MAIN_NAVBAR }__left-container 
       flex items-center flex-50 h-full w-95 m-auto px-3 relative text-white text-2xl`}>
         <LogoBox

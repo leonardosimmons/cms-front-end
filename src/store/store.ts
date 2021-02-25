@@ -9,7 +9,7 @@ import timeReducer from '../components/time/state';
 
 // containers
 import blogSectionReducer from '../containers/sections/BlogPost/state';
-
+import todoSectionReducer from '../containers/sections/Todo/state';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +17,7 @@ export const store = configureStore({
     categories: categoryReducer,
     posts: postReducer,
     blogSection: blogSectionReducer, 
+    todoSection: todoSectionReducer,
     
   },
 });

@@ -1,11 +1,15 @@
 import React from 'react';
-import { ButtonConfig } from './types';
+import { ButtonProps } from './types';
 
 
-const Button: React.FunctionComponent<ButtonConfig> = ({ parent, text, clicked, style, arrow }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({ parent, text, clicked, style, arrow }) => {
   return (
     <button 
-      className={`${ parent }__button px-3 py-1 bg-green-300 rounded-lg relative btn-hoverConfig btn-ActiveFocus`} 
+      type="submit"
+      className={`${ parent }__button 
+      px-3 py-1 rounded-lg relative btn-hoverConfig btn-ActiveFocus
+      ${ parent === 'blog-section' ? 'bg-green-300' : ''}
+      ${ parent === 'todo-section' ? 'bg-green-300' : ''}`} 
       style={ style }
       onClick={ clicked } 
     >

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { Time } from './types';
 
+
 const initialState: Time = {
   month: '',
   date: '',

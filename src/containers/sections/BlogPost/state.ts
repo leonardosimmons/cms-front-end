@@ -16,7 +16,8 @@ const initialState: BlogSectionConfig = {
   },
   blogs: {
     bank: [],
-    current: []
+    current: [],
+    tags: []
   },
   carousel: {
     translate: 0,
@@ -41,6 +42,11 @@ const blogSectionSlice = createSlice({
 
     setBuffer: (state, action: PayloadAction<string>) => {
       state.search.buffer = action.payload;
+    },
+
+    clearBuffer: (state) =>
+    {
+      state.search.buffer = '';
     },
 
     setResult: (state, action: PayloadAction<PostDataToken[]>) => {
@@ -75,6 +81,11 @@ const blogSectionSlice = createSlice({
 
     resetCurrentBlogList: (state) => {
       state.blogs.current = state.blogs.bank;
+    },
+
+    setTags: (state, action: PayloadAction<string[]>) =>
+    {
+      state.blogs.tags = action.payload;
     },
 
     /*  -----------------------  VIEWMODE  ---------------------  */
@@ -141,8 +152,8 @@ const blogSectionSlice = createSlice({
 });
 export const { 
   toggleViewMode, 
-  setBuffer, setInquiry, setResult, setBlogs, loading, 
-  updateCurrentBlogList, resetCurrentBlogList, error, clearCache,
+  setBuffer, setInquiry, setResult, setBlogs, setTags, loading, 
+  updateCurrentBlogList, resetCurrentBlogList, error, clearCache, clearBuffer,
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount, resetCarouselPosition 
 } = blogSectionSlice.actions;
 
