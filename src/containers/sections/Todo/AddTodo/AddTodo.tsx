@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
-import { setTitleBuffer, setTitle, setNoteBuffer, setNote, clearCache } from '../state'
-
+import { setTitleBuffer, setNoteBuffer, addNewTodo, clearBuffer } from '../state';
 import AddTodoForm from './AddTodoForm';
 
 const AddTodo: React.FunctionComponent = (): JSX.Element => 
@@ -27,22 +26,17 @@ const AddTodo: React.FunctionComponent = (): JSX.Element =>
     dispatch(setNoteBuffer(input));
   }, [ dispatch ]);
 
-  const createAddTodoToken = useCallback(() =>
+  const addTodoHandler = useCallback((e: React.FormEvent<HTMLFormElement>): void => 
   {
+    e.preventDefault();
     const todoToken = {
       title: status.buffer.title,
       note: status.buffer.note
     };
 
-    dispatch(setTitle(todoToken.title));
-    dispatch(setNote(todoToken.note));
+    dispatch(addNewTodo(todoToken));
+    dispatch(clearBuffer());
   }, [ dispatch, status.buffer.title, status.buffer.note ]);
-
-  const addTodoHandler = useCallback((e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    createAddTodoToken();
-    dispatch(clearCache());
-  }, [ dispatch, createAddTodoToken ]);
 
   //* ---------------------  RENDER  --------------------- *//
   return (

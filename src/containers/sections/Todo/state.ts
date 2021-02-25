@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { AppThunk, RootState } from '../../../store';
-import { TodoDataToken, TodoSectionConfig } from './types';
+import { AddTodoToken, TodoDataToken, TodoSectionConfig } from './types';
+
+import State from '../../../store/keys';
+
 
 const initialState: TodoSectionConfig = {
   previewMode: false,
@@ -12,12 +16,9 @@ const initialState: TodoSectionConfig = {
     buffer: {
       title: '',
       note: ''
-    },
-    input: {
-      title: '',
-      note: ''
     }
-  }
+  },
+  status: 'idle',
 };
 
 
@@ -32,6 +33,11 @@ const todoSlice = createSlice({
       state.todos.bank = action.payload;
       state.todos.current = action.payload;
     },
+    // * ---------------------  TODO LIST  ---------------------  *//
+    updateTodoList: (state, action: PayloadAction<TodoDataToken[]>) =>
+    {
+      state.todos.current = action.payload;
+    },
 
     // * ---------------------  ADD TODO  ---------------------  *//
     // BUFFERS
@@ -43,32 +49,41 @@ const todoSlice = createSlice({
     {
       state.addTodo.buffer.note = action.payload;
     },
-    clearCache: (state) =>
+    clearBuffer: (state) =>
     {
       state.addTodo.buffer.title = '';
       state.addTodo.buffer.note = '';
     },
 
-    // INPUTS
-    setTitle: (state, action: PayloadAction<string>) =>
+    // * ----------------------  STATUS  ----------------------  *//
+    status: (state, action: PayloadAction<string>) =>
     {
-      state.addTodo.input.title = action.payload;
-    },
-    setNote: (state, action: PayloadAction<string>) =>
-    {
-      state.addTodo.input.note = action.payload;
+      state.status = action.payload;
     }
-
+  
   }
 });
 export const 
 { 
-  initTodos, clearCache,
-  setTitleBuffer, setNoteBuffer, setTitle, setNote
+  initTodos, clearBuffer, status,
+  setTitleBuffer, setNoteBuffer, updateTodoList
 } = todoSlice.actions;
 
 //*  -----------------------  ASYNC  -----------------------  *//
+export const addNewTodo = (token: AddTodoToken): AppThunk => (dispatch, getState) =>
+{
+  dispatch(status(State.PENDING));
 
+  const source = axios.CancelToken.source();
+  axios.post(process.env.REACT_APP_CREATE_TODOS_API as string, token)
+    .then(res => console.log(res.data.message))
+    .then(() => source.cancel())
+    .then(() => dispatch(status(State.UPDATE)))
+    .catch(e => { 
+      dispatch(status(State.ERROR));
+      console.log(e);
+    });
+}
 
 //*  -----------------------  STATE  -----------------------  *//
 export const TodoSection = (state: RootState) => state.todoSection;

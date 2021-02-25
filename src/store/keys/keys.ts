@@ -9,6 +9,19 @@ enum Keys {
   TITLE = 'title',
   NOTE = 'note',
 
+  //* Status Indicators
+  PASS = 'pass',
+  FAIL = 'fail',
+  IDLE = 'idle',
+  PENDING = 'pending',
+  RESOLVED = 'resovled',
+  SUCCESS = 'success',
+  FILTERED = 'filtered',
+  UPDATE = 'update',
+  RESET = 'reset',
+  REJECTED = 'rejected',
+  ERROR = 'error',
+
   //* COMPONENTS
   APP = 'App',
   HOME_PAGE = 'home-page',
@@ -54,7 +67,6 @@ enum Keys {
   AUTOPLAY_OFF = '0',
   TITLE_INPUT = 'title__input',
   NOTE_INPUT = 'note__input',
-
 };
 
 export enum Numbers {

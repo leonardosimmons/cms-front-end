@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../../store';
 import { 
   setInquiry, setBuffer, search as searchBlogs, 
-  resetCarouselPosition, clearCache, error } from '../state';
+  resetCarouselPosition, clearCache, clearBuffer, error } from '../state';
 import { BlogSearch as BlogSearchStatus } from '../types';
 import BlogSearchForm from './BlogSearchForm';
 import SideBarContentBox from '../../../../components/boxes/content/sidebar';
@@ -18,17 +18,12 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
   const search: BlogSearchStatus = useSelector((state: RootState) => state.blogSection.search);
 
   //*  --------------------  HANDLERS  --------------------  *//
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => 
+  const inputChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => 
   {
     dispatch(setBuffer(e.target.value));
-  };
+  }, [ dispatch ]);
 
-  const resetInputHandler = (): void => 
-  {
-    dispatch(setBuffer(''));
-  };
-
-  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => 
+  const formSubmitHandler = useCallback((e: React.FormEvent<HTMLFormElement>): void => 
   {
     e.preventDefault();
     dispatch(clearCache());
@@ -42,9 +37,9 @@ const BlogSearch: React.FunctionComponent = (): JSX.Element  =>
     if (!search.isError) 
     {
       dispatch(resetCarouselPosition());
-      resetInputHandler();
+      dispatch(clearBuffer());
     } 
-  };
+  }, [ dispatch, search.buffer, search.isError ]);
   
   
   //*  ---------------------  RENDER  ---------------------  *//  

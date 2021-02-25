@@ -38,15 +38,17 @@ export type TodoSectionConfig = {
     buffer: {
       title: string;
       note: string;
-    },
-    input: {
-      title: string;
-      note: string;
     }
-  }
+  },
+  status: string;
 };
 
 //* ------------  ADD TODO  ------------ *//
+export type AddTodoToken = {
+  title: string;
+  note: string;
+};
+
 export type AddTodoFormProps = {
 
   title: string;

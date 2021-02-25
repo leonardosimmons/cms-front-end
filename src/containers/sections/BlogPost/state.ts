@@ -44,6 +44,11 @@ const blogSectionSlice = createSlice({
       state.search.buffer = action.payload;
     },
 
+    clearBuffer: (state) =>
+    {
+      state.search.buffer = '';
+    },
+
     setResult: (state, action: PayloadAction<PostDataToken[]>) => {
       state.search.result = action.payload;
     },
@@ -148,7 +153,7 @@ const blogSectionSlice = createSlice({
 export const { 
   toggleViewMode, 
   setBuffer, setInquiry, setResult, setBlogs, setTags, loading, 
-  updateCurrentBlogList, resetCurrentBlogList, error, clearCache,
+  updateCurrentBlogList, resetCurrentBlogList, error, clearCache, clearBuffer,
   width, next,  prev, firstSlide, lastSlide,   setSlideCount,  setDotCount, resetCarouselPosition 
 } = blogSectionSlice.actions;
 
