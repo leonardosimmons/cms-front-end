@@ -1,5 +1,3 @@
-import { FormProps } from "../../../store/types/types";
-
 //* -------------  STATE  ------------- *//
 export type TodoDataToken = {
   id: string;
@@ -23,6 +21,29 @@ export type TodoProps = {
   note: string;
 };
 
+
+//* ------------  ADD TODO  ------------ *//
+export type AddTodoToken = {
+  title: string;
+  note: string;
+};
+
+export type AddTodoFormProps = {
+
+  title: string;
+  note: string;
+  titleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  noteChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitted: (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+//* -------------  SEARCH  ------------- *//
+export type TodoFilter = {
+  buffer: string;
+  inquiry: string;
+  result: TodoDataToken[];
+}
+
 //* ------------  SECTION  ------------ *//
 export type TodoSectionProps = {
   parent: string;
@@ -40,20 +61,6 @@ export type TodoSectionConfig = {
       note: string;
     }
   },
+  filter: TodoFilter,
   status: string;
-};
-
-//* ------------  ADD TODO  ------------ *//
-export type AddTodoToken = {
-  title: string;
-  note: string;
-};
-
-export type AddTodoFormProps = {
-
-  title: string;
-  note: string;
-  titleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  noteChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitted: (e: React.FormEvent<HTMLFormElement>) => void;
 };

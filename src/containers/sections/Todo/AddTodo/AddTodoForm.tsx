@@ -24,7 +24,7 @@ const AddTodoForm: React.FunctionComponent<AddTodoFormProps> = (
           value={ title }
           changed={ titleChange }
           labelStyle={`mr-2`}
-          inputStyle={`border-2 border-gray-300 border-solid w-36`}>
+          inputStyle={`border-2 border-gray-300 border-solid w-36 input-focus`}>
         </Input>
       </div>
       <div className={`flex justify-center items-center ml-3`}>
@@ -34,7 +34,7 @@ const AddTodoForm: React.FunctionComponent<AddTodoFormProps> = (
           value={ note }
           changed={ noteChange }
           labelStyle={`mr-2`}
-          inputStyle={`border-2 border-gray-300 border-solid mr-3 w-80`}>
+          inputStyle={`border-2 border-gray-300 border-solid mr-3 w-80 input-focus`}>
         </Input>
       </div>
       <Button

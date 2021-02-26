@@ -18,6 +18,7 @@ enum Keys {
   SUCCESS = 'success',
   FILTERED = 'filtered',
   UPDATE = 'update',
+  DELETE = 'delete',
   RESET = 'reset',
   REJECTED = 'rejected',
   ERROR = 'error',
@@ -34,6 +35,7 @@ enum Keys {
   TODO_LIST = 'todo-list',
   ADD_TODO = 'add-todo',
   TODO_SECTION = 'todo-section',
+  TODO_FILTER = 'todo-search',
 
   //* Properties
   HEADER = 'header',

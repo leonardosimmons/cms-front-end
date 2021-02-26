@@ -6,7 +6,7 @@ import { FormProps } from '../../../../store/types/types';
 const BlogSearchForm: React.FunctionComponent<FormProps> = ({ value, changed, submitted }) => 
 {
   return (
-    <form className={`flex flex-col justify-center items-center w-85/100 m-auto`}
+    <form className={`flex flex-col justify-center items-center w-85/100 m-auto noselect`}
       onSubmit={ submitted }>
       <Input
         name={ Element.BLOG_SEARCH }

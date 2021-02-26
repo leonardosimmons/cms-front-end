@@ -1,16 +1,33 @@
 import React from 'react';
 import { InputProps } from './types';
+import Button from '../buttons/BaseButton-01';
+import Element from '../../store/keys';
 
-const Input: React.FunctionComponent<InputProps> = ({ name , label, value, type, changed, labelStyle, inputStyle, button, buttonIcon, buttonStyle, buttonClicked }): JSX.Element => 
-{
+const Input: React.FunctionComponent<InputProps> = (
+  { 
+    name , 
+    label, 
+    value, 
+    type,
+    filter,
+    reset, 
+    changed, 
+    labelStyle, 
+    inputStyle, 
+    button, buttonIcon, buttonStyle, buttonClicked 
+  }
+): JSX.Element => {
   return (
     <>
-      <label 
-        htmlFor={ name }
-        className={ labelStyle }
-      >
-        { label }
-      </label>
+      {
+        name !== Element.TODO_FILTER && 
+          <label 
+            htmlFor={ name }
+            className={ labelStyle }
+            >
+              { label }
+          </label>
+      }
       <div className={`
         w-full
         ${ button ? 'flex' : '' }`}>
@@ -32,6 +49,24 @@ const Input: React.FunctionComponent<InputProps> = ({ name , label, value, type,
           </button>
         }
       </div>
+      {
+        name === Element.TODO_FILTER &&
+        <>
+          <Button
+            parent={ Element.TODO_FILTER}
+            text={'Filter'}
+            clicked={  filter }
+            classes={ buttonStyle }>  
+          </Button>
+          <Button
+            parent={ Element.TODO_FILTER}
+            text={'Reset'}
+            clicked={  reset }
+            classes={ buttonStyle }>  
+          </Button>
+        </>
+        
+      }
     </>
   );
 };
