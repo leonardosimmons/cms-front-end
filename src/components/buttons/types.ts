@@ -7,4 +7,5 @@ export type ButtonProps = {
     backgroundColor: string
   };
   arrow?: boolean
+  classes?: string;
 };

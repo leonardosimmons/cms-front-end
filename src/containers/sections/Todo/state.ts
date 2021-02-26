@@ -18,6 +18,11 @@ const initialState: TodoSectionConfig = {
       note: ''
     }
   },
+  filter: {
+    buffer: '',
+    inquiry: '',
+    result: [],
+  },
   status: 'idle',
 };
 
@@ -64,13 +69,38 @@ const todoSlice = createSlice({
     {
       state.addTodo.buffer.title = '';
       state.addTodo.buffer.note = '';
+    },
+
+    // * ---------------------  FILTERS  ----------------------  *//
+    setFilterBuffer: (state, action: PayloadAction<string>) =>
+    {
+      state.filter.buffer = action.payload;
+    },
+    setFilterInquiry: (state, action: PayloadAction<string>) =>
+    {
+      state.filter.inquiry = state.filter.buffer;
+    },
+    setFilterResult: (state, action: PayloadAction<TodoDataToken[]>) =>
+    {
+      state.filter.result = action.payload;
+    },
+    clearFilterCache: (state) => 
+    {
+      state.filter.result = [];
+    },
+    resetFilter: (state) =>
+    {
+      state.filter.buffer = '';
+      state.filter.inquiry = '';
+      state.filter.result = [];
     }
   }
 });
 export const 
 { 
   initTodos, clearBuffer, clearTodoList, status,
-  setTitleBuffer, setNoteBuffer, updateTodoList
+  setTitleBuffer, setNoteBuffer, updateTodoList,
+  setFilterBuffer, setFilterInquiry, setFilterResult, clearFilterCache, resetFilter
 } = todoSlice.actions;
 
 //*  -----------------------  ASYNC  -----------------------  *//
@@ -102,7 +132,36 @@ export const deleteTodo = (id: string): AppThunk => (dispatch) =>
       dispatch(status(State.ERROR));
       console.log(e);
     });
-} 
+};
+
+export const filterTodo = (): AppThunk => (dispatch, getState) =>
+{
+  dispatch(status(State.PENDING));
+  const current = getState().todoSection.filter;
+  axios.get<TodoDataToken[]>(
+    `${ process.env.REACT_APP_SEARCH_TODOS_API }?tag=%${ current.inquiry !== "" ? current.inquiry : '' }%`, 
+  {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => 
+  {
+    if(res.status === 200 && res.statusText === "OK" && Array.isArray(res.data))
+    {
+      return res.data
+    }
+  })
+  .then(todos => 
+  {
+    if (todos) {
+      dispatch(setFilterResult(todos as TodoDataToken[]));
+      dispatch(updateTodoList(todos as TodoDataToken[]));
+    } else {
+        dispatch(status(State.ERROR));
+    }
+  })
+  .catch(e => console.log(e))
+  .then(() => dispatch(status(State.SUCCESS)));
+}
 
 //*  -----------------------  STATE  -----------------------  *//
 export const TodoSection = (state: RootState) => state.todoSection;
