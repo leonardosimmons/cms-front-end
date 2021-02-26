@@ -11,6 +11,9 @@ import timeReducer from '../components/time/state';
 import blogSectionReducer from '../containers/sections/BlogPost/state';
 import todoSectionReducer from '../containers/sections/Todo/state';
 
+// widgets
+import weatherReducer from '../widgets/weather/state';
+
 export const store = configureStore({
   reducer: {
     time: timeReducer,
@@ -18,7 +21,7 @@ export const store = configureStore({
     posts: postReducer,
     blogSection: blogSectionReducer, 
     todoSection: todoSectionReducer,
-    
+    weatherWidget: weatherReducer
   },
 });
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { RootState } from '../../../store';
 import { useSelector, useDispatch } from 'react-redux';
-import { BlogSectionProps, BlogSectionConfig } from './types';
+import { BlogSectionProps, BlogSectionContext } from './types';
 import { toggleViewMode, updateCurrentBlogList, 
           resetCurrentBlogList, resetCarouselPosition, setTags } from './state';
 import { PostDataToken } from '../../../store/types/post';
@@ -18,11 +18,11 @@ import Carousel from './Carousel';
 const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
   const dispatch = useDispatch();
-  const section: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
+  const context: BlogSectionContext = useSelector((state: RootState) => state.blogSection);
   
 
   //*  --------------------  BLOG TAGS  --------------------  *//
-  const blogTags: string[] = useGetTags(section.blogs.bank);
+  const blogTags: string[] = useGetTags(context.blogs.bank);
   useEffect(() => 
   {
     dispatch(setTags(blogTags));
@@ -33,7 +33,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
   const viewModeToggle = (post: PostDataToken): void => 
   { 
     dispatch(toggleViewMode());
-    if (section.previewMode)
+    if (context.previewMode)
     {
       dispatch(updateCurrentBlogList([post]));
     } else {
@@ -46,7 +46,7 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
   return (
     <>
       { 
-      section.previewMode && 
+      context.previewMode && 
         <div className={`h-18 w-30/100 flex p-2 border-b-2 mt-3 self-start ml-12`}>
           <h1 className={`text-4xl font-semibold pr-2 self-end mb-2`}>Blog Posts</h1>
           <h2 className={`text-base font-medium self-end mb-2 ml-1`}>(Recently Featured)</h2>
@@ -54,18 +54,18 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
       }
     <div className={`overflow-hidden mx-6`}>
       <div className={`transition-all duration-700
-        ${ section.previewMode ? 'h-25r' : 'h-full'} flex`}>
+        ${ context.previewMode ? 'h-25r' : 'h-full'} flex`}>
         <Carousel
-          autoPlay={ section.search.inquiry ? Config.AUTOPLAY_OFF : 
-                      section.previewMode ? Config.CAROUSEL_AUTOPLAY_DEFAULT : Config.AUTOPLAY_OFF }
-          previewMode={ section.previewMode }
+          autoPlay={ context.search.inquiry ? Config.AUTOPLAY_OFF : 
+                      context.previewMode ? Config.CAROUSEL_AUTOPLAY_DEFAULT : Config.AUTOPLAY_OFF }
+          previewMode={ context.previewMode }
         >
           { 
-            section.blogs.current.map((post, index) => (
+            context.blogs.current.map((post, index) => (
               <BlogPost
                 key={ index }
                 index={ index }
-                preview={ section.previewMode }
+                preview={ context.previewMode }
                 type={ post.type }
                 id={ post.id } 
                 status={ post.status } 
@@ -75,30 +75,30 @@ const BlogSection: React.FunctionComponent<BlogSectionProps> = ({ parent }): JSX
                 tags={ post.tags } 
                 image={ 
                   <div className={` ${ parent }__blog-post--img-box 
-                  ${ section.previewMode ? 
+                  ${ context.previewMode ? 
                     'h-40 w-25/100' : 
                     'h-30/100 self-center mb-4' }`}>
                       <Image 
-                        previewMode={ section.previewMode }
+                        previewMode={ context.previewMode }
                         image={ process.env.PUBLIC_URL + post.image }>
                       </Image>
                   </div> 
                 }
                 content={ 
                   <div className={` ${ parent }__blog-post--content-box
-                  ${ section.previewMode ? 
+                  ${ context.previewMode ? 
                     'w-75/100 mr-6 ' : 
                     'w-80/100 m-auto'}
                     `}>
                     <div className={` mb-4
-                      ${ section.previewMode ? 'w-full mb-4' : 'mb-6'}`}>
+                      ${ context.previewMode ? 'w-full mb-4' : 'mb-6'}`}>
                       { post.content }
                     </div>
-                    <div className={`${ section.previewMode ? '' : 'text-center mb-12'}`}>
+                    <div className={`${ context.previewMode ? '' : 'text-center mb-12'}`}>
                       <Button 
                         parent={ Element.BLOG_SECTION }
                         arrow={ true }
-                        text={`${ section.previewMode ? 'Read More' : 'Back to Blog'}`} 
+                        text={`${ context.previewMode ? 'Read More' : 'Back to Blog'}`} 
                         clicked={ () => viewModeToggle(post) }>
                       </Button>    
                     </div>

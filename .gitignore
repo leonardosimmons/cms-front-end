@@ -30,7 +30,7 @@ yarn-error.log*
 /src/styles/index.scss
 /src/assets/svg
 /src/assets/images
-
+/src/widgets/weather/cities
 
 logo.png
 logo192.png
