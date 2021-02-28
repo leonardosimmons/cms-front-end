@@ -2,10 +2,10 @@ import axios from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../../../store/store';
 import { PostDataToken } from '../../../store/types/post';
-import { BlogSectionConfig } from './types';
+import { BlogSectionContext } from './types';
 
 
-const initialState: BlogSectionConfig = {
+const initialState: BlogSectionContext = {
   previewMode: true,
   search: {
     buffer: '',

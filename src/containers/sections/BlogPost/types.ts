@@ -25,7 +25,7 @@ export type BlogSectionProps = {
 }
 
 
-export type BlogSectionConfig = {
+export type BlogSectionContext = {
   previewMode: boolean;
   search: BlogSearch;
   blogs: {
@@ -35,5 +35,3 @@ export type BlogSectionConfig = {
   }
   carousel: CarouselStatus;
 };
-
-

@@ -16,8 +16,8 @@ export function strToArr(str: string): string[] {
  * * [note]: removes duplicates
  * @param arr
  */
-export function uniqueArray(arr: string[]) {
-  const buffer: string[] = arr.concat();
+export function uniqueArray(arr: any[]) {
+  const buffer: any[] = arr.concat();
   for(let i=0; i < buffer.length; ++i) 
   {
     for(let j=i+1; j < buffer.length; ++j) 

@@ -30,6 +30,7 @@ const Input: React.FunctionComponent<InputProps> = (
       }
       <div className={`
         w-full
+
         ${ button ? 'flex' : '' }`}>
         <input 
           id={ name } 
@@ -37,6 +38,7 @@ const Input: React.FunctionComponent<InputProps> = (
           value={ value }
           className={`${ inputStyle } px-1` }
           onChange={ changed }
+          maxLength={ name === Element.WEATHER_WIDGET + '_alt-input' ? 2 : undefined }
         />
         {
           button &&

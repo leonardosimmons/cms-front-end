@@ -10,11 +10,13 @@ import TodoSection from '../../sections/Todo';
 import BlogSection from '../../sections/BlogPost';
 import BlogSearchBox from '../../sections/BlogPost/search';
 import BlogCategories from '../../sections/BlogPost/Categories';
-import { BlogSectionConfig } from '../../sections/BlogPost/types';
+import { BlogSectionContext } from '../../sections/BlogPost/types';
+
+import WeatherWidget from '../../../widgets/weather';
 
 const Home: React.FunctionComponent = (): JSX.Element => {
   //*  ----------------------  STATE  ----------------------  *//
-  const blogSection: BlogSectionConfig = useSelector((state: RootState) => state.blogSection);
+  const blogSection: BlogSectionContext = useSelector((state: RootState) => state.blogSection);
 
   //*  ---------------------  RENDER  ---------------------  *//
   return (
@@ -45,7 +47,10 @@ const Home: React.FunctionComponent = (): JSX.Element => {
         {
           <div className={`${ Element.HOME_PAGE }__side-bar 
             h-full flex-25 flex flex-col rounded-br-3xl bg-yellow-700`}>
-            <div className={`TEMP h-31r w-full`}></div>
+            <div className={`TEMP h-31r w-90/100 mx-auto mt-3`}>
+              <WeatherWidget>
+              </WeatherWidget>
+            </div>
             {
               BlogSection && 
                 <div className={`flex flex-col justify-between items-center

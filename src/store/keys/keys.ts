@@ -62,6 +62,7 @@ enum Keys {
   SKILL_GRID = 'skill-grid',
   SLIDE = 'slide',
   SLIDER = 'slider',
+  WEATHER_WIDGET = 'weather-widget',
   
   //* Specifics
   BASE_HEADER_SLIDER_HEIGHT = '80',

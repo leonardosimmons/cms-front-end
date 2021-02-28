@@ -30,7 +30,7 @@ yarn-error.log*
 /src/styles/index.scss
 /src/assets/svg
 /src/assets/images
-
+/src/widgets/weather/cities
 
 logo.png
 logo192.png
@@ -38,11 +38,15 @@ logo512.png
 <<<<<<< HEAD
 <<<<<<< HEAD
 favicon.ico
+<<<<<<< HEAD
 /src/styles/index.css
 =======
 favicon.ico
 >>>>>>> active
 =======
 favicon.ico
+city.list.json
+>>>>>>> active
+=======
 city.list.json
 >>>>>>> active
